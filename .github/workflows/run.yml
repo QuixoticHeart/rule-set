@@ -51,7 +51,6 @@ jobs:
               set -- $file
               echo "Downloading: $2"
               curl -A "Surge iOS/3367" -f -L -o "clash/domains/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
-              sed -i -e '/^\s*[#;]/d' -e '/^$/d' -e 's| //.*||'  "clash/domains/$1"
               sed -i -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' "clash/domains/$1"
           done
           echo "Files downloaded successfully."
@@ -59,15 +58,11 @@ jobs:
       - name: Generate apns.list file
         run: |
           curl -sSL "https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/apns.list"
-
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/apns.list" | sort -u -o "clash/domains/apns.list"
           
       - name: Generate appleproxy.list file
         run: |
           curl -sSL "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/AppleProxy/AppleProxy.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/appleproxy.list"
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/appleproxy.list" | sort -u -o "clash/domains/appleproxy.list"     
-      
       - name: Generate games-cn.list file
         run: |
           urls=(
@@ -84,8 +79,6 @@ jobs:
             
           curl -sSL "${urls[2]}" >> "clash/domains/games-cn.list" || { echo "Download Failed: "${urls[2]}" "; exit 1; }
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/games-cn.list" | sort -u -o "clash/domains/games-cn.list"  
-
       - name: Generate gits.list file
         run: |
           urls=(
@@ -101,8 +94,6 @@ jobs:
               echo "" >> "clash/domains/gits.list"
           done
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/gits.list" | sort -u -o "clash/domains/gits.list"   
-     
       - name: Generate ai.list file
         run: |
           urls=(
@@ -118,8 +109,6 @@ jobs:
               echo "" >> "clash/domains/ai.list"
           done
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/ai.list" | sort -u -o "clash/domains/ai.list"
-      
       - name: Generate crypto.list file
         run: |
           urls=(
@@ -133,8 +122,6 @@ jobs:
               echo "" >> "clash/domains/crypto.list"
           done
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/crypto.list" | sort -u -o "clash/domains/crypto.list"    
-      
       - name: Generate socialmedia.list file
         run: |
           urls=(
@@ -154,8 +141,6 @@ jobs:
               echo "" >> "clash/domains/socialmedia.list"
           done
           
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/socialmedia.list" | sort -u -o "clash/domains/socialmedia.list"    
-      
       - name: Generate private.list file
         run: |
           urls=(
@@ -172,8 +157,6 @@ jobs:
             
           curl -sSL "${urls[2]}" | grep -oP '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}' >> "clash/domains/private.list" || { echo "Download Failed: "${urls[2]}" "; exit 1; } 
           
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/domains/private.list" | sort -u -o "clash/domains/private.list"    
-      
       - name: Generate custom_cn.list file
         run: |  
           grep -v -x -f clash/domains/bilibili.list clash/domains/cn.list > clash/domains/custom_cn.list
@@ -192,7 +175,6 @@ jobs:
               set -- $file
               echo "Downloading: $2"
               curl -A "Surge iOS/3367" -f -L -o "clash/ipcidr/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
-              sed -i -e '/^\s*[#;]/d' -e '/^$/d' -e 's| //.*||'  "clash/ipcidr/$1"
           done
           echo "Files downloaded successfully."
 
@@ -200,8 +182,6 @@ jobs:
         run: |  
           curl -sSL "https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list" | grep 'IP-CIDR' | sed -e 's/^IP-CIDR,//' -e 's/^IP-CIDR6,//' -e 's/,no-resolve$//' > "clash/ipcidr/apnscidr.list"
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/ipcidr/apnscidr.list" | sort -u -o "clash/ipcidr/apnscidr.list"
-      
       - name: Generate socialmediacidr.list file
         run: |
           urls=(
@@ -216,8 +196,6 @@ jobs:
               echo "" >> "clash/ipcidr/socialmediacidr.list"
           done
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/ipcidr/socialmediacidr.list" | sort -u -o "clash/ipcidr/socialmediacidr.list"
-
       - name: Generate privatecidr.list file
         run: |  
           curl -sSL "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.list" > "clash/ipcidr/privatecidr.list"
@@ -227,8 +205,6 @@ jobs:
           echo "" >> "clash/ipcidr/privatecidr.list"    
           
           curl -sSL "https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt" | grep -oP '\b([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b|\b([0-9a-fA-F]{1,4}:){1,7}:|::[0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,6}\b' | sed 's/$/\/128/' >> "clash/ipcidr/privatecidr.list"
-
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/ipcidr/privatecidr.list" | sort -u -o "clash/ipcidr/privatecidr.list"
 
       - name: Download mihomo classical ruleset
         run: |
@@ -244,7 +220,6 @@ jobs:
               set -- $file
               echo "Downloading: $2"
               curl -A "Surge iOS/3367" -f -L -o "clash/classical/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
-              sed -i -e '/^\s*[#;]/d' -e '/^$/d' -e 's| //.*||'  "clash/classical/$1"
               sed -i -e '/DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' "clash/classical/$1"
           done
           echo "Files downloaded successfully."        
@@ -256,22 +231,26 @@ jobs:
           
           curl -sSL "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Download/Download.list" >> "clash/classical/application.list"
 
-          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "clash/classical/application.list" | sort -u -o "clash/classical/application.list"
-      
       - name: Download and unzip `mihomo core`
         run: |
           mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
           curl -sSL "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-${mihomo_version}.gz" | gzip -d > ./mihomo
           chmod +x ./mihomo
            
-      - name: Generate mihomo mrs       
+      - name: Process raw ruleset files and generate mihomo mrs       
         run: |
           for file in clash/domains/*.list ; do
+              awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "${file}" | sort -u -o "${file}"
               ./mihomo convert-ruleset domain text "${file}" "${file%.list}.mrs"
           done
 
           for file in clash/ipcidr/*.list ; do
+              awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "${file}" | sort -u -o "${file}"
               ./mihomo convert-ruleset ipcidr text "${file}" "${file%.list}.mrs"
+          done
+          
+          for file in clash/classical/*.list ; do
+              awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "${file}" | sort -u -o "${file}"
           done
 
       - name: Release and upload assets
