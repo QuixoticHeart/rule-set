@@ -21,54 +21,54 @@ jobs:
         run: |
           mkdir -p clash/domains
           files=(
-              "fake_ip_filter.list https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list"
-              "adrules.list https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt"
-              "httpdns.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-httpdns-cn.list"
-              "apple-cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple@cn.list"
-              "microsoft-cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft@cn.list"
-              "download.list https://ruleset.skk.moe/Clash/domainset/download.txt"
-              "cdn.list https://ruleset.skk.moe/Clash/domainset/cdn.txt"
-              "apple.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/apple.list"
-              "games.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games.list"
-              "tiktok.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tiktok.list"
-              "bilibili.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/bilibili.list"
-              "onedrive.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/onedrive.list"
-              "microsoft.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft.list"
-              "youtube.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.list"
-              "google.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.list"
-              "spotify.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.list"
-              "twitch.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/twitch.list"
-              "bahamut.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/bahamut.list"
-              "disney.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/disney.list"
-              "hbo.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.list"
-              "primevideo.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/primevideo.list"
-              "netflix.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/netflix.list"
-              "tld-proxy.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tld-!cn.list"
-              "proxy.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-!cn.list"
-              "cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.list"
+              'fake_ip_filter.list https://raw.githubusercontent.com/juewuy/ShellCrash/refs/heads/dev/public/fake_ip_filter.list'
+              'adrules.list https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt'
+              'httpdns.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-httpdns-cn.list'
+              'apple-cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple@cn.list'
+              'microsoft-cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft@cn.list'
+              'download.list https://ruleset.skk.moe/Clash/domainset/download.txt'
+              'cdn.list https://ruleset.skk.moe/Clash/domainset/cdn.txt'
+              'apple.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/apple.list'
+              'games.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games.list'
+              'tiktok.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tiktok.list'
+              'bilibili.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/bilibili.list'
+              'onedrive.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/onedrive.list'
+              'microsoft.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft.list'
+              'youtube.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.list'
+              'google.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.list'
+              'spotify.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.list'
+              'twitch.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/twitch.list'
+              'bahamut.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/bahamut.list'
+              'disney.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/disney.list'
+              'hbo.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.list'
+              'primevideo.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/primevideo.list'
+              'netflix.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/netflix.list'
+              'tld-proxy.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tld-!cn.list'
+              'proxy.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-!cn.list'
+              'cn.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.list'
           )
           for file in "${files[@]}"; do
               set -- $file
               echo "Downloading: $2"
-              curl -A "Surge iOS/3367" -f -L -o "clash/domains/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
+              curl -A "Surge iOS/3367" -sSL -o "clash/domains/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
               sed -i -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' "clash/domains/$1"
           done
           echo "Files downloaded successfully."
           
       - name: Generate apns.list file
         run: |
-          curl -sSL "https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/apns.list"
+          curl -sSL 'https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list' | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/apns.list"
           
       - name: Generate appleproxy.list file
         run: |
-          curl -sSL "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/AppleProxy/AppleProxy.list" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/appleproxy.list"
+          curl -sSL 'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/AppleProxy/AppleProxy.list' | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' > "clash/domains/appleproxy.list"
 
       - name: Generate games-cn.list file
         run: |
           urls=(
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/SteamCN/SteamCN.list" 
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games@cn.list" 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/SteamCN/SteamCN.list' 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-games@cn.list' 
           )
           > "clash/domains/games-cn.list"
           # 使用 curl 下载并合并
@@ -82,10 +82,10 @@ jobs:
       - name: Generate gits.list file
         run: |
           urls=(
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/github.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitlab.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitee.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitbook.list" 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/github.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitlab.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitee.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gitbook.list' 
           )
           > "clash/domains/gits.list"
           # 使用 curl 下载并合并
@@ -97,10 +97,11 @@ jobs:
       - name: Generate ai.list file
         run: |
           urls=(
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/OpenAI/OpenAI.list" 
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Gemini/Gemini.list" 
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Copilot/Copilot.list" 
-              "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Claude/Claude.list" 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/OpenAI/OpenAI.list' 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Gemini/Gemini.list' 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Copilot/Copilot.list' 
+              'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Claude/Claude.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-chat-!cn.list' 
           )
           > "clash/domains/ai.list"
           # 使用 curl 下载并合并
@@ -108,12 +109,13 @@ jobs:
               curl -sSL "${urls[$i]}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,' | sed -e 's/^DOMAIN,//' -e 's/^DOMAIN-SUFFIX,/+\./' >> "clash/domains/ai.list" || { echo "Download Failed: "${urls[$i]}" "; exit 1; }
               echo "" >> "clash/domains/ai.list"
           done
+          curl -sSL "${urls[4]}" >> "clash/domains/ai.list" || { echo "Download Failed: "${urls[4]}" "; exit 1; }
 
       - name: Generate crypto.list file
         run: |
           urls=(
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-cryptocurrency.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-finance.list" 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-cryptocurrency.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-finance.list' 
           )
           > "clash/domains/crypto.list"
           # 使用 curl 下载并合并
@@ -125,14 +127,14 @@ jobs:
       - name: Generate socialmedia.list file
         run: |
           urls=(
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/discord.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/whatsapp.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/line.list"
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/instagram.list"
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/facebook.list"
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/telegram.list"
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/twitter.list"
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/discord.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/whatsapp.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/line.list'
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/instagram.list'
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/telegram.list'
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/telegram.list'
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/twitter.list'
           )
           > "clash/domains/socialmedia.list"
           # 使用 curl 下载并合并
@@ -144,9 +146,9 @@ jobs:
       - name: Generate private.list file
         run: |
           urls=(
-          "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.list" 
-          "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tracker.list" 
-          "https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt"
+          'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.list' 
+          'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tracker.list' 
+          'https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
           )
           > "clash/domains/private.list"
 
@@ -165,29 +167,29 @@ jobs:
         run: |
           mkdir -p clash/ipcidr
           files=(
-              "applecidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/apple.list"
-              "bilibilicidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/bilibili.list"
-              "googlecidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.list"
-              "netflixcidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/netflix.list"
-              "cncidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.list"
+              'applecidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/apple.list'
+              'bilibilicidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/bilibili.list'
+              'googlecidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.list'
+              'netflixcidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/netflix.list'
+              'cncidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.list'
           )
           for file in "${files[@]}"; do
               set -- $file
               echo "Downloading: $2"
-              curl -A "Surge iOS/3367" -f -L -o "clash/ipcidr/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
+              curl -A "Surge iOS/3367" -sSL -o "clash/ipcidr/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
           done
           echo "Files downloaded successfully."
 
       - name: Generate apnscidr.list file
         run: |  
-          curl -sSL "https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list" | grep 'IP-CIDR' | sed -e 's/^IP-CIDR,//' -e 's/^IP-CIDR6,//' -e 's/,no-resolve$//' > "clash/ipcidr/apnscidr.list"
+          curl -sSL 'https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list' | grep 'IP-CIDR' | sed -e 's/^IP-CIDR,//' -e 's/^IP-CIDR6,//' -e 's/,no-resolve$//' > "clash/ipcidr/apnscidr.list"
 
       - name: Generate socialmediacidr.list file
         run: |
           urls=(
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/facebook.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/telegram.list" 
-              "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/twitter.list" 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/facebook.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/telegram.list' 
+              'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/twitter.list' 
           )
           > "clash/ipcidr/socialmediacidr.list"
           # 使用 curl 下载并合并
@@ -198,43 +200,43 @@ jobs:
 
       - name: Generate privatecidr.list file
         run: |  
-          curl -sSL "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.list" > "clash/ipcidr/privatecidr.list"
+          curl -sSL 'https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.list' > "clash/ipcidr/privatecidr.list"
           echo "" >> "clash/ipcidr/privatecidr.list"
           
-          curl -sSL "https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt" | grep -oP '\b(?:\d{1,3}\.){3}\d{1,3}\b' | sed 's/$/\/32/' >> "clash/ipcidr/privatecidr.list"
+          curl -sSL 'https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt' | grep -oP '\b(?:\d{1,3}\.){3}\d{1,3}\b' | sed 's/$/\/32/' >> "clash/ipcidr/privatecidr.list"
           echo "" >> "clash/ipcidr/privatecidr.list"    
           
-          curl -sSL "https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt" | grep -oP '\b([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b|\b([0-9a-fA-F]{1,4}:){1,7}:|::[0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,6}\b' | sed 's/$/\/128/' >> "clash/ipcidr/privatecidr.list"
+          curl -sSL 'https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt' | grep -oP '\b([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b|\b([0-9a-fA-F]{1,4}:){1,7}:|::[0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,6}\b' | sed 's/$/\/128/' >> "clash/ipcidr/privatecidr.list"
 
       - name: Download mihomo classical ruleset
         run: |
           mkdir -p clash/classical
           files=(
-              "iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list"
-              "iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list"
-              "iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list"
-              "download-classical.list https://ruleset.skk.moe/Clash/non_ip/download.txt"
-              "cdn-classical.list https://ruleset.skk.moe/Clash/non_ip/cdn.txt"
+              'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
+              'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
+              'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
+              'download-classical.list https://ruleset.skk.moe/Clash/non_ip/download.txt'
+              'cdn-classical.list https://ruleset.skk.moe/Clash/non_ip/cdn.txt'
           )
           for file in "${files[@]}"; do
               set -- $file
               echo "Downloading: $2"
-              curl -A "Surge iOS/3367" -f -L -o "clash/classical/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
+              curl -A "Surge iOS/3367" -sSL -o "clash/classical/$1" "$2" || { echo "Download Failed: $2"; exit 1; }
               sed -i -e '/DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' "clash/classical/$1"
           done
           echo "Files downloaded successfully."        
       
       - name: Generate application.list file
         run: |
-          curl -sSL "https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt" | grep -v 'payload:' | sed -e 's/^[ \t]*- //' > "clash/classical/application.list"
+          curl -sSL 'https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt' | grep -v 'payload:' | sed -e 's/^[ \t]*- //' > "clash/classical/application.list"
           echo "" >> "clash/classical/application.list"
           
-          curl -sSL "https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Download/Download.list" >> "clash/classical/application.list"
+          curl -sSL 'https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/Download/Download.list' >> "clash/classical/application.list"
 
       - name: Download and unzip `mihomo core`
         run: |
           mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
-          curl -sSL "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-${mihomo_version}.gz" | gzip -d > ./mihomo
+          wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
           chmod +x ./mihomo
            
       - name: Process raw ruleset files and generate mihomo mrs       
@@ -245,7 +247,8 @@ jobs:
           done
 
           for file in clash/ipcidr/*.list ; do
-              awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print }' "${file}" | sort -u -o "${file}"
+              awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print $0, ($1 ~ /:/ ? 1 : 0) }' "${file}" | sort -k2,2n -k1,1 | uniq | cut -d' ' -f1 > temp.list
+              mv temp.list "${file}"
               ./mihomo convert-ruleset ipcidr text "${file}" "${file%.list}.mrs"
           done
           
