@@ -1,0 +1,3 @@
+DOMAIN-REGEX,^[\w.-]*?\.s3\.[\w.-]*?\.backblazeb2\.com$
+DOMAIN-REGEX,^download[\w.-]*?\.mediafire\.com$
+DOMAIN-REGEX,^ftp\.[\w.-][\w.-]\.debian\.org$
