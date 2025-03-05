@@ -92,6 +92,7 @@ jobs:
               'download-domains.list https://ruleset.skk.moe/Clash/domainset/download.txt'             
               'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
               'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
+              'speedtest-domains.list https://ruleset.skk.moe/Clash/domainset/speedtest.txt'
               'DMCA-Sensitive.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
               'trackers-XIU2.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
               'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
@@ -101,7 +102,7 @@ jobs:
           counter=0
           for file in "${files[@]}"; do
               set -- $file
-              if [ "$counter" -ge 0 ] && [ "$counter" -le 3 ]; then
+              if [ "$counter" -ge 0 ] && [ "$counter" -le 4 ]; then
                   curl -sSL "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' -e '$a\' > "download/special/$1"              
               else
                   curl -sSL "$2" | sed '$a\' > "download/special/$1"
@@ -234,9 +235,12 @@ jobs:
           DOMAIN-SUFFIX,testipv6.com
           EOF
           
+          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); if ($0 ~ /^\+\./) print "DOMAIN-SUFFIX," substr($0, 3); else print "DOMAIN," $0; }' 'download/special/speedtest-domains.list' > 'download/special/speedtest-classical.list'
+          
           cat 'download/meta/speedtest.list' \
               'download/meta/SpeedTest.list' \
               'download/surge/Speedtest.list' \
+              'download/special/speedtest-classical.list' \
               'download/special/ipv6test.list' \
           > surge/speedtest.list
       
