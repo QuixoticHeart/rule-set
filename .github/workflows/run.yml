@@ -1,4 +1,4 @@
-name: Generate RULE-SET for Premium Edition of Clash
+name: Generate RULE-SET
 on:
   workflow_dispatch:
   schedule:
@@ -14,128 +14,538 @@ jobs:
     steps:
       - name: Set variables
         run: |
-          echo "RELEASE_NAME=Released on $(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "custom_icloud=https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt" >> $GITHUB_ENV
-          echo "custom_tld_not_cn=https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/tld-!cn.txt" >> $GITHUB_ENV
-          echo "custom_private=https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/private.txt" >> $GITHUB_ENV
-          echo "Loyalsoldier_reject=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt" >> $GITHUB_ENV
-          echo "Loyalsoldier_proxy=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt" >> $GITHUB_ENV
-          echo "Loyalsoldier_direct=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt" >> $GITHUB_ENV
-          echo "Loyalsoldier_gfw=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt" >> $GITHUB_ENV
-          echo "Loyalsoldier_greatfire=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/greatfire.txt" >> $GITHUB_ENV
-          echo "felixonmars_apple=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
-          echo "felixonmars_google=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
-          echo "cn_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt" >> $GITHUB_ENV
-          echo "lan_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt" >> $GITHUB_ENV
-          echo "telegram_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt" >> $GITHUB_ENV
+          echo "update_version=$(date -d '+8 hours' +%Y-%m-%d)" >> ${GITHUB_ENV}
+          echo "mihomo_domains=https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/classical" >> ${GITHUB_ENV}
+          echo "mihomo_ipcidr=https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/classical" >> ${GITHUB_ENV}
+          echo "bm7_surge=https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge" >> ${GITHUB_ENV}
         shell: bash
 
-      - name: Checkout the "hidden" branch
-        uses: actions/checkout@v4
-        with:
-          ref: hidden
-
-      - name: Generate icloud.txt file
+      - name: Generate directories
         run: |
-          echo "payload:" > icloud.txt
-          curl -sSL ${custom_icloud} | grep -E "^(full|domain):" | awk -F ':' '{printf "  - |+.%s|\n", $2}' | sed "s/|/'/g" >> icloud.txt
+          mkdir -p download/meta
+          mkdir -p download/surge
+          mkdir -p download/special
+          mkdir -p meta/domain
+          mkdir -p meta/ipcidr
+          mkdir -p meta/classical
+          mkdir -p stash/domain
+          mkdir -p stash/ipcidr
+          mkdir -p stash/classical
+          mkdir -p surge
+          mkdir -p shadowrocket
+          mkdir -p quantumultx
+          mkdir -p loon
+          mkdir -p push
 
-      - name: Generate google.txt file
+      - name: Download meta ruleset
         run: |
-          echo "payload:" > google.txt
-          curl -sSL ${felixonmars_google} | perl -ne '/^server=\/([^\/]+)\// && print "  - |+.$1|\n"' | sed "s/|/'/g" >> google.txt
+          domain_lists=('category-httpdns-cn' 'apple@cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-chat-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
-      - name: Generate apple.txt file
+          for list in "${domain_lists[@]}"; do
+              curl -sSL "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list"
+          done
+
+          ipcidr_lists=('facebook' 'telegram' 'twitter' 'google' 'netflix' 'private')
+
+          for list in "${ipcidr_lists[@]}"; do
+              curl -sSL "${mihomo_ipcidr}/${list}.list" | sed '$a\' >> "download/meta/${list}.list"
+          done
+
+          files=(
+              'cncidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/classical/cn.list'
+              'talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
+              'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
+              'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
+              'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
+              'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
+              'apns.list https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list'
+          )
+          for file in "${files[@]}"; do
+              set -- $file
+              curl -sSL "$2" | sed '$a\' > "download/meta/$1"
+          done
+
+          curl -sSL 'https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list' | sed -n '/## >> 抖音/,/##/{//!p}; $a\'$'\n' > "download/meta/douyin.list"
+
+      - name: Download surge ruleset
         run: |
-          echo "payload:" > apple.txt
-          curl -sSL ${felixonmars_apple} | perl -ne '/^server=\/([^\/]+)\// && print "  - |+.$1|\n"' | sed "s/|/'/g" >> apple.txt
+          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'OpenAI' 'Gemini' 'Copilot' 'Claude' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Telegram' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
-      - name: Generate private.txt file
+          for list in "${surge_lists[@]}"; do
+              curl -sSL "${bm7_surge}/${list}/${list}.list" | sed '$a\' > "download/surge/${list}.list"
+          done
+
+          files=(
+              'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
+              'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
+              'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
+          )
+          for file in "${files[@]}"; do
+              set -- $file
+              curl -sSL "$2" | sed '$a\' > "download/surge/$1"
+          done
+
+      - name: Download special ruleset
         run: |
-          echo "payload:" > private.txt
-          curl -sSL ${custom_private} | awk -F ':' '/^full:/ {printf "  - |%s|\n", $2}' | sed "s/|/'/g" >> private.txt
-          curl -sSL ${custom_private} | awk -F ':' '/^domain:/ {printf "  - |+.%s|\n", $2}' | sed "s/|/'/g" >> private.txt
+          files=(
+              'cdn-domains.list https://ruleset.skk.moe/Clash/domainset/cdn.txt'
+              'download-domains.list https://ruleset.skk.moe/Clash/domainset/download.txt'
+              'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
+              'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
+              'speedtest-domains.list https://ruleset.skk.moe/Clash/domainset/speedtest.txt'
+              'DMCA-Sensitive.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
+              'trackers-XIU2.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
+              'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
+              'applications-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
+              'fake-ip-filter.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
+          )
+          counter=0
+          for file in "${files[@]}"; do
+              set -- $file
+              if [ "$counter" -ge 0 ] && [ "$counter" -le 4 ]; then
+                  curl -sSL "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' -e '$a\' > "download/special/$1"
+              else
+                  curl -sSL "$2" | sed '$a\' > "download/special/$1"
+              fi
+              counter=$((counter + 1))
+          done
 
-      - name: Generate direct.txt file
+      - name: Copy single files
         run: |
-          echo "payload:" > direct.txt
-          curl -sSL ${Loyalsoldier_direct} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(full:)([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |$2|\n"' | sed "s/|/'/g" >> direct.txt
-          curl -sSL ${Loyalsoldier_direct} | grep -Ev "^(regexp|keyword|full):" | perl -ne '/^(domain:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$2|\n"' | sed "s/|/'/g" >> direct.txt
+          src_dir="download/meta"
+          dst_dir="surge"
 
-      - name: Generate proxy.txt file
+          src_names=('iplocation-reject' 'iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'category-httpdns-cn' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'gfw' 'geolocation-!cn' 'cn' 'cncidr')
+          dst_names=('iplocation-reject' 'iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'httpdns' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'gfw' 'proxy' 'cn' 'cncidr')
+
+          for i in "${!dst_names[@]}"; do
+              src_file="$src_dir/${src_names[i]}.list"
+              dst_file="$dst_dir/${dst_names[i]}.list"
+              cp "$src_file" "$dst_file"
+          done
+
+          cp "download/surge/AppleProxy.list" "surge/apple-proxy.list"
+          cp "download/surge/adrules.list" "surge/adrules.list"
+          cp "download/special/fake-ip-filter.list" "meta/domain/fake-ip-filter.list"
+
+      - name: Merge ruleset
         run: |
-          echo "payload:" > proxy.txt
-          curl -sSL ${Loyalsoldier_proxy} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(full:)([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |$2|\n"' | sed "s/|/'/g" >> proxy.txt
-          curl -sSL ${Loyalsoldier_proxy} | grep -Ev "^(regexp|keyword|full):" | perl -ne '/^(domain:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$2|\n"' | sed "s/|/'/g" >> proxy.txt
+          src1_dir="download/meta"
+          src2_dir="download/surge"
+          dst_dir="surge"
 
-      - name: Generate reject.txt file
+          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'category-games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix')
+
+          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'Game' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix')
+
+          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix')
+
+          for i in "${!dst_names[@]}"; do
+              src1_file="$src1_dir/${src1_names[i]}.list"
+              src2_file="$src2_dir/${src2_names[i]}.list"
+              dst_file="$dst_dir/${dst_names[i]}.list"
+
+              cat "$src1_file" "$src2_file" > "$dst_file"
+          done
+
+      - name: Merge games-cn file
         run: |
-          echo "payload:" > reject.txt
-          curl -sSL ${Loyalsoldier_reject} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(domain:|full:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$2|\n"' | sed "s/|/'/g" >> reject.txt
+          cat 'download/meta/category-games@cn.list' \
+              'download/surge/SteamCN.list' \
+              'download/surge/GameDownloadCN.list' \
+          > surge/games-cn.list
 
-      - name: Generate gfw.txt file
+      - name: Merge gits file
         run: |
-          echo "payload:" > gfw.txt
-          curl -sSL ${Loyalsoldier_gfw} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(domain:|full:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$2|\n"' | sed "s/|/'/g" >> gfw.txt
+          cat 'download/surge/GitHub.list' \
+              'download/surge/GitLab.list' \
+              'download/surge/Gitee.list' \
+              'download/surge/GitBook.list' \
+          > surge/gits.list
 
-      - name: Generate greatfire.txt file
+      - name: Merge ai file
         run: |
-          echo "payload:" > greatfire.txt
-          curl -sSL ${Loyalsoldier_greatfire} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(domain:|full:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$2|\n"' | sed "s/|/'/g" >> greatfire.txt
+          cat 'download/surge/OpenAI.list' \
+              'download/surge/Gemini.list' \
+              'download/surge/Copilot.list' \
+              'download/surge/Claude.list' \
+              'download/meta/category-ai-chat-!cn.list' \
+          > surge/ai.list
 
-      - name: Generate tld-not-cn.txt file
+      - name: Merge ecommerce file
         run: |
-          echo "payload:" > tld-not-cn.txt
-          curl -sSL "${custom_tld_not_cn}" | perl -ne '/^domain:([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "  - |+.$1|\n"' | sed "s/|/'/g" >> tld-not-cn.txt
+          cat 'download/surge/Amazon.list' \
+              'download/surge/eBay.list' \
+              'download/surge/Shopee.list' \
+              'download/surge/Shopify.list' \
+              'download/meta/category-ecommerce.list' \
+              'download/meta/amazon.list' \
+              'download/meta/shopify.list' \
+          > tmp.list
+          grep -v -x -f 'surge/primevideo.list' 'tmp.list' > 'surge/ecommerce.list'
 
-      - name: Generate cncidr.txt file
+      - name: Merge crypto file
         run: |
-          echo "payload:" > cncidr.txt
-          curl -sSL ${cn_cidr} | perl -ne '/(.+\/\d+)/ && print "  - |$1|\n"' | sed "s/|/'/g" >> cncidr.txt
+          cat 'download/surge/Crypto.list' \
+              'download/surge/Cryptocurrency.list' \
+              'download/meta/category-cryptocurrency.list' \
+              'download/meta/wise.list' \
+          > surge/crypto.list
 
-      - name: Generate telegramcidr.txt file
+      - name: Merge socialmedia-cn file
         run: |
-          echo "payload:" > telegramcidr.txt
-          curl -sSL ${telegram_cidr} | perl -ne '/(.+\/\d+)/ && print "  - |$1|\n"' | sed "s/|/'/g" >> telegramcidr.txt
+          cat 'download/surge/NGA.list' \
+              'download/surge/XiaoHongShu.list' \
+              'download/surge/Weibo.list' \
+              'download/surge/Zhihu.list' \
+              'download/surge/DouBan.list' \
+              'download/surge/Coolapk.list' \
+              'download/meta/nga.list' \
+              'download/meta/xiaohongshu.list' \
+              'download/meta/sina.list' \
+              'download/meta/zhihu.list' \
+              'download/meta/douban.list' \
+              'download/meta/coolapk.list' \
+          > surge/socialmedia-cn.list
 
-      - name: Generate lancidr.txt file
+      - name: Merge socialmedia file
         run: |
-          echo "payload:" > lancidr.txt
-          curl -sSL ${lan_cidr} | perl -ne '/(.+\/\d+)/ && print "  - |$1|\n"' | sed "s/|/'/g" >> lancidr.txt
+          cat 'download/surge/Reddit.list' \
+              'download/surge/Discord.list' \
+              'download/surge/Whatsapp.list' \
+              'download/surge/Line.list' \
+              'download/surge/Instagram.list' \
+              'download/surge/Facebook.list' \
+              'download/surge/Telegram.list' \
+              'download/surge/Twitter.list' \
+              'download/meta/reddit.list' \
+              'download/meta/discord.list' \
+              'download/meta/whatsapp.list' \
+              'download/meta/line.list' \
+              'download/meta/instagram.list' \
+              'download/meta/facebook.list' \
+              'download/meta/telegram.list' \
+              'download/meta/twitter.list' \
+              'download/meta/signal.list' \
+              'download/meta/meta.list' \
+          > surge/socialmedia.list
 
-      - name: Move files to publish directory
+      - name: Merge cdn file
         run: |
-          mkdir -p publish
-          cp *.txt ./publish/
+          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); if ($0 ~ /^\+\./) print "DOMAIN-SUFFIX," substr($0, 3); else print "DOMAIN," $0; }' 'download/special/cdn-domains.list' > 'download/special/cdn-classical.list'
 
-      - name: Release and upload assets
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ env.RELEASE_NAME }}
-          tag_name: ${{ env.TAG_NAME }}
-          draft: false
-          prerelease: false
-          files: |
-            ./publish/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); if ($0 ~ /^\+\./) print "DOMAIN-SUFFIX," substr($0, 3); else print "DOMAIN," $0; }' 'download/special/download-domains.list' > 'download/special/download-classical.list'
 
-      - name: Git push assets to "release" branch
+          cat 'download/special/cdn-classical.list' \
+              'download/special/cdn-surge.list' \
+              'download/special/download-classical.list' \
+              'download/special/download-surge.list' \
+          > surge/cdn.list
+
+      - name: Merge speedtest file
         run: |
-          cd publish || exit 1
+          cat <<EOF > download/special/ipv6test.list
+          DOMAIN-SUFFIX,ipv6-test.com
+          DOMAIN-SUFFIX,ipv6test.com
+          DOMAIN-SUFFIX,test-ipv6.com
+          DOMAIN-SUFFIX,testipv6.com
+          EOF
+
+          awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); if ($0 ~ /^\+\./) print "DOMAIN-SUFFIX," substr($0, 3); else print "DOMAIN," $0; }' 'download/special/speedtest-domains.list' > 'download/special/speedtest-classical.list'
+
+          cat 'download/meta/speedtest.list' \
+              'download/meta/SpeedTest.list' \
+              'download/surge/Speedtest.list' \
+              'download/special/speedtest-classical.list' \
+              'download/special/ipv6test.list' \
+          > surge/speedtest.list
+
+      - name: Merge private file
+        run: |
+          cat <<EOF > download/special/panels.list
+          DOMAIN,yacd.haishan.me
+          DOMAIN,yacd.metacubex.one
+          DOMAIN,d.metacubex.one
+          DOMAIN,metacubex.github.io
+          DOMAIN,metacubexd.pages.dev
+          DOMAIN,board.zash.run.place
+          EOF
+
+          cat 'download/special/panels.list' \
+              'download/meta/private.list' \
+              'download/surge/Lan.list' \
+          > surge/private.list
+
+      - name: Merge DMCA file
+        run: |
+          cat 'download/special/trackers-XIU2.list' \
+              'download/special/trackers-ngosang.list' \
+          > 'download/special/trackers.list'
+
+          grep -oP '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}' 'download/special/trackers.list'| sed 's/^/DOMAIN,/' > 'download/special/tracker_domains.list'
+
+          grep -oP '([0-9]{1,3}\.){3}[0-9]{1,3}' 'download/special/trackers.list' | sed 's/^/IP-CIDR,/; s/$/\/32/' > 'download/special/trackersV4.list'
+
+          grep -oP '(?<=\[).*?(?=\])' 'download/special/trackers.list' | sed 's/^/IP-CIDR6,/; s/$/\/128/' > 'download/special/trackersV6.list'
+
+          grep -v 'payload:' 'download/special/applications-yaml.list' | sed -e 's/^[ \t]*- //' > 'download/special/applications.list'
+
+          cat 'download/special/DMCA-Sensitive.list' \
+              'download/special/tracker_domains.list' \
+              'download/special/trackersV4.list' \
+              'download/special/trackersV6.list' \
+              'download/special/applications.list' \
+              'download/meta/category-pt.list' \
+              'download/meta/tracker.list' \
+              'download/surge/Download.list' \
+          > surge/dmca.list
+
+      - name: Process raw ruleset
+        run: |
+          sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
+
+          for file in surge/*.list ; do
+              sort -u "${file}" | awk -F',' '{
+                  if ($1 == "DOMAIN") {
+                      domains[$2] = 1;
+                  } else if ($1 == "DOMAIN-SUFFIX") {
+                      suffixes[$2] = 1;
+                  } else {
+                      other_lines[NR] = $0;
+                  }
+              }
+              END {
+                  for (domain in domains) {
+                      matched = 0;
+                      for (suffix in suffixes) {
+                          if (domain ~ "\\."suffix"$" || domain == suffix) {
+                              matched = 1;
+                              break;
+                          }
+                      }
+                      if (!matched) {
+                          print "DOMAIN," domain;
+                      }
+                  }
+
+                  for (suffix in suffixes) {
+                      print "DOMAIN-SUFFIX," suffix;
+                  }
+
+                  for (i in other_lines) {
+                      print other_lines[i];
+                  }
+              }' | awk '
+                  /^\s*[#;]/ { next }
+                  /^$/ { next }
+                  sub(" //.*", "");
+                  /^DOMAIN,/          { print "0 " $0; next }
+                  /^DOMAIN-SUFFIX,/   { print "1 " $0; next }
+                  /^DOMAIN-KEYWORD,/  { print "2 " $0; next }
+                  /^DOMAIN-WILDCARD,/ { print "3 " $0; next }
+                  /^DOMAIN-REGEX,/    { print "4 " $0; next }
+                  /^IP-CIDR,/         { print "5 " $0; next }
+                  /^IP-CIDR6,/        { print "6 " $0; next }
+                  /^IP-ASN,/          { print "7 " $0; next }
+                  /^PROCESS-NAME,/    { print "8 " $0; next }
+                  /^GEOSITE,/         { print "9 " $0; next }
+                  /^GEOIP,/           { print "10 " $0; next }
+                  /^AND,/             { print "11 " $0; next }
+                  /^OR,/              { print "12 " $0; next }
+                  /^NOT,/             { print "13 " $0; next }
+                  /^SUB-RULE,/        { print "14 " $0; next }
+                  /^DEST-PORT,/       { print "15 " $0; next }
+                  /^DST-PORT,/        { print "16 " $0; next }
+                                      { print "17 " $0 }
+              ' | sort -k1,1n -k2,2 | cut -d' ' -f2- > tmp.list && mv tmp.list "${file}"
+          done
+
+      - name: Generate meta ruleset
+        run: |
+          for file in surge/*.list; do
+              awk '{
+                  if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
+                      next;
+                  }
+                  if ($0 ~ /^DOMAIN-WILDCARD,/) {
+                      gsub(/^DOMAIN-WILDCARD,/,"DOMAIN-REGEX,^");
+                      gsub(/\./,"\\.");
+                      gsub(/\?/,"[\\w.-]");
+                      gsub(/\*/,"[\\w.-]*?");
+                      $0 = $0 "$";
+                  }
+                  gsub(/DEST-PORT/, "DST-PORT");
+                  print;
+              }' "$file" > "meta/$(basename "$file")"
+          done
+
+      - name: Generate meta domains
+        run: |
+          for file in meta/*.list; do
+              filename=$(basename "$file" .list)
+
+              awk -v output="meta/domain/${filename}.list" '
+              /^DOMAIN,|^DOMAIN-SUFFIX,/ {
+                  if ($0 ~ /^DOMAIN-SUFFIX,/) {
+                      gsub(/^DOMAIN-SUFFIX,/, "+.");
+                  } else {
+                      gsub(/^DOMAIN,/, "");
+                  }
+                  print > output;
+              }
+              ' "$file"
+          done
+          grep -v -x -f 'meta/domain/bilibili.list' 'meta/domain/cn.list' > 'meta/domain/cn-b.list'
+          grep -v -x -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bs.list'
+          grep -v -x -f 'meta/domain/douyin.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bd.list'
+          grep -v -x -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-bd.list' > 'meta/domain/cn-bsd.list'
+
+      - name: Generate meta ipcidr
+        run: |
+          for file in meta/*.list; do
+              filename=$(basename "$file" .list)
+
+              awk -v output="meta/ipcidr/${filename}.list" '
+              /^IP-CIDR6?,/ {
+                  gsub(/^IP-CIDR6?,/, "");
+                  gsub(/,no-resolve$/, "");
+                  print > output;
+              }
+              ' "$file"
+          done
+          mv meta/ipcidr/cncidr.list meta/ipcidr/cn.list
+
+      - name: Generate meta remaining rules
+        run: |
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
+          awk '{ gsub(/,no-resolve/, ""); print }' meta/cncidr.list > meta/cncidr-resolve.list
+
+      - name: Download and unzip `mihomo core`
+        run: |
+          mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
+          wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
+          chmod +x ./mihomo
+
+      - name: Generate mihomo mrs
+        run: |
+          for file in meta/domain/*.list ; do
+              ./mihomo convert-ruleset domain text "${file}" "${file%.list}.mrs"
+          done
+
+          for file in meta/ipcidr/*.list ; do
+              ./mihomo convert-ruleset ipcidr text "${file}" "${file%.list}.mrs"
+          done
+
+      - name: Generate stash ruleset
+        run: |
+          for file in surge/*.list; do
+              awk '{
+                  if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
+                      next;
+                  }
+                  gsub(/DEST-PORT/, "DST-PORT");
+                  print;
+              }' "$file" > "stash/$(basename "$file")"
+          done
+
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/cdn.list > stash/classical/cdn.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/dmca.list > stash/classical/dmca.list
+
+          cp meta/domain/*.list stash/domain/
+          cp meta/ipcidr/*.list stash/ipcidr/
+
+          rm -f stash/domain/cn-*.list
+          rm -f stash/domain/fake-ip-filter.list
+
+      - name: Generate surge ruleset
+        run: |
+          for file in surge/*.list; do
+              awk '{
+                  if ($0 ~ /^DOMAIN-REGEX,/) {
+                      next;
+                  }
+                  gsub(/DST-PORT/, "DEST-PORT");
+                  print;
+              }' "$file" > tmp.list && mv tmp.list "${file}"
+          done
+          awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
+
+      - name: Generate shadowrocket ruleset
+        run: |
+          for file in surge/*.list; do
+              awk '{
+                  if ($0 ~ /^DOMAIN-WILDCARD,/ || $0 ~ /^PROCESS-NAME,/) {
+                      next;
+                  }
+                  gsub(/DEST-PORT/, "DST-PORT");
+                  gsub(/IP-CIDR6/, "IP-CIDR");
+                  print;
+              }' "$file" > "shadowrocket/$(basename "$file")"
+          done
+          awk '{ gsub(/,no-resolve/, ""); print }' shadowrocket/cncidr.list > shadowrocket/cncidr-resolve.list
+
+      - name: Generate quantumultx ruleset
+        run: |
+          for file in surge/*.list; do
+              awk -v filename="$(basename "$file" .list)" '{
+                  if ($0 ~ /^PROCESS-NAME,/ || $0 ~ /^URL-REGEX,/ || $0 ~ /^DEST-PORT,/ || $0 ~ /^AND,/ || $0 ~ /^OR,/ || $0 ~ /^NOT,/) {
+                      next;
+                  }
+                  gsub(/DOMAIN/, "HOST");
+                  gsub(/DOMAIN-SUFFIX/, "HOST-SUFFIX");
+                  gsub(/DOMAIN-KEYWORD/, "HOST-KEYWORD");
+                  gsub(/DOMAIN-WILDCARD/, "HOST-WILDCARD");
+                  gsub(/IP-CIDR6/, "IP6-CIDR");
+                  gsub(/,no-resolve/, "");
+                  print $0 "," filename;
+              }' "$file" > "quantumultx/$(basename "$file")"
+          done
+
+      - name: Generate loon ruleset
+        run: |
+          for file in surge/*.list; do
+              awk '{
+                  if ($0 ~ /^DOMAIN-WILDCARD,/ || $0 ~ /^PROCESS-NAME,/) {
+                      next;
+                  }
+                  print;
+              }' "$file" > "loon/$(basename "$file")"
+          done
+          awk '{ gsub(/,no-resolve/, ""); print }' loon/cncidr.list > loon/cncidr-resolve.list
+
+      - name: move files to push directory
+        run: |
+          cp -r meta/ push/
+          cp -r stash/ push/
+          cp -r surge/ push/
+          cp -r shadowrocket/ push/
+          cp -r quantumultx/ push/
+          cp -r loon/ push/
+
+      - name: Git push assets to "ruleset" branch
+        run: |
+          cd push || exit 1
           git init
           git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b release
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b ruleset
           git add .
-          git commit -m "${{ env.RELEASE_NAME }}"
+          git commit -m "Auto Update Ruleset ${update_version}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f origin release
+          git push -f origin ruleset
 
       - name: Purge jsdelivr CDN
         run: |
-          cd publish || exit 1
+          cd push || exit 1
           for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+              curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@ruleset/${file}"
           done
+
+      - name: Delete old workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 3
+          keep_minimum_runs: 1
