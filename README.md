@@ -1163,6 +1163,7 @@ dns:
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
 - [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
+- [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
 - [@juewuy/ShellCrash](https://github.com/juewuy/ShellCrash)
 - [@XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection)
 - [@ngosang/trackerslist](https://github.com/ngosang/trackerslist)
