@@ -79,6 +79,7 @@ jobs:
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
               'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
+              'AppleNoChinaCDN.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Surge/Apple/no-cn-cdn-domain.list'
           )
           for file in "${files[@]}"; do
               set -- $file
@@ -124,9 +125,8 @@ jobs:
               cp "$src_file" "$dst_file"
           done
 
-          cp "download/surge/AppleProxy.list" "surge/apple-proxy.list"
-          cp "download/surge/adrules.list" "surge/adrules.list"
-          cp "download/special/fake-ip-filter.list" "meta/domain/fake-ip-filter.list"
+          cp 'download/surge/adrules.list' 'surge/adrules.list'
+          cp 'download/special/fake-ip-filter.list' 'meta/domain/fake-ip-filter.list'
 
       - name: Merge ruleset
         run: |
@@ -147,6 +147,11 @@ jobs:
 
               cat "$src1_file" "$src2_file" > "$dst_file"
           done
+
+      - name: Merge appleproxy file
+        run: |
+          awk '{sub(/,extended-matching$/, ""); print}' 'download/surge/AppleNoChinaCDN.list' >> 'download/surge/AppleProxy.list'
+          cp 'download/surge/AppleProxy.list' 'surge/apple-proxy.list'
 
       - name: Merge games-cn file
         run: |
