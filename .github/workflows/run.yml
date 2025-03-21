@@ -80,6 +80,7 @@ jobs:
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
               'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
               'AppleNoChinaCDN.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Surge/Apple/no-cn-cdn-domain.list'
+              'httpdns.list https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/HTTPDNS.Block.list'
           )
           for file in "${files[@]}"; do
               set -- $file
@@ -116,8 +117,8 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-reject' 'iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'category-httpdns-cn' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'gfw' 'geolocation-!cn' 'cn' 'cncidr')
-          dst_names=('iplocation-reject' 'iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'httpdns' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'gfw' 'proxy' 'cn' 'cncidr')
+          src_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'gfw' 'geolocation-!cn' 'cn' 'cncidr')
+          dst_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'gfw' 'proxy' 'cn' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
@@ -147,8 +148,14 @@ jobs:
 
               cat "$src1_file" "$src2_file" > "$dst_file"
           done
+      - name: Merge httpdns file
+        run: |
+          cat 'download/meta/category-httpdns-cn.list' \
+              'download/meta/iplocation-reject.list' \
+              'download/surge/httpdns.list' \
+          > surge/httpdns.list
 
-      - name: Merge appleproxy file
+      - name: Merge apple-proxy file
         run: |
           awk '{sub(/,extended-matching$/, ""); print}' 'download/surge/AppleNoChinaCDN.list' >> 'download/surge/AppleProxy.list'
           cp 'download/surge/AppleProxy.list' 'surge/apple-proxy.list'
