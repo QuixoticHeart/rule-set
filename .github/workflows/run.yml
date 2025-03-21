@@ -80,7 +80,7 @@ jobs:
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
               'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
               'AppleNoChinaCDN.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Surge/Apple/no-cn-cdn-domain.list'
-              'httpdns.list https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/HTTPDNS.Block.list'
+              'httpdns.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
           )
           for file in "${files[@]}"; do
               set -- $file

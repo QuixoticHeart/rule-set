@@ -248,8 +248,8 @@ quantumultx/
   </thead>
   <tbody>
     <tr>
-      <td><code>iplocation-reject</code></td>
-      <td>修改国内软件 IP 归属地的拦截规则，须放置在三者开头</td>
+      <td><code>httpdns</code></td>
+      <td>需要屏蔽的 HTTPDNS 列表，须放置在三者开头</td>
     </tr>
     <tr>
       <td><code>iplocation-direct</code></td>
@@ -541,14 +541,6 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/iplocation-proxy.list">[QuantumultX] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/iplocation-proxy.list">[Meta] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/iplocation-proxy.list">[Stash] iplocation-proxy</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/iplocation-reject.list">[surge] iplocation-reject</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/iplocation-reject.list">[Loon] iplocation-reject</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/iplocation-reject.list">[ShadowRocket] iplocation-reject</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/iplocation-reject.list">[QuantumultX] iplocation-reject</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/iplocation-reject.list">[Meta] iplocation-reject</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/iplocation-reject.list">[Stash] iplocation-reject</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/microsoft-cn.list">[surge] microsoft-cn</a></td>
@@ -910,10 +902,11 @@ dns:
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/httpdns.mrs">[meta/domain] httpdns(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/httpdns.list">[meta/domain] httpdns(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/httpdns.mrs">[meta/ipcidr] httpdns(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/httpdns.list">[meta/ipcidr] httpdns(text)</a></td>
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/httpdns.list">[stash/domain] httpdns(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/httpdns.list">[stash/ipcidr] httpdns(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -933,16 +926,6 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-proxy.list">[stash/domain] iplocation-proxy(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/iplocation-proxy.list">[stash/ipcidr] iplocation-proxy(text)</a></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/iplocation-reject.mrs">[meta/domain] iplocation-reject(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/iplocation-reject.list">[meta/domain] iplocation-reject(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/iplocation-reject.mrs">[meta/ipcidr] iplocation-reject(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/iplocation-reject.list">[meta/ipcidr] iplocation-reject(text)</a></td>
-        <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-reject.list">[stash/domain] iplocation-reject(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/iplocation-reject.list">[stash/ipcidr] iplocation-reject(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1163,6 +1146,7 @@ dns:
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
 - [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
+- [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
 - [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
 - [@juewuy/ShellCrash](https://github.com/juewuy/ShellCrash)
 - [@XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection)
