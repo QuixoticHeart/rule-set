@@ -39,7 +39,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple@cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-chat-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple@cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-chat-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               curl -sSL "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list"
@@ -52,7 +52,7 @@ jobs:
           done
 
           files=(
-              'cncidr.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/classical/cn.list'
+              'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
               'talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
               'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
               'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
@@ -78,9 +78,11 @@ jobs:
           files=(
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
-              'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
+              'GFW.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Proxy/Proxy_All.list'
               'AppleNoChinaCDN.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Surge/Apple/no-cn-cdn-domain.list'
               'httpdns.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
+              'pcdn.list https://github.com/uselibrary/PCDN/raw/refs/heads/main/pcdn.list'
+              'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
           )
           for file in "${files[@]}"; do
               set -- $file
@@ -90,6 +92,7 @@ jobs:
       - name: Download special ruleset
         run: |
           files=(
+              'chinadomains.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
               'cdn-domains.list https://ruleset.skk.moe/Clash/domainset/cdn.txt'
               'download-domains.list https://ruleset.skk.moe/Clash/domainset/download.txt'
               'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
@@ -117,8 +120,8 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'gfw' 'geolocation-!cn' 'cn' 'cncidr')
-          dst_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'gfw' 'proxy' 'cn' 'cncidr')
+          src_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'cncidr')
+          dst_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
@@ -126,7 +129,6 @@ jobs:
               cp "$src_file" "$dst_file"
           done
 
-          cp 'download/surge/adrules.list' 'surge/adrules.list'
           cp 'download/special/fake-ip-filter.list' 'meta/domain/fake-ip-filter.list'
 
       - name: Merge ruleset
@@ -148,6 +150,13 @@ jobs:
 
               cat "$src1_file" "$src2_file" > "$dst_file"
           done
+
+      - name: Merge adrules file
+        run: |
+          cat 'download/surge/adrules.list' \
+              'download/surge/pcdn.list' \
+          > surge/adrules.list
+
       - name: Merge httpdns file
         run: |
           cat 'download/meta/category-httpdns-cn.list' \
@@ -193,8 +202,8 @@ jobs:
               'download/meta/category-ecommerce.list' \
               'download/meta/amazon.list' \
               'download/meta/shopify.list' \
-          > tmp.list
-          grep -v -x -f 'surge/primevideo.list' 'tmp.list' > 'surge/ecommerce.list'
+          > tmp-ecommerce.list
+          grep -vxF -f 'surge/primevideo.list' 'tmp-ecommerce.list' > 'surge/ecommerce.list'
 
       - name: Merge crypto file
         run: |
@@ -272,6 +281,76 @@ jobs:
               'download/special/ipv6test.list' \
           > surge/speedtest.list
 
+      - name: Merge gfw file
+        run: |
+          cat 'download/meta/category-anticensorship.list' \
+              'download/meta/gfw.list' \
+              'download/surge/GFW.list' \
+          > surge/gfw.list
+
+      - name: Merge proxy file
+        run: |
+          cat 'surge/gfw.list' \
+              'download/meta/geolocation-!cn.list' \
+          > surge/proxy.list
+
+      - name: Merge cn file
+        run: |
+          awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' 'download/special/chinadomains.list' > 'tmp-chinadomains.list'
+
+          cat 'tmp-chinadomains.list' \
+              'download/meta/cn.list' \
+          > merge-cn.list
+
+          sort 'merge-cn.list' | uniq > without-redundant-cn.list
+          sort 'surge/cdn.list' 'surge/proxy.list' | uniq > without-redundant-proxy.list
+
+          grep -vxF -f without-redundant-proxy.list without-redundant-cn.list > tmp-cn.list
+
+          awk -F',' '
+          NR==FNR {
+              TLDs[$2] = 1;
+              next;
+          }
+          {
+              if ($1 == "DOMAIN") {
+                  domains[$2] = 1;
+              } else if ($1 == "DOMAIN-SUFFIX") {
+                  suffixes[$2] = 1;
+              } else {
+                  other_lines[NR] = $0;
+              }
+          }
+          END {
+              for (domain in domains) {
+                  matched = 0;
+                  for (tld in TLDs) {
+                      if (index(domain, tld) != 0 && domain ~ "\\."tld"$") {
+                          matched = 1;
+                          break;
+                      }
+                  }
+                  if (!matched) {
+                      print "DOMAIN," domain;
+                  }
+              }
+              for (suffix in suffixes) {
+                  matched = 0;
+                  for (tld in TLDs) {
+                      if (index(suffix, tld) != 0 && suffix ~ "\\."tld"$") {
+                          matched = 1;
+                          break;
+                      }
+                  }
+                  if (!matched) {
+                      print "DOMAIN-SUFFIX," suffix;
+                  }
+              }
+              for (i in other_lines) {
+                  print other_lines[i];
+              }
+          }' 'surge/tld-proxy.list' 'tmp-cn.list' > 'surge/cn.list'
+
       - name: Merge private file
         run: |
           cat <<EOF > download/special/panels.list
@@ -330,7 +409,7 @@ jobs:
                   for (domain in domains) {
                       matched = 0;
                       for (suffix in suffixes) {
-                          if (domain ~ "\\."suffix"$" || domain == suffix) {
+                          if (index(domain, suffix) != 0 &&domain ~ "\\."suffix"$" || domain == suffix) {
                               matched = 1;
                               break;
                           }
@@ -407,10 +486,11 @@ jobs:
               }
               ' "$file"
           done
-          grep -v -x -f 'meta/domain/bilibili.list' 'meta/domain/cn.list' > 'meta/domain/cn-b.list'
-          grep -v -x -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bs.list'
-          grep -v -x -f 'meta/domain/douyin.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bd.list'
-          grep -v -x -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-bd.list' > 'meta/domain/cn-bsd.list'
+
+          grep -vxF -f 'meta/domain/bilibili.list' 'meta/domain/cn.list' > 'meta/domain/cn-b.list'
+          grep -vxF -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bs.list'
+          grep -vxF -f 'meta/domain/douyin.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bd.list'
+          grep -vxF -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-bd.list' > 'meta/domain/cn-bsd.list'
 
       - name: Generate meta ipcidr
         run: |
@@ -431,6 +511,7 @@ jobs:
         run: |
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
           awk '{ gsub(/,no-resolve/, ""); print }' meta/cncidr.list > meta/cncidr-resolve.list
 
       - name: Download and unzip `mihomo core`
@@ -463,6 +544,7 @@ jobs:
 
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/cdn.list > stash/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/dmca.list > stash/classical/dmca.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/adrules.list > stash/classical/adrules.list
 
           cp meta/domain/*.list stash/domain/
           cp meta/ipcidr/*.list stash/ipcidr/
