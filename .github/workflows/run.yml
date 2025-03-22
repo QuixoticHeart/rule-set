@@ -12,13 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set variables
+      - name: Set variables and define functions
         run: |
           echo "update_version=$(date -d '+8 hours' +%Y-%m-%d)" >> ${GITHUB_ENV}
           echo "mihomo_domains=https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/classical" >> ${GITHUB_ENV}
           echo "mihomo_ipcidr=https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/classical" >> ${GITHUB_ENV}
           echo "bm7_surge=https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge" >> ${GITHUB_ENV}
         shell: bash
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
       - name: Generate directories
         run: |
@@ -58,7 +61,6 @@ jobs:
               'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
               'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
               'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
-              'apns.list https://github.com/QuixoticHeart/rule-set/raw/refs/heads/master/custom/apns.list'
           )
           for file in "${files[@]}"; do
               set -- $file
@@ -92,7 +94,6 @@ jobs:
       - name: Download special ruleset
         run: |
           files=(
-              'chinadomains.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
               'cdn-domains.list https://ruleset.skk.moe/Clash/domainset/cdn.txt'
               'download-domains.list https://ruleset.skk.moe/Clash/domainset/download.txt'
               'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
@@ -103,6 +104,8 @@ jobs:
               'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
               'applications-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
               'fake-ip-filter.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
+              'chinadomains.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
+              'direct-need-to-remove.list https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/master/resouces/direct-need-to-remove.txt'
           )
           counter=0
           for file in "${files[@]}"; do
@@ -120,15 +123,15 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'cncidr')
-          dst_names=('iplocation-direct' 'iplocation-proxy' 'apns' 'douyin' 'talkatone' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'cncidr')
+          src_names=('iplocation-direct' 'iplocation-proxy' 'douyin' 'talkatone' 'apple@cn' 'microsoft@cn' 'tld-!cn' 'cncidr')
+          dst_names=('iplocation-direct' 'iplocation-proxy' 'douyin' 'talkatone' 'apple-cn' 'microsoft-cn' 'tld-proxy' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
               dst_file="$dst_dir/${dst_names[i]}.list"
               cp "$src_file" "$dst_file"
           done
-
+          cp 'custom/apns.list' 'surge/apns.list'
           cp 'download/special/fake-ip-filter.list' 'meta/domain/fake-ip-filter.list'
 
       - name: Merge ruleset
@@ -296,60 +299,13 @@ jobs:
 
       - name: Merge cn file
         run: |
+          source scripts/domain_dedupe.sh
           awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' 'download/special/chinadomains.list' > 'tmp-chinadomains.list'
+          awk '{print "DOMAIN-SUFFIX," $0}' 'download/special/direct-need-to-remove.list' > 'tmp-direct-need-to-remove.list'
 
-          cat 'tmp-chinadomains.list' \
-              'download/meta/cn.list' \
-          > merge-cn.list
-
-          sort 'merge-cn.list' | uniq > without-redundant-cn.list
-          sort 'surge/cdn.list' 'surge/proxy.list' | uniq > without-redundant-proxy.list
-
-          grep -vxF -f without-redundant-proxy.list without-redundant-cn.list > tmp-cn.list
-
-          awk -F',' '
-          NR==FNR {
-              TLDs[$2] = 1;
-              next;
-          }
-          {
-              if ($1 == "DOMAIN") {
-                  domains[$2] = 1;
-              } else if ($1 == "DOMAIN-SUFFIX") {
-                  suffixes[$2] = 1;
-              } else {
-                  other_lines[NR] = $0;
-              }
-          }
-          END {
-              for (domain in domains) {
-                  matched = 0;
-                  for (tld in TLDs) {
-                      if (index(domain, tld) != 0 && domain ~ "\\."tld"$") {
-                          matched = 1;
-                          break;
-                      }
-                  }
-                  if (!matched) {
-                      print "DOMAIN," domain;
-                  }
-              }
-              for (suffix in suffixes) {
-                  matched = 0;
-                  for (tld in TLDs) {
-                      if (index(suffix, tld) != 0 && suffix ~ "\\."tld"$") {
-                          matched = 1;
-                          break;
-                      }
-                  }
-                  if (!matched) {
-                      print "DOMAIN-SUFFIX," suffix;
-                  }
-              }
-              for (i in other_lines) {
-                  print other_lines[i];
-              }
-          }' 'surge/tld-proxy.list' 'tmp-cn.list' > 'surge/cn.list'
+          sort 'tmp-chinadomains.list' 'download/meta/cn.list' | uniq > without-redundant-cn.list
+          sort 'tmp-direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
+          sort 'without-redundant-cn.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' > 'surge/cn.list'
 
       - name: Merge private file
         run: |
@@ -393,40 +349,11 @@ jobs:
 
       - name: Process raw ruleset
         run: |
+          source scripts/domain_dedupe.sh
           sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
 
           for file in surge/*.list ; do
-              sort -u "${file}" | awk -F',' '{
-                  if ($1 == "DOMAIN") {
-                      domains[$2] = 1;
-                  } else if ($1 == "DOMAIN-SUFFIX") {
-                      suffixes[$2] = 1;
-                  } else {
-                      other_lines[NR] = $0;
-                  }
-              }
-              END {
-                  for (domain in domains) {
-                      matched = 0;
-                      for (suffix in suffixes) {
-                          if (index(domain, suffix) != 0 &&domain ~ "\\."suffix"$" || domain == suffix) {
-                              matched = 1;
-                              break;
-                          }
-                      }
-                      if (!matched) {
-                          print "DOMAIN," domain;
-                      }
-                  }
-
-                  for (suffix in suffixes) {
-                      print "DOMAIN-SUFFIX," suffix;
-                  }
-
-                  for (i in other_lines) {
-                      print other_lines[i];
-                  }
-              }' | awk '
+              sort -u "${file}" | domain_dedupe | awk '
                   /^\s*[#;]/ { next }
                   /^$/ { next }
                   sub(" //.*", "");
@@ -486,7 +413,6 @@ jobs:
               }
               ' "$file"
           done
-
           grep -vxF -f 'meta/domain/bilibili.list' 'meta/domain/cn.list' > 'meta/domain/cn-b.list'
           grep -vxF -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bs.list'
           grep -vxF -f 'meta/domain/douyin.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bd.list'
