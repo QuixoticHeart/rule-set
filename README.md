@@ -855,10 +855,11 @@ dns:
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/gfw.mrs">[meta/domain] gfw(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/gfw.list">[meta/domain] gfw(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/gfw.mrs">[meta/ipcidr] gfw(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/gfw.list">[meta/ipcidr] gfw(text)</a></td>
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gfw.list">[stash/domain] gfw(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/gfw.list">[stash/ipcidr] gfw(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -996,10 +997,11 @@ dns:
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/proxy.mrs">[meta/domain] proxy(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/proxy.list">[meta/domain] proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/proxy.mrs">[meta/ipcidr] proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/proxy.list">[meta/ipcidr] proxy(text)</a></td>
         <td></td>
-        <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/proxy.list">[stash/domain] proxy(text)</a><br></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.list">[stash/domain] proxy(text)</a><br></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.list">[stash/ipcidr] proxy(text)</a><br></td>
         <td></td>
     </tr>
     <tr>
