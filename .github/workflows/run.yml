@@ -299,16 +299,6 @@ jobs:
               'download/surge/Proxy.list' \
           > surge/proxy.list
 
-      - name: Merge cn file
-        run: |
-          source scripts/domain_dedupe.sh
-          awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' 'download/special/chinadomains.list' > 'tmp-chinadomains.list'
-          awk '{print "DOMAIN-SUFFIX," $0}' 'download/special/direct-need-to-remove.list' > 'tmp-direct-need-to-remove.list'
-
-          sort 'tmp-chinadomains.list' 'download/meta/cn.list' | uniq > without-redundant-cn.list
-          sort 'tmp-direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
-          sort 'without-redundant-cn.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' > 'surge/cn.list'
-
       - name: Merge private file
         run: |
           cat <<EOF > download/special/panels.list
@@ -351,34 +341,19 @@ jobs:
 
       - name: Process raw ruleset
         run: |
-          source scripts/domain_dedupe.sh
+          source scripts/ruleset_process.sh
           sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
 
           for file in surge/*.list ; do
-              sort -u "${file}" | domain_dedupe | awk '
-                  /^\s*[#;]/ { next }
-                  /^$/ { next }
-                  sub(" //.*", "");
-                  /^DOMAIN,/          { print "0 " $0; next }
-                  /^DOMAIN-SUFFIX,/   { print "1 " $0; next }
-                  /^DOMAIN-KEYWORD,/  { print "2 " $0; next }
-                  /^DOMAIN-WILDCARD,/ { print "3 " $0; next }
-                  /^DOMAIN-REGEX,/    { print "4 " $0; next }
-                  /^IP-CIDR,/         { print "5 " $0; next }
-                  /^IP-CIDR6,/        { print "6 " $0; next }
-                  /^IP-ASN,/          { print "7 " $0; next }
-                  /^PROCESS-NAME,/    { print "8 " $0; next }
-                  /^GEOSITE,/         { print "9 " $0; next }
-                  /^GEOIP,/           { print "10 " $0; next }
-                  /^AND,/             { print "11 " $0; next }
-                  /^OR,/              { print "12 " $0; next }
-                  /^NOT,/             { print "13 " $0; next }
-                  /^SUB-RULE,/        { print "14 " $0; next }
-                  /^DEST-PORT,/       { print "15 " $0; next }
-                  /^DST-PORT,/        { print "16 " $0; next }
-                                      { print "17 " $0 }
-              ' | sort -k1,1n -k2,2 | cut -d' ' -f2- > tmp.list && mv tmp.list "${file}"
+              sort -u "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
+
+          awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' 'download/special/chinadomains.list' > 'tmp-chinadomains.list'
+          awk '{print "DOMAIN-SUFFIX," $0}' 'download/special/direct-need-to-remove.list' > 'tmp-remove.list'
+
+          sort 'tmp-chinadomains.list' 'download/meta/cn.list' | uniq > without-redundant-cn.list
+          sort 'tmp-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
+          sort 'without-redundant-cn.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
       - name: Generate meta ruleset
         run: |
