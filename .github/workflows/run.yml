@@ -2,7 +2,7 @@ name: Generate RULE-SET
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 22 * * *"
+    - cron: "00 23 * * *"
   push:
     branches:
       - master
@@ -42,7 +42,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               curl -f -L "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
@@ -78,6 +78,7 @@ jobs:
           done
 
           files=(
+              'ChinaMax.list https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/ChinaMax/ChinaMax_All.list'
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
               'GFW.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Proxy/Proxy_All.list'
@@ -279,16 +280,9 @@ jobs:
 
       - name: Merge speedtest file
         run: |
-          cat <<EOF > ipv6test.list
-          DOMAIN-SUFFIX,ipv6-test.com
-          DOMAIN-SUFFIX,ipv6test.com
-          DOMAIN-SUFFIX,test-ipv6.com
-          DOMAIN-SUFFIX,testipv6.com
-          EOF
-
           awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); if ($0 ~ /^\+\./) print "DOMAIN-SUFFIX," substr($0, 3); else print "DOMAIN," $0; }' 'download/special/speedtest-domains.list' > 'speedtest-classical.list'
 
-          cat 'ipv6test.list' \
+          cat 'custom/ipv6test.list' \
               'speedtest-classical.list' \
               'download/meta/speedtest.list' \
               'download/meta/SpeedTest.list' \
@@ -314,16 +308,7 @@ jobs:
 
       - name: Merge private file
         run: |
-          cat <<EOF > panels.list
-          DOMAIN,yacd.haishan.me
-          DOMAIN,yacd.metacubex.one
-          DOMAIN,d.metacubex.one
-          DOMAIN,metacubex.github.io
-          DOMAIN,metacubexd.pages.dev
-          DOMAIN,board.zash.run.place
-          EOF
-
-          cat 'panels.list' \
+          cat 'custom/panels.list' \
               'download/meta/private.list' \
               'download/surge/Lan.list' \
           > surge/private.list
@@ -361,7 +346,8 @@ jobs:
               sort -u "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
 
-          sort 'download/special/cn.list' 'download/meta/cn.list' | uniq > cn-without-redundant.list
+          awk '/^DOMAIN,|^DOMAIN-SUFFIX,/ { print }' 'download/surge/ChinaMax.list' > ChinaMax.list
+          sort 'ChinaMax.list' 'download/special/cn.list' | uniq > cn-without-redundant.list
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 

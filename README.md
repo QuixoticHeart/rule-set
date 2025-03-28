@@ -7,9 +7,9 @@
 
 收集于互联网，面向 Mihomo/Clash.Meta , Surge , Loon , Stash , Shadowrocket , QuantumultX 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
-每天早上 6:30（北京时间 UTC+8）自动构建，保持规则最新
+每天早上 7:00（北京时间 UTC+8）自动构建，保持规则最新
 
-- **[数据来源](#数据来源)**
+- **[规则说明](#规则说明)**
 
 - **[完整规则集目录](#完整规则集)**
 
@@ -60,175 +60,345 @@ quantumultx/
   <tbody>
     <tr>
       <td><code>adrules</code></td>
-      <td>广告屏蔽规则</td>
+      <td>广告屏蔽规则
+      <br> 规则源:
+      <a href="https://github.com/Cats-Team/AdRules">@Cats-Team/AdRules</a>
+      <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
+      </td>
     </tr>
     <tr>
       <td><code>ai</code></td>
-      <td> AI 规则集合 <br>  包含 OpenAI, Gemini, Copilot, Claude, Groq, Perplexity, xAI, Cursor 等</td>
+      <td> AI 规则集合 <br> 包含 OpenAI, Gemini, Copilot, Claude, Groq, Perplexity, xAI, Cursor 等
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>apns</code></td>
-      <td>Apple Push Notification Service 苹果推送服务</td>
+      <td>Apple Push Notification Service 苹果推送服务
+      <br> 规则源:
+      <a href="https://github.com/QuixoticHeart/rule-set/">手动维护</a>
+      </td>
     </tr>
     <tr>
       <td><code>apple-cn</code></td>
-      <td>Apple 在中国大陆可直连的规则列表</td>
+      <td>Apple 在中国大陆可直连的规则列表
+      <br> 规则源:
+      <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
+      <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
+      </td>
     </tr>
     <tr>
       <td><code>apple-proxy</code></td>
-      <td>Apple 在中国大陆需要代理的规则列表</td>
+      <td>Apple 在中国大陆需要代理的规则列表
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/Elysian-Realme/FuGfConfig">@Elysian-Realme/FuGfConfig</a>
+      </td>
     </tr>
     <tr>
       <td><code>apple</code></td>
-      <td>Apple 服务</td>
+      <td>Apple 服务
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>bahamut</code></td>
-      <td>巴哈姆特动漫</td>
+      <td>巴哈姆特动漫
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>bilibili</code></td>
-      <td>哔哩哔哩动漫</td>
+      <td>哔哩哔哩动漫
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>cdn</code></td>
-      <td>常见静态资源 CDN 及软件更新、操作系统等大文件下载规则</td>
+      <td>常见静态资源 CDN 及软件更新、操作系统等大文件下载规则
+      <br> 规则源:
+      <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
+      </td>
     </tr>
     <tr>
       <td><code>cn</code></td>
-      <td>中国大陆域名</td>
+      <td>中国大陆域名
+      <br> 规则源:
+      <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      </td>
     </tr>
     <tr>
       <td><code>cncidr</code></td>
-      <td>中国大陆 IP 地址</td>
+      <td>中国大陆 IP 地址
+      <br> 规则源:
+      <a href="https://github.com/Loyalsoldier/geoip">@Loyalsoldier/geoip</a>
+      </td>
     </tr>
     <tr>
       <td><code>cncidr-resolve</code></td>
-      <td>中国大陆 IP 地址去除 no-resolve 参数</td>
+      <td>中国大陆 IP 地址去除 no-resolve 参数
+      <br> 规则源:
+      <a href="https://github.com/Loyalsoldier/geoip">@Loyalsoldier/geoip</a>
+      </td>
     </tr>
     <tr>
       <td><code>crypto</code></td>
-      <td> 加密货币相关规则<br>包含 Binance, OKX, Bybit, Bitget 等常见交易所</td>
+      <td> 加密货币相关规则 <br> 包含 Binance, OKX, Bybit, Bitget 等常见交易所
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>disney</code></td>
-      <td>迪士尼 视频流媒体平台</td>
+      <td>迪士尼 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>dmca</code></td>
-      <td>DMCA 敏感域名 <br> 包含机场审计、Tracker、PT、迅雷以及需要直连的常见软件列表</td>
+      <td>DMCA 敏感域名
+      <br> 包含机场审计、Tracker、PT、迅雷以及需要直连的常见软件列表 <br> 规则源:
+      <a href="https://github.com/LM-Firefly/Rules">@LM-Firefly/Rules</a>
+      <a href="https://github.com/XIU2/TrackersListCollection">@XIU2/TrackersListCollection</a>
+      <a href="https://github.com/ngosang/trackerslist">@ngosang/trackerslist</a>
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/Loyalsoldier/clash-rules">@Loyalsoldier/clash-rules</a>
+      </td>
     </tr>
     <tr>
       <td><code>douyin</code></td>
-      <td>抖音短视频平台</td>
+      <td>抖音短视频平台
+      <br> 规则源:
+      <a href="https://github.com/LM-Firefly/Rules">@LM-Firefly/Rules</a>
+      </td>
     </tr>
     <tr>
       <td><code>ecommerce</code></td>
-      <td>电子商务平台 <br> 包含 Amazon, eBay, Shopee, Shopify 等</td>
+      <td>电子商务平台 <br> 包含 Amazon, eBay, Shopee, Shopify 等
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>fake-ip-filter</code></td>
-      <td>fake-ip 过滤黑名单</td>
+      <td>fake-ip 过滤黑名单
+      <br> 规则源:
+      <a href="https://github.com/juewuy/ShellCrash">@juewuy/ShellCrash</a>
+      </td>
     </tr>
     <tr>
       <td><code>games-cn</code></td>
-      <td>游戏平台、游戏下载在中国大陆可直连的规则列表</td>
+      <td>游戏平台、游戏下载在中国大陆可直连的规则列表
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>games</code></td>
-      <td>需要代理的游戏平台规则</td>
+      <td>需要代理的游戏平台规则
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>gfw</code></td>
-      <td>被 GFW 屏蔽的域名列表</td>
+      <td>被 GFW 屏蔽的域名列表
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>gits</code></td>
-      <td>Git仓库规则集合 <br> 包含 GitHub, GitLab, Gitee, GitBook</td>
+      <td>Git仓库规则集合 <br> 包含 GitHub, GitLab, Gitee, GitBook
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      </td>
     </tr>
     <tr>
       <td><code>google</code></td>
-      <td> Google 谷歌服务</td>
+      <td> Google 谷歌服务
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>googlefcm</code></td>
-      <td>Google Firebase Cloud Messaging 谷歌推送服务</td>
+      <td>Google Firebase Cloud Messaging 谷歌推送服务
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>hbo</code></td>
-      <td>HBO 视频流媒体平台</td>
+      <td>HBO 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>httpdns</code></td>
-      <td>需要屏蔽的 HTTPDNS 列表</td>
+      <td>需要屏蔽的 HTTPDNS 列表
+      <br> 规则源:
+      <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
+      </td>
     </tr>
     <tr>
       <td><code>microsoft-cn</code></td>
-      <td>Microsoft 微软在中国大陆可直连的规则列表</td>
+      <td>Microsoft 微软在中国大陆可直连的规则列表
+      <br> 规则源:
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>microsoft</code></td>
-      <td>Microsoft 微软服务</td>
+      <td>Microsoft 微软服务
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>netflix</code></td>
-      <td>Netflix 视频流媒体平台</td>
+      <td>Netflix 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>onedrive</code></td>
-      <td>OneDrive 网盘</td>
+      <td>OneDrive 网盘
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>paypal</code></td>
-      <td>PayPal 在线支付与转账平台</td>
+      <td>PayPal 在线支付与转账平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>primevideo</code></td>
-      <td>PrimeVideo 视频流媒体平台</td>
+      <td>PrimeVideo 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>private</code></td>
-      <td>私有网络地址(添加了一些在线面板规则)</td>
+      <td>私有网络地址(添加了一些在线面板规则)
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>proxy</code></td>
-      <td>国外需要代理的域名</td>
+      <td>国外需要代理的域名
+      <br> 规则源:
+      <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>socialmedia-cn</code></td>
-      <td>国内社交媒体规则集合 <br> 包含 NGA, XiaoHongShu, Weibo, Zhihu, DouBan, Coolapk</td>
+      <td>国内社交媒体规则集合 <br> 包含 NGA, XiaoHongShu, Weibo, Zhihu, DouBan, Coolapk
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>socialmedia</code></td>
-      <td>国外社交媒体规则集合 <br> 包含 Reddit, Discord, Whatsapp, Line, Instagram, Facebook, Telegram, Twitter, Signal 等</td>
+      <td>国外社交媒体规则集合 <br> 包含 Reddit, Discord, Whatsapp, Line, Instagram, Facebook, Telegram, Twitter, Signal 等
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>speedtest</code></td>
-      <td>收集到的 Ookla SpeedTest 服务器</td>
+      <td>收集到的 Ookla SpeedTest 服务器
+      <br> 规则源:
+      <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
+      <a href="https://github.com/LM-Firefly/Rules">@LM-Firefly/Rules</a>
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>spotify</code></td>
-      <td>Spotify 音乐流媒体平台</td>
+      <td>Spotify 音乐流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>talkatone</code></td>
-      <td>Talkatone 互联网语音通话和短信服务</td>
+      <td>Talkatone 互联网语音通话和短信服务
+      <br> 规则源:
+      <a href="https://github.com/LOWERTOP/Shadowrocket-First">@LOWERTOP/Shadowrocket-First</a>
+      </td>
     </tr>
     <tr>
       <td><code>tiktok</code></td>
-      <td>TikTok 短视频平台</td>
+      <td>TikTok 短视频平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>tld-proxy</code></td>
-      <td>国外需要代理的顶级域名</td>
+      <td>国外需要代理的顶级域名
+      <br> 规则源:
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>twitch</code></td>
-      <td>Twitch 直播平台</td>
+      <td>Twitch 直播平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
     <tr>
       <td><code>youtube</code></td>
-      <td>YouTube 视频网站</td>
+      <td>YouTube 视频网站
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -249,15 +419,26 @@ quantumultx/
   <tbody>
     <tr>
       <td><code>httpdns</code></td>
-      <td>需要屏蔽的 HTTPDNS 列表，须放置在三者开头</td>
+      <td>需要屏蔽的 HTTPDNS 列表，须放置在三者开头
+      <br> 规则源:
+      <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
+      </td>
     </tr>
     <tr>
       <td><code>iplocation-direct</code></td>
-      <td>修改国内软件 IP 归属地的直连规则，须放置在三者中间</td>
+      <td>修改国内软件 IP 归属地的直连规则，须放置在三者中间
+      <br> 规则源:
+      <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
+      </td>
     </tr>
     <tr>
       <td><code>iplocation-proxy</code></td>
-      <td>修改国内软件 IP 归属地的代理规则，不建议使用，将你希望代理的软件规则放在最后即可</td>
+      <td>修改国内软件 IP 归属地的代理规则，不建议使用，将你希望代理的软件规则放在最后即可
+      <br> 规则源:
+      <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -1138,18 +1319,21 @@ dns:
     </tr>
 </table>
 
-## 数据来源
+## 致谢
 **向提供数据来源的作者们表示真诚的感谢**
 - [@blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
 - [@MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)
+- [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
+- [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
+- [@Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip)
 - [@SukkaW/Surge](https://github.com/SukkaW/Surge)
 - [@LM-Firefly/Rules](https://github.com/LM-Firefly/Rules)
 - [@SunsetMkt/anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution)
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
-- [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
 - [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
 - [@juewuy/ShellCrash](https://github.com/juewuy/ShellCrash)
 - [@XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection)
 - [@ngosang/trackerslist](https://github.com/ngosang/trackerslist)
+- [@uselibrary/PCDN](https://github.com/uselibrary/PCDN)
