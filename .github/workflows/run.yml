@@ -42,16 +42,16 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple@cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-chat-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple@cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'cn' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
-              curl -sSL "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list"
+              curl -f -L "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
           done
 
           ipcidr_lists=('facebook' 'telegram' 'twitter' 'google' 'netflix' 'private')
 
           for list in "${ipcidr_lists[@]}"; do
-              curl -sSL "${mihomo_ipcidr}/${list}.list" | sed '$a\' >> "download/meta/${list}.list"
+              curl -f -L "${mihomo_ipcidr}/${list}.list" | sed '$a\' >> "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
           done
 
           files=(
@@ -64,17 +64,17 @@ jobs:
           )
           for file in "${files[@]}"; do
               set -- $file
-              curl -sSL "$2" | sed '$a\' > "download/meta/$1"
+              curl -f -L "$2" | sed '$a\' > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
-          curl -sSL 'https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list' | sed -n '/## >> 抖音/,/##/{//!p}; $a\'$'\n' > "download/meta/douyin.list"
+          curl -f -L 'https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list' | sed -n '/## >> 抖音/,/##/{//!p}; $a\'$'\n' > "download/meta/douyin.list" || { echo "Download Failed: douyin.list"; exit 1; }
 
       - name: Download surge ruleset
         run: |
           surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'OpenAI' 'Gemini' 'Copilot' 'Claude' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Telegram' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
           for list in "${surge_lists[@]}"; do
-              curl -sSL "${bm7_surge}/${list}/${list}.list" | sed '$a\' > "download/surge/${list}.list"
+              curl -f -L "${bm7_surge}/${list}/${list}.list" | sed '$a\' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
           done
 
           files=(
@@ -89,7 +89,7 @@ jobs:
           )
           for file in "${files[@]}"; do
               set -- $file
-              curl -sSL "$2" | sed '$a\' > "download/surge/$1"
+              curl -f -L "$2" | sed '$a\' > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
       - name: Download special ruleset
@@ -112,9 +112,9 @@ jobs:
           for file in "${files[@]}"; do
               set -- $file
               if [ "$counter" -ge 0 ] && [ "$counter" -le 4 ]; then
-                  curl -sSL "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' -e '$a\' > "download/special/$1"
+                  curl -f -L "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' -e '$a\' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
               else
-                  curl -sSL "$2" | sed '$a\' > "download/special/$1"
+                  curl -f -L "$2" | sed '$a\' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
               fi
               counter=$((counter + 1))
           done
@@ -194,7 +194,7 @@ jobs:
               'download/surge/Gemini.list' \
               'download/surge/Copilot.list' \
               'download/surge/Claude.list' \
-              'download/meta/category-ai-chat-!cn.list' \
+              'download/meta/category-ai-!cn.list' \
           > surge/ai.list
 
       - name: Merge ecommerce file
