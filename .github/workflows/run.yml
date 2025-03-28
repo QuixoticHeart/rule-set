@@ -433,9 +433,6 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk '{
-                  if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
-                      next;
-                  }
                   gsub(/DEST-PORT/, "DST-PORT");
                   print;
               }' "$file" > "stash/$(basename "$file")"
