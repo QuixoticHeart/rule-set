@@ -42,7 +42,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'reddit' 'discord' 'whatsapp' 'line' 'instagram' 'facebook' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'geolocation-!cn' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               curl -f -L "${mihomo_domains}/${list}.list" | sed '$a\' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
@@ -71,7 +71,7 @@ jobs:
 
       - name: Download surge ruleset
         run: |
-          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'OpenAI' 'Gemini' 'Copilot' 'Claude' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Telegram' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
+          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'OpenAI' 'Gemini' 'Copilot' 'Claude' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Telegram' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
           for list in "${surge_lists[@]}"; do
               curl -f -L "${bm7_surge}/${list}/${list}.list" | sed '$a\' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
@@ -197,6 +197,10 @@ jobs:
               'download/surge/GitLab.list' \
               'download/surge/Gitee.list' \
               'download/surge/GitBook.list' \
+              'download/meta/github.list' \
+              'download/meta/gitlab.list' \
+              'download/meta/gitee.list' \
+              'download/meta/gitbook.list' \
           > surge/gits.list
 
       - name: Merge ai file
@@ -246,25 +250,27 @@ jobs:
 
       - name: Merge socialmedia file
         run: |
-          cat 'download/surge/Reddit.list' \
-              'download/surge/Discord.list' \
+          cat 'download/surge/Discord.list' \
               'download/surge/Whatsapp.list' \
               'download/surge/Line.list' \
+              'download/surge/Threads.list' \
               'download/surge/Instagram.list' \
               'download/surge/Facebook.list' \
               'download/surge/Telegram.list' \
               'download/surge/Twitter.list' \
-              'download/meta/reddit.list' \
               'download/meta/discord.list' \
-              'download/meta/whatsapp.list' \
               'download/meta/line.list' \
-              'download/meta/instagram.list' \
-              'download/meta/facebook.list' \
               'download/meta/telegram.list' \
               'download/meta/twitter.list' \
               'download/meta/signal.list' \
               'download/meta/meta.list' \
           > surge/socialmedia.list
+
+      - name: Merge forum file
+        run: |
+          cat 'download/surge/Reddit.list' \
+              'download/meta/category-forums.list' \
+          > surge/forum.list
 
       - name: Merge cdn file
         run: |

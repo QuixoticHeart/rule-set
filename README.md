@@ -200,6 +200,15 @@ quantumultx/
       <a href="https://github.com/juewuy/ShellCrash">@juewuy/ShellCrash</a>
       </td>
     </tr>
+        <tr>
+      <td><code>forum</code></td>
+      <td>国外常见论坛平台
+      <br> 包括 Reddit, V2EX, Quora, PTT, 4chan 等
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
     <tr>
       <td><code>games-cn</code></td>
       <td>游戏平台、游戏下载在中国大陆可直连的规则列表
@@ -229,6 +238,7 @@ quantumultx/
       <td>Git仓库规则集合 <br> 包含 GitHub, GitLab, Gitee, GitBook
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       </td>
     </tr>
     <tr>
@@ -338,7 +348,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>socialmedia</code></td>
-      <td>国外社交媒体规则集合 <br> 包含 Reddit, Discord, Whatsapp, Line, Instagram, Facebook, Telegram, Twitter, Signal 等
+      <td>国外社交媒体规则集合 <br> 包含 Discord, Whatsapp, Line, Instagram, Facebook, Telegram, Twitter, Signal 等
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -642,6 +652,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/ecommerce.list">[QuantumultX] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ecommerce.list">[Meta] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ecommerce.list">[Stash] ecommerce</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/forum.list">[surge] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/forum.list">[Loon] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/forum.list">[ShadowRocket] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/forum.list">[QuantumultX] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/forum.list">[Meta] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/forum.list">[Stash] forum</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/games-cn.list">[surge] games-cn</a></td>
@@ -1012,6 +1030,15 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ecommerce.list">[stash/domain] ecommerce(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/ecommerce.list">[stash/ipcidr] ecommerce(text)</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/forum.mrs">[meta/domain] forum(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/forum.list">[meta/domain] forum(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/forum.list">[stash/domain] forum(text)</a></td>
+        <td></td>
         <td></td>
     </tr>
     <tr>
