@@ -5,7 +5,7 @@
 
 ## 项目简介
 
-收集于互联网，面向 Mihomo/Clash.Meta , Surge , Loon , Stash , Shadowrocket , QuantumultX 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
+收集于互联网，面向 Mihomo/Clash.Meta Surge Loon Stash Shadowrocket QuantumultX 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
 每天早上 7:00（北京时间 UTC+8）自动构建，保持规则最新
 
@@ -68,7 +68,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>ai</code></td>
-      <td> AI 规则集合 <br> 包含 OpenAI, Gemini, Copilot, Claude, Groq, Perplexity, xAI, Cursor 等
+      <td> AI 规则集合 <br> 包含 OpenAI, Gemini, Copilot, Claude, Apple Intelligence, Groq, Perplexity, xAI, Cursor 等
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -131,6 +131,7 @@ quantumultx/
     <tr>
       <td><code>cn</code></td>
       <td>中国大陆域名
+      <br> 不含国外服务商(Microsoft Apple 等)在中国可直连的域名
       <br> 规则源:
       <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
@@ -445,7 +446,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>iplocation-proxy</code></td>
-      <td>修改国内软件 IP 归属地的代理规则，不建议使用，将你希望代理的软件规则放在最后即可
+      <td>修改国内软件 IP 归属地的代理规则，不建议直接使用，而是将你有代理需求的软件规则放置在最后
       <br> 规则源:
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
       </td>
