@@ -109,7 +109,8 @@ jobs:
               'trackers-XIU2.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
               'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
               'applications-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
-              'fake-ip-filter.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
+              'fake-ip-filter-sc.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
+              'fake-ip-filter-oc.list https://github.com/vernesong/OpenClash/raw/refs/heads/master/luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list'
           )
           counter=0
           for file in "${files[@]}"; do
@@ -138,7 +139,6 @@ jobs:
               cp "$src_file" "$dst_file"
           done
           cp 'custom/apns.list' 'surge/apns.list'
-          cp 'download/special/fake-ip-filter.list' 'meta/domain/fake-ip-filter.list'
 
       - name: Merge ruleset
         run: |
@@ -160,18 +160,19 @@ jobs:
               cat "$src1_file" "$src2_file" > "$dst_file"
           done
 
-      - name: Merge adrules file
-        run: |
-          cat 'download/surge/adrules.list' \
-              'download/surge/pcdn.list' \
-          > surge/adrules.list
-
       - name: Merge httpdns file
         run: |
           cat 'download/meta/category-httpdns-cn.list' \
               'download/meta/iplocation-reject.list' \
               'download/surge/httpdns.list' \
           > surge/httpdns.list
+
+      - name: Merge adrules file
+        run: |
+          cat 'download/surge/adrules.list' \
+              'download/surge/pcdn.list' \
+              'surge/httpdns.list' \
+          > surge/adrules.list
 
       - name: Merge apple-proxy file
         run: |
@@ -357,6 +358,8 @@ jobs:
           sort 'ChinaMax.list' 'download/special/cn.list' | uniq > cn-without-redundant.list
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
+
+          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
 
       - name: Generate meta ruleset
         run: |

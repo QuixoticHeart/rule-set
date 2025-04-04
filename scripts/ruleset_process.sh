@@ -43,6 +43,37 @@ domain_dedupe(){
     }' $1
 }
 
+fakeip_dedupe(){
+    awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print $0 }' $1 | awk '{
+        prefix = substr($0, 1, 2)
+        content = substr($0, 3)  # 提取后续内容
+
+        if (prefix == "*.") {
+            star_content[content] = $0
+        } else if (prefix == "+.") {
+            plus_content[content] = $0
+            print "DOMAIN-SUFFIX," substr($0, 3);  # 立即打印加号行
+            delete star_content[content]  # 删除星号行(如果存在)
+        } else {
+            print "DOMAIN," $0;  # 打印其他行
+        }
+    }
+    END {
+        # 打印剩余的星号行
+        for (content in star_content) {
+            print "DOMAIN," star_content[content];
+        }
+    }' | domain_dedupe | sort | awk  '
+        /^DOMAIN,|^DOMAIN-SUFFIX,/ {
+        if ($0 ~ /^DOMAIN-SUFFIX,/) {
+            gsub(/^DOMAIN-SUFFIX,/, "+.");
+        } else {
+            gsub(/^DOMAIN,/, "");
+        }
+        print $0;
+    }'
+}
+
 ruleset_sort(){
     awk '
         /^DOMAIN,/          { print "0 " $0; next }
