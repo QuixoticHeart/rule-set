@@ -60,10 +60,14 @@ quantumultx/
   <tbody>
     <tr>
       <td><code>adrules</code></td>
-      <td>广告屏蔽规则
+      <td>广告屏蔽规则 + <code>httpdns</code>
       <br> 规则源:
       <a href="https://github.com/Cats-Team/AdRules">@Cats-Team/AdRules</a>
       <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
+      <br> <code>httpdns</code>规则源:
+      <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
       </td>
     </tr>
     <tr>
@@ -199,6 +203,7 @@ quantumultx/
       <td>fake-ip 过滤黑名单
       <br> 规则源:
       <a href="https://github.com/juewuy/ShellCrash">@juewuy/ShellCrash</a>
+      <a href="https://github.com/vernesong/OpenClash">@vernesong/OpenClash/</a>
       </td>
     </tr>
         <tr>
@@ -894,10 +899,11 @@ dns:
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/adrules.mrs">[meta/domain] adrules(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/adrules.list">[meta/domain] adrules(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/adrules.mrs">[meta/ipcidr] adrules(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/adrules.list">[meta/ipcidr] adrules(text)</a></td>
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/adrules.list">[stash/domain] adrules(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/adrules.list">[stash/ipcidr] adrules(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1362,6 +1368,7 @@ dns:
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
 - [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
 - [@juewuy/ShellCrash](https://github.com/juewuy/ShellCrash)
+- [@vernesong/OpenClash](https://github.com/vernesong/OpenClash)
 - [@XIU2/TrackersListCollection](https://github.com/XIU2/TrackersListCollection)
 - [@ngosang/trackerslist](https://github.com/ngosang/trackerslist)
 - [@uselibrary/PCDN](https://github.com/uselibrary/PCDN)
