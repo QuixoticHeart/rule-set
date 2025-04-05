@@ -146,11 +146,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'category-games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix')
+          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'category-games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'private')
 
-          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'Game' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix')
+          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'Game' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Lan')
 
-          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix')
+          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'games' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -313,13 +313,6 @@ jobs:
               'download/surge/Proxy.list' \
               'custom/proxy.list' \
           > surge/proxy.list
-
-      - name: Merge private file
-        run: |
-          cat 'custom/panels.list' \
-              'download/meta/private.list' \
-              'download/surge/Lan.list' \
-          > surge/private.list
 
       - name: Merge DMCA file
         run: |

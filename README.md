@@ -329,7 +329,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>private</code></td>
-      <td>私有网络地址(添加了一些在线面板规则)
+      <td>私有网络地址
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
