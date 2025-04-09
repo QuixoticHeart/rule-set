@@ -1,0 +1,33 @@
+DOMAIN-SUFFIX,supertop.co
+DOMAIN-SUFFIX,hk.chinamobile.com
+DOMAIN-SUFFIX,metatrader4.com
+DOMAIN-SUFFIX,metatrader5.com
+# panels
+DOMAIN,yacd.haishan.me
+DOMAIN,yacd.metacubex.one
+DOMAIN,d.metacubex.one
+DOMAIN,metacubex.github.io
+DOMAIN,metacubexd.pages.dev
+DOMAIN,board.zash.run.place
+# dnsleak
+DOMAIN,ip-scan.adspower.net
+DOMAIN-SUFFIX,immersivetranslate.com
+DOMAIN-SUFFIX,browserscan.net
+DOMAIN-SUFFIX,edns.ip-api.com
+DOMAIN-SUFFIX,ipv4.surfsharkdns.com
+DOMAIN-SUFFIX,dnsleaktest.com
+DOMAIN-SUFFIX,dnsleak.com
+DOMAIN-SUFFIX,dnscheck.tools
+DOMAIN-SUFFIX,addr.tools
+DOMAIN-SUFFIX,expressvpn.com
+DOMAIN-SUFFIX,nordvpn.com
+DOMAIN-SUFFIX,surfshark.com
+DOMAIN-SUFFIX,ipleak.net
+DOMAIN-SUFFIX,perfect-privacy.com
+DOMAIN-SUFFIX,browserleaks.com
+DOMAIN-SUFFIX,browserleaks.org
+DOMAIN-SUFFIX,browserleaks.net
+DOMAIN-SUFFIX,vpnunlimited.com
+DOMAIN-SUFFIX,whoer.net
+DOMAIN-SUFFIX,whrq.net
+DOMAIN-KEYWORD,leak

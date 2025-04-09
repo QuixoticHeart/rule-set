@@ -1,0 +1,24 @@
+# IPv6 Test
+DOMAIN,ipv4.duiadns.net
+DOMAIN,ipv4.excathedra.co
+DOMAIN,ipv4.sixte.st
+DOMAIN,ipv6.testipv6.de
+DOMAIN-SUFFIX,ipv6-test.com
+DOMAIN-SUFFIX,ipv6test.com
+DOMAIN-SUFFIX,test-ipv6.com
+DOMAIN-SUFFIX,testipv6.com
+DOMAIN-SUFFIX,8n1.org
+DOMAIN-SUFFIX,antradar.com
+DOMAIN-SUFFIX,ipv6.br
+DOMAIN-SUFFIX,jamieweb.net
+DOMAIN-SUFFIX,joram.it
+DOMAIN-SUFFIX,mudgee.host
+DOMAIN-SUFFIX,nop.hu
+DOMAIN-SUFFIX,nsx.de
+DOMAIN-SUFFIX,stdio.be
+DOMAIN-SUFFIX,steffann.nl
+DOMAIN-SUFFIX,tunnelbroker.net
+DOMAIN-SUFFIX,vyncke.org
+
+# network speed test
+DOMAIN-SUFFIX,speed.ffq-test.com
