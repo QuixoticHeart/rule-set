@@ -906,8 +906,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/adrules.mrs">[meta/ipcidr] adrules(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/adrules.list">[meta/ipcidr] adrules(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/adrules.list">[stash/domain] adrules(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/adrules.list">[stash/ipcidr] adrules(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/adrules.mrs">[stash/domain] adrules(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/adrules.list">[stash/domain] adrules(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/adrules.mrs">[stash/ipcidr] adrules(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/adrules.list">[stash/ipcidr] adrules(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -915,7 +917,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/ai.list">[meta/domain] ai(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ai.list">[stash/domain] ai(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ai.mrs">[stash/domain] ai(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ai.list">[stash/domain] ai(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -925,8 +928,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/apns.mrs">[meta/ipcidr] apns(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/apns.list">[meta/ipcidr] apns(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apns.list">[stash/domain] apns(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apns.list">[stash/ipcidr] apns(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apns.mrs">[stash/domain] apns(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apns.list">[stash/domain] apns(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apns.mrs">[stash/ipcidr] apns(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apns.list">[stash/ipcidr] apns(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -934,7 +939,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple-cn.list">[meta/domain] apple-cn(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-cn.list">[stash/domain] apple-cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-cn.mrs">[stash/domain] apple-cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-cn.list">[stash/domain] apple-cn(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -943,7 +949,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple-proxy.list">[meta/domain] apple-proxy(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-proxy.list">[stash/domain] apple-proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-proxy.mrs">[stash/domain] apple-proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-proxy.list">[stash/domain] apple-proxy(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -953,8 +960,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/apple.mrs">[meta/ipcidr] apple(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/apple.list">[meta/ipcidr] apple(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple.list">[stash/domain] apple(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apple.list">[stash/ipcidr] apple(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple.mrs">[stash/domain] apple(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple.list">[stash/domain] apple(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apple.mrs">[stash/ipcidr] apple(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/apple.list">[stash/ipcidr] apple(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -962,7 +971,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/bahamut.list">[meta/domain] bahamut(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bahamut.list">[stash/domain] bahamut(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bahamut.mrs">[stash/domain] bahamut(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bahamut.list">[stash/domain] bahamut(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -972,8 +982,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/bilibili.mrs">[meta/ipcidr] bilibili(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/bilibili.list">[meta/ipcidr] bilibili(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bilibili.list">[stash/domain] bilibili(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/bilibili.list">[stash/ipcidr] bilibili(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bilibili.mrs">[stash/domain] bilibili(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/bilibili.list">[stash/domain] bilibili(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/bilibili.mrs">[stash/ipcidr] bilibili(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/bilibili.list">[stash/ipcidr] bilibili(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -981,7 +993,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cdn.list">[meta/domain] cdn(text)</a></td>
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/classical/cdn.list">[meta/classical] cdn(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cdn.list">[stash/domain] cdn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cdn.mrs">[stash/domain] cdn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cdn.list">[stash/domain] cdn(text)</a></td>
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/classical/cdn.list">[stash/classical] cdn(text)</a></td>
     </tr>
@@ -991,8 +1004,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/cn.mrs">[meta/ipcidr] cn(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/cn.list">[meta/ipcidr] cn(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cn.list">[stash/domain] cn(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/cn.list">[stash/ipcidr] cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cn.mrs">[stash/domain] cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/cn.list">[stash/domain] cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/cn.mrs">[stash/ipcidr] cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/cn.list">[stash/ipcidr] cn(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1000,7 +1015,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/crypto.list">[meta/domain] crypto(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/crypto.list">[stash/domain] crypto(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/crypto.mrs">[stash/domain] crypto(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/crypto.list">[stash/domain] crypto(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1009,7 +1025,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/disney.list">[meta/domain] disney(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/disney.list">[stash/domain] disney(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/disney.mrs">[stash/domain] disney(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/disney.list">[stash/domain] disney(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1019,8 +1036,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/dmca.mrs">[meta/ipcidr] dmca(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/dmca.list">[meta/ipcidr] dmca(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/classical/dmca.list">[meta/classical] dmca(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dmca.list">[stash/domain] dmca(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/dmca.list">[stash/ipcidr] dmca(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dmca.mrs">[stash/domain] dmca(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dmca.list">[stash/domain] dmca(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/dmca.mrs">[stash/ipcidr] dmca(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/dmca.list">[stash/ipcidr] dmca(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/classical/dmca.list">[stash/classical] dmca(text)</a></td>
     </tr>
     <tr>
@@ -1028,7 +1047,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/douyin.list">[meta/domain] douyin(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/douyin.list">[stash/domain] douyin(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/douyin.mrs">[stash/domain] douyin(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/douyin.list">[stash/domain] douyin(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1038,8 +1058,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/ecommerce.mrs">[meta/ipcidr] ecommerce(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/ecommerce.list">[meta/ipcidr] ecommerce(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ecommerce.list">[stash/domain] ecommerce(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/ecommerce.list">[stash/ipcidr] ecommerce(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ecommerce.mrs">[stash/domain] ecommerce(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/ecommerce.list">[stash/domain] ecommerce(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/ecommerce.mrs">[stash/ipcidr] ecommerce(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/ecommerce.list">[stash/ipcidr] ecommerce(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1047,7 +1069,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/forum.list">[meta/domain] forum(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/forum.list">[stash/domain] forum(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/forum.mrs">[stash/domain] forum(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/forum.list">[stash/domain] forum(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1056,7 +1079,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/games-cn.list">[meta/domain] games-cn(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games-cn.list">[stash/domain] games-cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games-cn.mrs">[stash/domain] games-cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games-cn.list">[stash/domain] games-cn(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1066,8 +1090,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/games.mrs">[meta/ipcidr] games(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/games.list">[meta/ipcidr] games(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games.list">[stash/domain] games(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/games.list">[stash/ipcidr] games(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games.mrs">[stash/domain] games(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/games.list">[stash/domain] games(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/games.mrs">[stash/ipcidr] games(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/games.list">[stash/ipcidr] games(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1076,8 +1102,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/gfw.mrs">[meta/ipcidr] gfw(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/gfw.list">[meta/ipcidr] gfw(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gfw.list">[stash/domain] gfw(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/gfw.list">[stash/ipcidr] gfw(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gfw.mrs">[stash/domain] gfw(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gfw.list">[stash/domain] gfw(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/gfw.mrs">[stash/ipcidr] gfw(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/gfw.list">[stash/ipcidr] gfw(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1085,7 +1113,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/gits.list">[meta/domain] gits(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gits.list">[stash/domain] gits(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gits.mrs">[stash/domain] gits(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/gits.list">[stash/domain] gits(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1095,8 +1124,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/google.mrs">[meta/ipcidr] google(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/google.list">[meta/ipcidr] google(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/google.list">[stash/domain] google(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/google.list">[stash/ipcidr] google(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/google.mrs">[stash/domain] google(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/google.list">[stash/domain] google(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/google.mrs">[stash/ipcidr] google(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/google.list">[stash/ipcidr] google(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1105,8 +1136,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/googlefcm.mrs">[meta/ipcidr] googlefcm(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/googlefcm.list">[meta/ipcidr] googlefcm(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/googlefcm.list">[stash/domain] googlefcm(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/googlefcm.list">[stash/ipcidr] googlefcm(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/googlefcm.mrs">[stash/domain] googlefcm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/googlefcm.list">[stash/domain] googlefcm(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/googlefcm.mrs">[stash/ipcidr] googlefcm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/googlefcm.list">[stash/ipcidr] googlefcm(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1114,8 +1147,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/hbo.list">[meta/domain] hbo(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hbo.list">[stash/domain] hbo(text)</a></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hbo.mrs">[stash/domain] hbo(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hbo.list">[stash/domain] hbo(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1124,8 +1157,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/httpdns.mrs">[meta/ipcidr] httpdns(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/httpdns.list">[meta/ipcidr] httpdns(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/httpdns.list">[stash/domain] httpdns(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/httpdns.list">[stash/ipcidr] httpdns(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/httpdns.mrs">[stash/domain] httpdns(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/httpdns.list">[stash/domain] httpdns(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/httpdns.mrs">[stash/ipcidr] httpdns(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/httpdns.list">[stash/ipcidr] httpdns(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1133,7 +1168,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/iplocation-direct.list">[meta/domain] iplocation-direct(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-direct.list">[stash/domain] iplocation-direct(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-direct.mrs">[stash/domain] iplocation-direct(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-direct.list">[stash/domain] iplocation-direct(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1143,8 +1179,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/iplocation-proxy.mrs">[meta/ipcidr] iplocation-proxy(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/iplocation-proxy.list">[meta/ipcidr] iplocation-proxy(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-proxy.list">[stash/domain] iplocation-proxy(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/iplocation-proxy.list">[stash/ipcidr] iplocation-proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-proxy.mrs">[stash/domain] iplocation-proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/iplocation-proxy.list">[stash/domain] iplocation-proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/iplocation-proxy.mrs">[stash/ipcidr] iplocation-proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/iplocation-proxy.list">[stash/ipcidr] iplocation-proxy(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1152,7 +1190,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/microsoft-cn.list">[meta/domain] microsoft-cn(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft-cn.list">[stash/domain] microsoft-cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft-cn.mrs">[stash/domain] microsoft-cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft-cn.list">[stash/domain] microsoft-cn(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1161,7 +1200,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/microsoft.list">[meta/domain] microsoft(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft.list">[stash/domain] microsoft(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft.mrs">[stash/domain] microsoft(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft.list">[stash/domain] microsoft(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1171,8 +1211,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/netflix.mrs">[meta/ipcidr] netflix(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/netflix.list">[meta/ipcidr] netflix(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/netflix.list">[stash/domain] netflix(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/netflix.list">[stash/ipcidr] netflix(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/netflix.mrs">[stash/domain] netflix(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/netflix.list">[stash/domain] netflix(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/netflix.mrs">[stash/ipcidr] netflix(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/netflix.list">[stash/ipcidr] netflix(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1180,7 +1222,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/onedrive.list">[meta/domain] onedrive(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/onedrive.list">[stash/domain] onedrive(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/onedrive.mrs">[stash/domain] onedrive(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/onedrive.list">[stash/domain] onedrive(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1189,7 +1232,9 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/paypal.list">[meta/domain] paypal(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/paypal.list">[stash/domain] paypal(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/paypal.mrs">[stash/domain] paypal(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/paypal.list">[stash/domain] paypal(text)</a></td>
+        <td></td>
         <td></td>
         <td></td>
     </tr>
@@ -1198,7 +1243,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/primevideo.list">[meta/domain] primevideo(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/primevideo.list">[stash/domain] primevideo(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/primevideo.mrs">[stash/domain] primevideo(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/primevideo.list">[stash/domain] primevideo(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1208,8 +1254,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/private.mrs">[meta/ipcidr] private(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/private.list">[meta/ipcidr] private(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/private.list">[stash/domain] private(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/private.list">[stash/ipcidr] private(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/private.mrs">[stash/domain] private(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/private.list">[stash/domain] private(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/private.mrs">[stash/ipcidr] private(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/private.list">[stash/ipcidr] private(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1218,8 +1266,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/proxy.mrs">[meta/ipcidr] proxy(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/proxy.list">[meta/ipcidr] proxy(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.list">[stash/domain] proxy(text)</a><br></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.list">[stash/ipcidr] proxy(text)</a><br></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/proxy.mrs">[stash/domain] proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/proxy.list">[stash/domain] proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.mrs">[stash/ipcidr] proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/proxy.list">[stash/ipcidr] proxy(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1228,8 +1278,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/socialmedia-cn.mrs">[meta/ipcidr] socialmedia-cn(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/socialmedia-cn.list">[meta/ipcidr] socialmedia-cn(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia-cn.list">[stash/domain] socialmedia-cn(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia-cn.list">[stash/ipcidr] socialmedia-cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia-cn.mrs">[stash/domain] socialmedia-cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia-cn.list">[stash/domain] socialmedia-cn(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia-cn.mrs">[stash/ipcidr] socialmedia-cn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia-cn.list">[stash/ipcidr] socialmedia-cn(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1238,8 +1290,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/socialmedia.mrs">[meta/ipcidr] socialmedia(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/socialmedia.list">[meta/ipcidr] socialmedia(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia.list">[stash/domain] socialmedia(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia.list">[stash/ipcidr] socialmedia(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia.mrs">[stash/domain] socialmedia(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/socialmedia.list">[stash/domain] socialmedia(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia.mrs">[stash/ipcidr] socialmedia(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/socialmedia.list">[stash/ipcidr] socialmedia(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1247,7 +1301,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/speedtest.list">[meta/domain] speedtest(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/speedtest.list">[stash/domain] speedtest(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/speedtest.mrs">[stash/domain] speedtest(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/speedtest.list">[stash/domain] speedtest(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1257,8 +1312,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/spotify.mrs">[meta/ipcidr] spotify(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/spotify.list">[meta/ipcidr] spotify(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/spotify.list">[stash/domain] spotify(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/spotify.list">[stash/ipcidr] spotify(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/spotify.mrs">[stash/domain] spotify(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/spotify.list">[stash/domain] spotify(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/spotify.mrs">[stash/ipcidr] spotify(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/spotify.list">[stash/ipcidr] spotify(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1267,8 +1324,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/talkatone.mrs">[meta/ipcidr] talkatone(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/talkatone.list">[meta/ipcidr] talkatone(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/talkatone.list">[stash/domain] talkatone(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/talkatone.list">[stash/ipcidr] talkatone(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/talkatone.mrs">[stash/domain] talkatone(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/talkatone.list">[stash/domain] talkatone(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/talkatone.mrs">[stash/ipcidr] talkatone(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/talkatone.list">[stash/ipcidr] talkatone(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1276,7 +1335,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/tiktok.list">[meta/domain] tiktok(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tiktok.list">[stash/domain] tiktok(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tiktok.mrs">[stash/domain] tiktok(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tiktok.list">[stash/domain] tiktok(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1285,7 +1345,8 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/tld-proxy.list">[meta/domain] tld-proxy(text)</a></td>
         <td></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tld-proxy.list">[stash/domain] tld-proxy(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tld-proxy.mrs">[stash/domain] tld-proxy(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/tld-proxy.list">[stash/domain] tld-proxy(text)</a></td>
         <td></td>
         <td></td>
     </tr>
@@ -1295,8 +1356,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/twitch.mrs">[meta/ipcidr] twitch(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/twitch.list">[meta/ipcidr] twitch(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/twitch.list">[stash/domain] twitch(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/twitch.list">[stash/ipcidr] twitch(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/twitch.mrs">[stash/domain] twitch(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/twitch.list">[stash/domain] twitch(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/twitch.mrs">[stash/ipcidr] twitch(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/twitch.list">[stash/ipcidr] twitch(text)</a></td>
         <td></td>
     </tr>
     <tr>
@@ -1305,8 +1368,10 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/youtube.mrs">[meta/ipcidr] youtube(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/youtube.list">[meta/ipcidr] youtube(text)</a></td>
         <td></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/youtube.list">[stash/domain] youtube(text)</a></td>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/youtube.list">[stash/ipcidr] youtube(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/youtube.mrs">[stash/domain] youtube(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/youtube.list">[stash/domain] youtube(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/youtube.mrs">[stash/ipcidr] youtube(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/youtube.list">[stash/ipcidr] youtube(text)</a></td>
         <td></td>
     </tr>
     <tr>
