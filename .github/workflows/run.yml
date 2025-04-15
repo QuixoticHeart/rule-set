@@ -472,11 +472,11 @@ jobs:
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/dmca.list > stash/classical/dmca.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/adrules.list > stash/classical/adrules.list
 
-          cp meta/domain/*.list stash/domain/
-          cp meta/ipcidr/*.list stash/ipcidr/
+          cp -r meta/domain stash
+          cp -r meta/ipcidr stash
 
-          rm -f stash/domain/cn-*.list
-          rm -f stash/domain/fake-ip-filter.list
+          rm -f stash/domain/cn-*
+          rm -f stash/domain/fake-ip-filter.*
 
       - name: Generate surge ruleset
         run: |
