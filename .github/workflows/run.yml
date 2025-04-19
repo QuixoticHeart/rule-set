@@ -379,7 +379,7 @@ jobs:
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
-          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
+          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
 
       - name: Generate meta ruleset
         run: |
