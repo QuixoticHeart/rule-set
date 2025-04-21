@@ -303,6 +303,7 @@ jobs:
               'download-classical.list' \
               'download/special/cdn-surge.list' \
               'download/special/download-surge.list' \
+              'custom/cdn.list' \
           > surge/cdn.list
 
       - name: Merge speedtest file
