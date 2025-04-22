@@ -1,8 +1,6 @@
 # IPv6 Test
 DOMAIN,ipv4.duiadns.net
 DOMAIN,ipv4.excathedra.co
-DOMAIN,ipv4.sixte.st
-DOMAIN,ipv6.testipv6.de
 DOMAIN-SUFFIX,ipv6-test.com
 DOMAIN-SUFFIX,ipv6test.com
 DOMAIN-SUFFIX,test-ipv6.com
@@ -19,6 +17,39 @@ DOMAIN-SUFFIX,stdio.be
 DOMAIN-SUFFIX,steffann.nl
 DOMAIN-SUFFIX,tunnelbroker.net
 DOMAIN-SUFFIX,vyncke.org
+DOMAIN-SUFFIX,sixte.st
+DOMAIN-SUFFIX,test-ipv6.alpinedc.ch
+DOMAIN-SUFFIX,test-ipv6.belwue.net
+DOMAIN-SUFFIX,test-ipv6.carnet.hr
+DOMAIN-SUFFIX,test-ipv6.cl
+DOMAIN-SUFFIX,test-ipv6.coloradointerlink.net
+DOMAIN-SUFFIX,test-ipv6.cs.umd.edu
+DOMAIN-SUFFIX,test-ipv6.csclub.uwaterloo.ca
+DOMAIN-SUFFIX,test-ipv6.cz
+DOMAIN-SUFFIX,test-ipv6.epic.network
+DOMAIN-SUFFIX,test-ipv6.fratec.net
+DOMAIN-SUFFIX,test-ipv6.freerangecloud.com
+DOMAIN-SUFFIX,test-ipv6.hu
+DOMAIN-SUFFIX,test-ipv6.is
+DOMAIN-SUFFIX,test-ipv6.iu13.net
+DOMAIN-SUFFIX,test-ipv6.noroutetohost.net
+DOMAIN-SUFFIX,test-ipv6.roedu.net
+DOMAIN-SUFFIX,test-ipv6.se
+DOMAIN-SUFFIX,test-ipv6.ttk.ru
+DOMAIN-SUFFIX,testipv6.de
 
 # network speed test
 DOMAIN-SUFFIX,speed.ffq-test.com
+DOMAIN,cdn.ziffstatic.com
+DOMAIN-SUFFIX,cdnst.net
+DOMAIN-SUFFIX,cellmaps.com
+DOMAIN-SUFFIX,ekahau.cloud
+DOMAIN-SUFFIX,ekahau.com
+DOMAIN-SUFFIX,fast.com
+DOMAIN-SUFFIX,ookla.com
+DOMAIN-SUFFIX,ooklaserver.net
+DOMAIN-SUFFIX,pingtest.net
+DOMAIN-SUFFIX,speed.cloudflare.com
+DOMAIN-SUFFIX,speed.dler.io
+DOMAIN-SUFFIX,webtest.net
+DOMAIN-KEYWORD,speedtest
