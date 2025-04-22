@@ -340,13 +340,15 @@ jobs:
               'proxy.list' \
               'download/surge/Proxy.list' \
               'custom/proxy.list' \
+              | \
+              grep -vxF -f 'surge/adrules.list' \
           > surge/proxy.list
 
       - name: Merge DMCA file
         run: |
           cat 'download/special/trackers-XIU2.list' \
               'download/special/trackers-ngosang.list' \
-          > 'trackers.list'
+          > trackers.list
 
           grep -oP '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}' 'trackers.list'| sed 's/^/DOMAIN,/' > 'tracker_domains.list'
 
@@ -366,9 +368,10 @@ jobs:
               'download/surge/Download.list' \
           > surge/dmca.list
 
-      - name: Process raw ruleset
+      - name: Deduplicate ruleset
         run: |
           source scripts/ruleset_process.sh
+
           sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
 
           for file in surge/*.list ; do
@@ -376,7 +379,7 @@ jobs:
           done
 
           awk '/^DOMAIN,|^DOMAIN-SUFFIX,/ { print }' 'download/surge/ChinaMax.list' > ChinaMax.list
-          sort 'ChinaMax.list' 'download/special/cn.list' | uniq > cn-without-redundant.list
+          sort 'ChinaMax.list' 'download/special/cn.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
