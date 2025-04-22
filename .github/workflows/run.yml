@@ -80,7 +80,6 @@ jobs:
           done
 
           files=(
-              'ChinaMax.list https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/ChinaMax/ChinaMax_All.list'
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
               'GameDownload.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownload/GameDownload.list'
               'Apple.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Apple/Apple_All.list'
@@ -378,8 +377,7 @@ jobs:
               sort "${file}" | uniq | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
 
-          awk '/^DOMAIN,|^DOMAIN-SUFFIX,/ { print }' 'download/surge/ChinaMax.list' > ChinaMax.list
-          sort 'ChinaMax.list' 'download/special/cn.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
+          sort 'download/special/cn.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 

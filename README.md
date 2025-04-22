@@ -141,7 +141,6 @@ quantumultx/
       <br> 不含国外服务商(Microsoft Apple 等)在中国可直连的域名
       <br> 规则源:
       <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
-      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       </td>
     </tr>
     <tr>
