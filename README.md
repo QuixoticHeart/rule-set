@@ -59,6 +59,14 @@ quantumultx/
   </thead>
   <tbody>
     <tr>
+      <td><code>abema</code></td>
+      <td>abema 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
+    <tr>
       <td><code>adrules</code></td>
       <td>广告屏蔽规则 + <code>httpdns</code>
       <br> 规则源:
@@ -187,6 +195,14 @@ quantumultx/
       </td>
     </tr>
     <tr>
+      <td><code>dmm</code></td>
+      <td>DMM 在线内容提供商
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
+    <tr>
       <td><code>douyin</code></td>
       <td>抖音短视频平台
       <br> 规则源:
@@ -284,6 +300,14 @@ quantumultx/
       </td>
     </tr>
     <tr>
+      <td><code>hulu</code></td>
+      <td>Hulu 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
+    <tr>
       <td><code>microsoft-cn</code></td>
       <td>Microsoft 微软在中国大陆可直连的规则列表
       <br> 规则源:
@@ -301,6 +325,14 @@ quantumultx/
     <tr>
       <td><code>netflix</code></td>
       <td>Netflix 视频流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
+    <tr>
+      <td><code>niconico</code></td>
+      <td>Niconico 视频网站
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -527,6 +559,14 @@ dns:
         <th>Stash(Full)</th>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/abema.list">[surge] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/abema.list">[Loon] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/abema.list">[ShadowRocket] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/abema.list">[QuantumultX] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/abema.list">[Meta] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/abema.list">[Stash] abema</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/adrules.list">[surge] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/adrules.list">[Loon] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/adrules.list">[ShadowRocket] adrules</a></td>
@@ -647,6 +687,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dmca.list">[Stash] dmca</a></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/dmm.list">[surge] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/dmm.list">[Loon] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/dmm.list">[ShadowRocket] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/dmm.list">[QuantumultX] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/dmm.list">[Meta] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dmm.list">[Stash] dmm</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/douyin.list">[surge] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/douyin.list">[Loon] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/douyin.list">[ShadowRocket] douyin</a></td>
@@ -735,6 +783,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/httpdns.list">[Stash] httpdns</a></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/hulu.list">[surge] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/hulu.list">[Loon] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/hulu.list">[ShadowRocket] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/hulu.list">[QuantumultX] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/hulu.list">[Meta] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/hulu.list">[Stash] hulu</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/iplocation-direct.list">[surge] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/iplocation-direct.list">[Loon] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/iplocation-direct.list">[ShadowRocket] iplocation-direct</a></td>
@@ -773,6 +829,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/netflix.list">[QuantumultX] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/netflix.list">[Meta] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/netflix.list">[Stash] netflix</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/niconico.list">[surge] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/niconico.list">[Loon] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/niconico.list">[ShadowRocket] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/niconico.list">[QuantumultX] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/niconico.list">[Meta] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/niconico.list">[Stash] niconico</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/onedrive.list">[surge] onedrive</a></td>
@@ -898,6 +962,16 @@ dns:
         <th>stash/domain</th>
         <th>stash/ipcidr</th>
         <th>stash/classical</th>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/abema.mrs">[meta/domain] abema(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/abema.list">[meta/domain] abema(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/abema.mrs">[stash/domain] abema(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/abema.list">[stash/domain] abema(text)</a></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/adrules.mrs">[meta/domain] adrules(mrs)</a><br><br>
@@ -1042,6 +1116,18 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/classical/dmca.list">[stash/classical] dmca(text)</a></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/dmm.mrs">[meta/domain] dmm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/dmm.list">[meta/domain] dmm(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/dmm.mrs">[meta/ipcidr] dmm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/dmm.list">[meta/ipcidr] dmm(text)</a></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dmm.mrs">[stash/domain] dmm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dmm.list">[stash/domain] dmm(text)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/dmm.mrs">[stash/ipcidr] dmm(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/dmm.list">[stash/ipcidr] dmm(text)</a></td>
+        <td></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/douyin.mrs">[meta/domain] douyin(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/douyin.list">[meta/domain] douyin(text)</a></td>
         <td></td>
@@ -1163,6 +1249,15 @@ dns:
         <td></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/hulu.mrs">[meta/domain] hulu(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/hulu.list">[meta/domain] hulu(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hulu.mrs">[stash/domain] hulu(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hulu.list">[stash/domain] hulu(text)</a></td>
+        <td></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/iplocation-direct.mrs">[meta/domain] iplocation-direct(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/iplocation-direct.list">[meta/domain] iplocation-direct(text)</a></td>
         <td></td>
@@ -1214,6 +1309,15 @@ dns:
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/netflix.list">[stash/domain] netflix(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/netflix.mrs">[stash/ipcidr] netflix(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ipcidr/netflix.list">[stash/ipcidr] netflix(text)</a></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/niconico.mrs">[meta/domain] niconico(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/niconico.list">[meta/domain] niconico(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/niconico.mrs">[stash/domain] niconico(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/niconico.list">[stash/domain] niconico(text)</a></td>
         <td></td>
     </tr>
     <tr>
