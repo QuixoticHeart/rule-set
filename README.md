@@ -1,7 +1,7 @@
 # rule-set
 > [!CAUTION]
 >
-> **禁止任何形式的转载或发布至中国大陆地区**
+> **禁止任何形式转载或发布至中国大陆地区**
 
 ## 项目简介
 
@@ -98,7 +98,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>apple-cn</code></td>
-      <td>Apple 在中国大陆可直连的规则列表
+      <td>Apple 在中国大陆备案的规则列表
       <br> 规则源:
       <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
       <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
@@ -110,6 +110,14 @@ quantumultx/
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/Elysian-Realme/FuGfConfig">@Elysian-Realme/FuGfConfig</a>
+      </td>
+    </tr>
+    <tr>
+      <td><code>apple-tv</code></td>
+      <td>Apple TV 流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       </td>
     </tr>
     <tr>
@@ -146,7 +154,7 @@ quantumultx/
     <tr>
       <td><code>cn</code></td>
       <td>中国大陆域名
-      <br> 不含国外服务商(Microsoft Apple 等)在中国可直连的域名
+      <br> 不包含跨国网络服务提供商(如 Microsoft Apple 等)在中国大陆可直连的域名
       <br> 规则源:
       <a href="https://github.com/felixonmars/dnsmasq-china-list">@felixonmars/dnsmasq-china-list</a>
       </td>
@@ -172,6 +180,14 @@ quantumultx/
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       <a href="https://github.com/ACL4SSR/ACL4SSR">@ACL4SSR/ACL4SSR</a>
+      </td>
+    </tr>
+    <tr>
+      <td><code>dazn</code></td>
+      <td>DAZN 体育流媒体平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       </td>
     </tr>
     <tr>
@@ -222,7 +238,7 @@ quantumultx/
       <td>fake-ip 过滤黑名单
       <br> 规则源:
       <a href="https://github.com/juewuy/ShellCrash">@juewuy/ShellCrash</a>
-      <a href="https://github.com/vernesong/OpenClash">@vernesong/OpenClash/</a>
+      <a href="https://github.com/vernesong/OpenClash">@vernesong/OpenClash</a>
       </td>
     </tr>
         <tr>
@@ -486,7 +502,7 @@ quantumultx/
     </tr>
     <tr>
       <td><code>iplocation-proxy</code></td>
-      <td>修改国内软件 IP 归属地的代理规则，不建议直接使用，而是将你有代理需求的软件规则放置在最后
+      <td>修改国内软件 IP 归属地的代理规则，不建议直接使用，而是将你有代理需求的软件规则放置在前两个规则之后
       <br> 规则源:
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
       </td>
@@ -494,7 +510,7 @@ quantumultx/
   </tbody>
 </table>
 
-#### 经过处理的大陆域名规则
+#### 特殊用途的大陆域名规则
 
 > [!IMPORTANT]
 >
@@ -606,7 +622,15 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple-proxy.list">[Meta] apple-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple-proxy.list">[Stash] apple-proxy</a></td>
     </tr>
-        <tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/apple-tv.list">[surge] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple-tv.list">[Loon] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple-tv.list">[ShadowRocket] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apple-tv.list">[QuantumultX] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple-tv.list">[Meta] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple-tv.list">[Stash] apple-tv</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/apple.list">[surge] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple.list">[Loon] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple.list">[ShadowRocket] apple</a></td>
@@ -669,6 +693,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/crypto.list">[QuantumultX] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/crypto.list">[Meta] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/crypto.list">[Stash] crypto</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/dazn.list">[surge] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/dazn.list">[Loon] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/dazn.list">[ShadowRocket] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/dazn.list">[QuantumultX] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/dazn.list">[Meta] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dazn.list">[Stash] dazn</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/disney.list">[surge] disney</a></td>
@@ -1028,6 +1060,16 @@ dns:
         <td></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple-tv.mrs">[meta/domain] apple-tv(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple-tv.list">[meta/domain] apple-tv(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-tv.mrs">[stash/domain] apple-tv(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/apple-tv.list">[stash/domain] apple-tv(text)</a></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple.mrs">[meta/domain] apple(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/apple.list">[meta/domain] apple(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/apple.mrs">[meta/ipcidr] apple(mrs)</a><br><br>
@@ -1090,6 +1132,16 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/crypto.mrs">[stash/domain] crypto(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/crypto.list">[stash/domain] crypto(text)</a></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/dazn.mrs">[meta/domain] dazn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/dazn.list">[meta/domain] dazn(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dazn.mrs">[stash/domain] dazn(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/dazn.list">[stash/domain] dazn(text)</a></td>
         <td></td>
         <td></td>
     </tr>
