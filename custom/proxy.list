@@ -17,7 +17,6 @@ DOMAIN,ip-scan.adspower.net
 DOMAIN-SUFFIX,immersivetranslate.com
 DOMAIN-SUFFIX,browserscan.net
 DOMAIN-SUFFIX,edns.ip-api.com
-DOMAIN-SUFFIX,ipv4.surfsharkdns.com
 DOMAIN-SUFFIX,dnsleaktest.com
 DOMAIN-SUFFIX,dnsleak.com
 DOMAIN-SUFFIX,dnscheck.tools
@@ -25,6 +24,7 @@ DOMAIN-SUFFIX,addr.tools
 DOMAIN-SUFFIX,expressvpn.com
 DOMAIN-SUFFIX,nordvpn.com
 DOMAIN-SUFFIX,surfshark.com
+DOMAIN-SUFFIX,surfsharkdns.com
 DOMAIN-SUFFIX,ipleak.net
 DOMAIN-SUFFIX,ipcheck.ing
 DOMAIN-SUFFIX,perfect-privacy.com
@@ -34,3 +34,8 @@ DOMAIN-SUFFIX,browserleaks.net
 DOMAIN-SUFFIX,vpnunlimited.com
 DOMAIN-SUFFIX,whoer.net
 DOMAIN-SUFFIX,whrq.net
+DOMAIN-SUFFIX,astrill.com
+DOMAIN-SUFFIX,astrill.org
+DOMAIN-SUFFIX,dnsleak.asn247.net
+DOMAIN-SUFFIX,pixelscan.net
+DOMAIN-SUFFIX,ipapi.co
