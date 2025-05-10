@@ -146,17 +146,17 @@ jobs:
           done
           cp 'custom/apns.list' 'surge/apns.list'
 
-      - name: Merge ruleset
+      - name: Merge files
         run: |
           src1_dir="download/meta"
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'apple-tvplus' 'dazn' 'niconico' 'private')
+          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'private')
 
-          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'AppleTV' 'DAZN' 'Niconico' 'Lan')
+          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'Lan')
 
-          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'apple-tv' 'dazn' 'niconico' 'private')
+          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -383,6 +383,8 @@ jobs:
 
           sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
 
+          awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
+
       - name: Generate meta ruleset
         run: |
           for file in surge/*.list; do
@@ -437,13 +439,13 @@ jobs:
               ' "$file"
           done
           mv meta/ipcidr/cncidr.list meta/ipcidr/cn.list
+          rm -f meta/ipcidr/cncidr-resolve.list
 
-      - name: Generate meta remaining rules
+      - name: Generate meta classical ruleset
         run: |
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
-          awk '{ gsub(/,no-resolve/, ""); print }' meta/cncidr.list > meta/cncidr-resolve.list
 
       - name: Download and unzip `mihomo core`
         run: |
@@ -491,7 +493,6 @@ jobs:
                   print;
               }' "$file" > tmp.list && mv tmp.list "${file}"
           done
-          awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
 
       - name: Generate shadowrocket ruleset
         run: |
@@ -505,7 +506,6 @@ jobs:
                   print;
               }' "$file" > "shadowrocket/$(basename "$file")"
           done
-          awk '{ gsub(/,no-resolve/, ""); print }' shadowrocket/cncidr.list > shadowrocket/cncidr-resolve.list
 
       - name: Generate quantumultx ruleset
         run: |
@@ -523,6 +523,7 @@ jobs:
                   print $0 "," filename;
               }' "$file" > "quantumultx/$(basename "$file")"
           done
+          rm -f quantumultx/cncidr-resolve.list
 
       - name: Generate loon ruleset
         run: |
@@ -534,7 +535,6 @@ jobs:
                   print;
               }' "$file" > "loon/$(basename "$file")"
           done
-          awk '{ gsub(/,no-resolve/, ""); print }' loon/cncidr.list > loon/cncidr-resolve.list
 
       - name: move files to push directory
         run: |
