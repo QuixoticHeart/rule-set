@@ -514,7 +514,7 @@ quantumultx/
 
 > [!IMPORTANT]
 >
-> 使用场景: 家庭网络中使用**Clash.Meta/Mihomo**进行透明代理，开启了绕过大陆IP等类似功能，同时你又希望对某些特定国内域名分流
+> 使用场景: 家庭网络中使用了 **Clash.Meta/Mihomo** 内核的插件进行透明代理，开启了类似绕过大陆IP的功能，同时你又希望对某些特定国内域名分流
 >
 > 解决思路: 给你需要分流的国内域名分配 fake-ip 使其进入内核
 
@@ -531,7 +531,7 @@ dns:
 
 ```yaml
 dns:
-  fake-ip-filter-mode: blacklist
+  # fake-ip-filter-mode: blacklist
   fake-ip-filter: ['rule-set:cn-b']
 ```
 
