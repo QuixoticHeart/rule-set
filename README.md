@@ -70,7 +70,7 @@ quantumultx/
       <td><code>adrules</code></td>
       <td>广告屏蔽规则 + <code>httpdns</code>
       <br> 规则源:
-      <a href="https://github.com/Cats-Team/AdRules">@Cats-Team/AdRules</a>
+      <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
       <a href="https://github.com/fmz200/wool_scripts">@fmz200/wool_scripts</a>
       <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
       <br> <code>httpdns</code>规则源:
@@ -1588,7 +1588,6 @@ dns:
 - [@LM-Firefly/Rules](https://github.com/LM-Firefly/Rules)
 - [@ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
 - [@SunsetMkt/anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution)
-- [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
 - [@fmz200/wool_scripts](https://github.com/fmz200/wool_scripts)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
