@@ -88,7 +88,6 @@ jobs:
               'apple-proxy.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Loon/Apple/no-cn-cdn-domain.list'
               'httpdns.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
               'pcdn.list https://github.com/uselibrary/PCDN/raw/refs/heads/main/pcdn.list'
-              'adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
               'rejectAD.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/rejectAd.list'
               'global.list https://github.com/SukkaW/Surge/raw/refs/heads/master/Source/non_ip/global.conf'
               'ai.list https://github.com/ConnersHua/RuleGo/raw/refs/heads/master/Surge/Ruleset/Extra/AI.list'
@@ -107,6 +106,9 @@ jobs:
               'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
               'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
               'speedtest-domains.list https://ruleset.skk.moe/Clash/domainset/speedtest.txt'
+              'reject-domains.list https://ruleset.skk.moe/Clash/domainset/reject.txt'
+              'reject-surge.list https://ruleset.skk.moe/List/non_ip/reject.conf'
+              'reject-ip.list https://ruleset.skk.moe/List/ip/reject.conf'
               'apple-cn-special.list https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt'
               'apple-cn.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
               'cn.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
@@ -121,9 +123,9 @@ jobs:
           counter=0
           for file in "${files[@]}"; do
               set -- $file
-              if [ "$counter" -ge 0 ] && [ "$counter" -le 6 ]; then
+              if [ "$counter" -ge 0 ] && [ "$counter" -le 9 ]; then
                   curl -f -L "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
-              elif [ "$counter" -ge 7 ] && [ "$counter" -le 8 ]; then
+              elif [ "$counter" -ge 10 ] && [ "$counter" -le 11 ]; then
                   curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' | awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
               else
                   curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
@@ -175,7 +177,11 @@ jobs:
 
       - name: Merge adrules file
         run: |
-          cat 'download/surge/adrules.list' \
+          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/reject-domains.list' > 'reject-domains.list'
+
+          cat 'reject-domains.list' \
+              'download/special/reject-surge.list' \
+              'download/special/reject-ip.list' \
               'download/surge/rejectAD.list' \
               'download/surge/pcdn.list' \
               'surge/httpdns.list' \
@@ -294,12 +300,12 @@ jobs:
 
       - name: Merge cdn file
         run: |
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/cdn-domains.list' > 'cdn-classical.list'
+          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/cdn-domains.list' > 'cdn-domains.list'
 
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/download-domains.list' > 'download-classical.list'
+          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/download-domains.list' > 'download-domains.list'
 
-          cat 'cdn-classical.list' \
-              'download-classical.list' \
+          cat 'cdn-domains.list' \
+              'download-domains.list' \
               'download/special/cdn-surge.list' \
               'download/special/download-surge.list' \
               'custom/cdn.list' \
@@ -307,10 +313,10 @@ jobs:
 
       - name: Merge speedtest file
         run: |
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/speedtest-domains.list' > 'speedtest-classical.list'
+          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/speedtest-domains.list' > 'speedtest-domains.list'
 
           cat 'custom/speedtest.list' \
-              'speedtest-classical.list' \
+              'speedtest-domains.list' \
               'download/meta/speedtest.list' \
               'download/meta/SpeedTest.list' \
               'download/surge/Speedtest.list' \
@@ -445,7 +451,6 @@ jobs:
         run: |
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
 
       - name: Download and unzip `mihomo core`
         run: |
