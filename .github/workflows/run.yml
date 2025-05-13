@@ -42,7 +42,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               curl -f -L "${mihomo_domains}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
@@ -73,7 +73,7 @@ jobs:
 
       - name: Download surge ruleset
         run: |
-          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
+          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
           for list in "${surge_lists[@]}"; do
               curl -f -L "${bm7_surge}/${list}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
@@ -154,11 +154,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'private')
+          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'private')
 
-          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'Lan')
+          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Lan')
 
-          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'private')
+          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
