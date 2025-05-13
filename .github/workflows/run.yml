@@ -45,14 +45,16 @@ jobs:
           domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
-              curl -f -L "${mihomo_domains}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
+              curl -f -L "${mihomo_domains}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; } &
           done
+          wait
 
           ipcidr_lists=('facebook' 'telegram' 'twitter' 'google' 'netflix' 'private')
 
           for list in "${ipcidr_lists[@]}"; do
-              curl -f -L "${mihomo_ipcidr}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' >> "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
+              curl -f -L "${mihomo_ipcidr}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' >> "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; } &
           done
+          wait
 
           files=(
               'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
@@ -66,8 +68,9 @@ jobs:
           )
           for file in "${files[@]}"; do
               set -- $file
-              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
+              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; } &
           done
+          wait
 
           curl -f -L 'https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list' | sed -n '/## >> 抖音/,/##/{//!p}' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/douyin.list" || { echo "Download Failed: douyin.list"; exit 1; }
 
@@ -76,8 +79,9 @@ jobs:
           surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
           for list in "${surge_lists[@]}"; do
-              curl -f -L "${bm7_surge}/${list}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
+              curl -f -L "${bm7_surge}/${list}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; } &
           done
+          wait
 
           files=(
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
@@ -94,8 +98,9 @@ jobs:
           )
           for file in "${files[@]}"; do
               set -- $file
-              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
+              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; } &
           done
+          wait
 
       - name: Download special ruleset
         run: |
@@ -124,14 +129,15 @@ jobs:
           for file in "${files[@]}"; do
               set -- $file
               if [ "$counter" -ge 0 ] && [ "$counter" -le 9 ]; then
-                  curl -f -L "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+                  curl -f -L "$2" | awk '!/_.*\.skk\.moe/' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; } &
               elif [ "$counter" -ge 10 ] && [ "$counter" -le 11 ]; then
-                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' | awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' | awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; } &
               else
-                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; } &
               fi
               counter=$((counter + 1))
           done
+          wait
 
       - name: Copy single files
         run: |
@@ -361,7 +367,7 @@ jobs:
 
           grep -oP '(?<=\[).*?(?=\])' 'trackers.list' | sed 's/^/IP-CIDR6,/; s/$/\/128/' > 'trackersV6.list'
 
-          grep -v 'payload:' 'download/special/applications-yaml.list' | sed -e 's/^[ \t]*- //' > 'applications.list'
+          awk '!/^payload/ { gsub(/^[ ]*-[ ]*/, "", $0); print }' 'download/special/applications-yaml.list' > 'applications.list'
 
           cat 'tracker_domains.list' \
               'trackersV4.list' \
