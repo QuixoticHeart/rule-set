@@ -339,6 +339,14 @@ quantumultx/
       </td>
     </tr>
     <tr>
+      <td><code>mytvsuper</code></td>
+      <td>MyTV SUPER 在线视频点播服务平台
+      <br> 规则源:
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      </td>
+    </tr>
+    <tr>
       <td><code>netflix</code></td>
       <td>Netflix 视频流媒体平台
       <br> 规则源:
@@ -855,6 +863,14 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/microsoft.list">[Stash] microsoft</a></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/mytvsuper.list">[surge] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/mytvsuper.list">[Loon] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/mytvsuper.list">[ShadowRocket] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/mytvsuper.list">[QuantumultX] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/mytvsuper.list">[Meta] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/mytvsuper.list">[Stash] mytvsuper</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/netflix.list">[surge] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/netflix.list">[Loon] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/netflix.list">[ShadowRocket] netflix</a></td>
@@ -1348,6 +1364,16 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft.mrs">[stash/domain] microsoft(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/microsoft.list">[stash/domain] microsoft(text)</a></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/mytvsuper.mrs">[meta/domain] mytvsuper(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/mytvsuper.list">[meta/domain] mytvsuper(text)</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/mytvsuper.mrs">[stash/domain] mytvsuper(mrs)</a><br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/mytvsuper.list">[stash/domain] mytvsuper(text)</a></td>
         <td></td>
         <td></td>
     </tr>
