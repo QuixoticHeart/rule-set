@@ -2,7 +2,7 @@ name: Generate RULE-SET
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 23 * * *"
+    - cron: "30 23 * * *"
   push:
     branches:
       - master
@@ -45,14 +45,24 @@ jobs:
           domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
-              curl -f -L "${mihomo_domains}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
+              echo "${list}.list" "${mihomo_domains}/${list}.list"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L -o download/meta/$0 "$1" || { echo "Download Failed: $0"; exit 1; }
+          '
+
+          for file in download/meta/*.list; do
+              if [ -f "$file" ]; then
+                  sed -i '$a\' "$file"
+              fi
           done
 
           ipcidr_lists=('facebook' 'telegram' 'twitter' 'google' 'netflix' 'private')
 
           for list in "${ipcidr_lists[@]}"; do
-              curl -f -L "${mihomo_ipcidr}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' >> "download/meta/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
-          done
+              echo "${list}.list" "${mihomo_ipcidr}/${list}.list"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L "$1" >> download/meta/$0 || { echo "Download Failed: $0"; exit 1; }
+          '
 
           files=(
               'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
@@ -62,22 +72,33 @@ jobs:
               'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
               'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
               'crypto.list https://github.com/ACL4SSR/ACL4SSR/raw/refs/heads/master/Clash/Ruleset/Crypto.list'
-              'ai.list https://github.com/ACL4SSR/ACL4SSR/raw/refs/heads/master/Clash/Ruleset/AI.list'
+              'ai.list
+              https://github.com/ACL4SSR/ACL4SSR/raw/refs/heads/master/Clash/Ruleset/AI.list'
+              'douyin.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list'
           )
+
           for file in "${files[@]}"; do
-              set -- $file
-              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
+              echo "$file"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L -o download/meta/$0 "$1" || { echo "Download Failed: $0"; exit 1; }
+          '
+
+          sed -n '/## >> 抖音/,/##/{//!p}' "download/meta/douyin.list" > tmp.list && mv tmp.list "download/meta/douyin.list"
+
+          for file in download/meta/*.list; do
+              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
           done
 
-          curl -f -L 'https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list' | sed -n '/## >> 抖音/,/##/{//!p}' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/meta/douyin.list" || { echo "Download Failed: douyin.list"; exit 1; }
 
       - name: Download surge ruleset
         run: |
           surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
 
           for list in "${surge_lists[@]}"; do
-              curl -f -L "${bm7_surge}/${list}/${list}.list" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/${list}.list" || { echo "Download Failed: ${list}.list"; exit 1; }
-          done
+              echo "${list}.list" "${bm7_surge}/${list}/${list}.list"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L -o download/surge/$0 "$1" || { echo "Download Failed: $0"; exit 1; }
+          '
 
           files=(
               'GameDownloadCN.list https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Surge/Game/GameDownloadCN/GameDownloadCN.list'
@@ -92,26 +113,32 @@ jobs:
               'global.list https://github.com/SukkaW/Surge/raw/refs/heads/master/Source/non_ip/global.conf'
               'ai.list https://github.com/ConnersHua/RuleGo/raw/refs/heads/master/Surge/Ruleset/Extra/AI.list'
           )
+
           for file in "${files[@]}"; do
-              set -- $file
-              curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
+              echo "$file"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L -o download/surge/$0 "$1" || { echo "Download Failed: $0"; exit 1; }
+          '
+
+          for file in download/surge/*.list; do
+              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Download special ruleset
         run: |
           files=(
-              'ai.list https://ruleset.skk.moe/List/non_ip/ai.conf'
               'cdn-domains.list https://ruleset.skk.moe/Clash/domainset/cdn.txt'
               'download-domains.list https://ruleset.skk.moe/Clash/domainset/download.txt'
-              'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
-              'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
               'speedtest-domains.list https://ruleset.skk.moe/Clash/domainset/speedtest.txt'
               'reject-domains.list https://ruleset.skk.moe/Clash/domainset/reject.txt'
+              'ai-surge.list https://ruleset.skk.moe/List/non_ip/ai.conf'
+              'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
+              'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
+              'apple-cn-surge.list https://ruleset.skk.moe/List/non_ip/apple_cn.conf'
               'reject-surge.list https://ruleset.skk.moe/List/non_ip/reject.conf'
-              'reject-ip.list https://ruleset.skk.moe/List/ip/reject.conf'
-              'apple-cn-special.list https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt'
-              'apple-cn.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
-              'cn.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
+              'reject-ip-surge.list https://ruleset.skk.moe/List/ip/reject.conf'
+              'apple-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
+              'accelerated-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
               'DMCA-Sensitive.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
               'trackers-XIU2.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
               'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
@@ -119,18 +146,29 @@ jobs:
               'proxy.list https://github.com/Loyalsoldier/v2ray-rules-dat/raw/refs/heads/release/proxy-list.txt'
               'fake-ip-filter-sc.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
               'fake-ip-filter-oc.list https://github.com/vernesong/OpenClash/raw/refs/heads/master/luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list'
+
           )
-          counter=0
+
           for file in "${files[@]}"; do
-              set -- $file
-              if [ "$counter" -ge 0 ] && [ "$counter" -le 9 ]; then
-                  curl -f -L "$2" | sed -e '/this_ruleset_is_made_by_sukkaw.ruleset.skk.moe/d' | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
-              elif [ "$counter" -ge 10 ] && [ "$counter" -le 11 ]; then
-                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' | awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
-              else
-                  curl -f -L "$2" | awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
-              fi
-              counter=$((counter + 1))
+              echo "$file"
+          done | xargs -n 2 -P 5 sh -c '
+              curl -f -L -o download/special/$0 "$1" || { echo "Download Failed: $0"; exit 1; }
+          '
+
+          for file in download/special/*.list; do
+              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
+          done
+
+          for file in download/special/*-domains.list; do
+              awk '!/_.*\.skk\.moe/' "$file" | awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' > tmp.list && mv tmp.list "${file}"
+          done
+
+          for file in download/special/*-surge.list; do
+              awk '!/_.*\.skk\.moe/' "$file" > tmp.list && mv tmp.list "${file}"
+          done
+
+          for file in download/special/*-china.list; do
+              awk '{gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print}' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Copy single files
@@ -177,11 +215,9 @@ jobs:
 
       - name: Merge adrules file
         run: |
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/reject-domains.list' > 'reject-domains.list'
-
-          cat 'reject-domains.list' \
+          cat 'download/special/reject-domains.list' \
               'download/special/reject-surge.list' \
-              'download/special/reject-ip.list' \
+              'download/special/reject-ip-surge.list' \
               'download/surge/rejectAD.list' \
               'download/surge/pcdn.list' \
               'surge/httpdns.list' \
@@ -195,8 +231,8 @@ jobs:
 
       - name: Merge apple-cn file
         run: |
-          cat 'download/special/apple-cn-special.list' \
-              'download/special/apple-cn.list' \
+          cat 'download/special/apple-cn-surge.list' \
+              'download/special/apple-china.list' \
           > surge/apple-cn.list
 
       - name: Merge games-cn file
@@ -230,7 +266,7 @@ jobs:
       - name: Merge ai file
         run: |
           cat 'download/surge/ai.list' \
-              'download/special/ai.list' \
+              'download/special/ai-surge.list' \
               'download/meta/apple-intelligence.list' \
               'download/meta/category-ai-!cn.list' \
               'download/meta/ai.list' \
@@ -300,12 +336,8 @@ jobs:
 
       - name: Merge cdn file
         run: |
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/cdn-domains.list' > 'cdn-domains.list'
-
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/download-domains.list' > 'download-domains.list'
-
-          cat 'cdn-domains.list' \
-              'download-domains.list' \
+          cat 'download/special/cdn-domains.list' \
+              'download/special/download-domains.list' \
               'download/special/cdn-surge.list' \
               'download/special/download-surge.list' \
               'custom/cdn.list' \
@@ -313,10 +345,8 @@ jobs:
 
       - name: Merge speedtest file
         run: |
-          awk '/^+\./ { sub(/^+\./, "DOMAIN-SUFFIX,"); print; next } /./ { print "DOMAIN," $0 }' 'download/special/speedtest-domains.list' > 'speedtest-domains.list'
-
           cat 'custom/speedtest.list' \
-              'speedtest-domains.list' \
+              'download/special/speedtest-domains.list' \
               'download/meta/speedtest.list' \
               'download/meta/SpeedTest.list' \
               'download/surge/Speedtest.list' \
@@ -361,7 +391,7 @@ jobs:
 
           grep -oP '(?<=\[).*?(?=\])' 'trackers.list' | sed 's/^/IP-CIDR6,/; s/$/\/128/' > 'trackersV6.list'
 
-          grep -v 'payload:' 'download/special/applications-yaml.list' | sed -e 's/^[ \t]*- //' > 'applications.list'
+          awk '!/^payload/ { gsub(/^[ ]*-[ ]*/, "", $0); print }' 'download/special/applications-yaml.list' > 'applications.list'
 
           cat 'tracker_domains.list' \
               'trackersV4.list' \
@@ -383,7 +413,7 @@ jobs:
               sort "${file}" | uniq | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
 
-          sort 'download/special/cn.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
+          sort 'download/special/accelerated-china.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 

@@ -7,7 +7,7 @@
 
 收集于互联网，面向 Mihomo/Clash.Meta Surge Loon Stash Shadowrocket QuantumultX 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
-每天早上 7:00（北京时间 UTC+8）自动构建，保持规则最新
+每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
 - **[规则说明](#规则说明)**
 
