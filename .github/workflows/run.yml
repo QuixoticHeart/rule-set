@@ -42,7 +42,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-pt' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               echo "${list}.list" "${mihomo_domains}/${list}.list"
@@ -92,7 +92,7 @@ jobs:
 
       - name: Download surge ruleset
         run: |
-          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk')
+          surge_lists=('AppleProxy' 'Download' 'OneDrive' 'Microsoft' 'GitHub' 'GitLab' 'Gitee' 'GitBook' 'Amazon' 'eBay' 'Shopee' 'Shopify' 'PayPal' 'Crypto' 'Cryptocurrency' 'SteamCN' 'Game' 'Reddit' 'Discord' 'Whatsapp' 'Line' 'Threads' 'Instagram' 'Facebook' 'Twitter' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Speedtest' 'Lan' 'NGA' 'XiaoHongShu' 'Weibo' 'Zhihu' 'DouBan' 'Coolapk' 'DouYin')
 
           for list in "${surge_lists[@]}"; do
               echo "${list}.list" "${bm7_surge}/${list}/${list}.list"
@@ -176,8 +176,8 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-direct' 'iplocation-proxy' 'douyin' 'talkatone' 'microsoft@cn' 'tld-!cn' 'cncidr')
-          dst_names=('iplocation-direct' 'iplocation-proxy' 'douyin' 'talkatone' 'microsoft-cn' 'tld-proxy' 'cncidr')
+          src_names=('iplocation-direct' 'iplocation-proxy' 'talkatone' 'microsoft@cn' 'tld-!cn' 'cncidr')
+          dst_names=('iplocation-direct' 'iplocation-proxy' 'talkatone' 'microsoft-cn' 'tld-proxy' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
@@ -192,11 +192,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'private')
+          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
 
-          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'Lan')
+          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
 
-          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'private')
+          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -398,7 +398,7 @@ jobs:
               'trackersV6.list' \
               'applications.list' \
               'download/special/DMCA-Sensitive.list' \
-              'download/meta/category-pt.list' \
+              'download/meta/category-public-tracker.list' \
               'download/meta/tracker.list' \
               'download/surge/Download.list' \
           > surge/dmca.list
