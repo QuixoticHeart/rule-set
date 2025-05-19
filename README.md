@@ -223,6 +223,7 @@ quantumultx/
       <td>抖音短视频平台
       <br> 规则源:
       <a href="https://github.com/LM-Firefly/Rules">@LM-Firefly/Rules</a>
+      <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       </td>
     </tr>
     <tr>
