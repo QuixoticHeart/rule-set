@@ -1,4 +1,5 @@
 # rule-set
+
 > [!CAUTION]
 >
 > **禁止任何形式转载或发布至中国大陆地区**
@@ -10,13 +11,11 @@
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
 - **[规则说明](#规则说明)**
-
 - **[完整规则集目录](#完整规则集)**
-
 - **[Clash.Meta/Stash拆分规则集目录](#clashmetastash拆分规则集)**
 
-
 ## 项目背景
+
 Mihomo/Clash.Meta 和 Stash 对 domain 和 ipcidr 类型的规则集优化更加出色，尤其对于性能受限的设备（硬路由）使用 Clash 系软件代理时，应避免使用 classical 规则集
 
 Mihomo/Clash.Meta 独有的 mrs 格式，能够减少加载时硬件资源占用，也能减少一半以上规则文件大小，对于性能受限的设备十分友好
@@ -49,7 +48,9 @@ quantumultx/
    └── dmca.list（不含有 no-resolve 参数）
 
 ````
+
 ## 规则说明
+
 <table>
   <thead>
     <tr>
@@ -73,6 +74,7 @@ quantumultx/
       <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
       <a href="https://github.com/fmz200/wool_scripts">@fmz200/wool_scripts</a>
       <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
+      <a href="https://github.com/LOWERTOP/Shadowrocket-First">@LOWERTOP/Shadowrocket-First</a>
       <br> <code>httpdns</code>规则源:
       <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -480,7 +482,9 @@ quantumultx/
 </table>
 
 ### 特殊规则
+
 #### 修改IP归属地规则
+
 > [!IMPORTANT]
 >
 > 来源于 [SunsetMkt](https://github.com/SunsetMkt) 的 [anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution) 仓库，针对部分国内软件显示的 IP 归属地进行修改，无法保证规则的可用性，甚至可能会触发**账号风控**，不推荐使用
@@ -495,8 +499,8 @@ quantumultx/
   <tbody>
     <tr>
       <td><code>httpdns</code></td>
-      <td>需要屏蔽的 HTTPDNS 列表，须放置在三者开头
-      <br> 规则源:
+      <td>需要屏蔽的 HTTPDNS 列表，需要修改国内软件 IP 归属地时建议使用
+      <br>规则源:
       <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
@@ -504,15 +508,16 @@ quantumultx/
     </tr>
     <tr>
       <td><code>iplocation-direct</code></td>
-      <td>修改国内软件 IP 归属地的直连规则，须放置在三者中间
-      <br> 规则源:
+      <td>修改国内软件 IP 归属地的直连规则，直连规则须放置在代理规则之前
+      <br>规则源:
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
       </td>
     </tr>
     <tr>
       <td><code>iplocation-proxy</code></td>
-      <td>修改国内软件 IP 归属地的代理规则，不建议直接使用，而是将你有代理需求的软件规则放置在前两个规则之后
-      <br> 规则源:
+      <td>修改国内软件 IP 归属地的代理规则，直连规则须放置在代理规则之前
+      <br>不建议直接使用，而是将有代理需求的软件规则放置在直连规则之后
+      <br>规则源:
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
       </td>
     </tr>
@@ -536,6 +541,7 @@ dns:
   fake-ip-filter-mode: whitelist
   fake-ip-filter: ['rule-set:bilibili']
 ```
+
 解决方法 2: 使用默认的黑名单模式，fake-ip-filter 填入本仓库中的 cn-b 规则(排除 bilibili 的大陆域名)，此时 bilibili 和国外域名分配 fake-ip，其它域名则获取 real-ip
 
 ```yaml
@@ -574,6 +580,7 @@ dns:
 ## 规则目录
 
 ### 完整规则集
+
 <table>
     <tr>
         <th>Surge</th>
@@ -1001,8 +1008,8 @@ dns:
     </tr>
 </table>
 
-
 ### Clash.Meta/Stash拆分规则集
+
 <table>
     <tr>
         <th>meta/domain</th>
@@ -1604,7 +1611,9 @@ dns:
 </table>
 
 ## 致谢
+
 **向提供数据来源的作者们表示真诚的感谢**
+
 - [@blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)
 - [@MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)
 - [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
