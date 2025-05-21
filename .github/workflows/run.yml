@@ -81,7 +81,6 @@ jobs:
 
           files=(
               'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
-              'talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
               'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
               'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
               'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
@@ -134,6 +133,8 @@ jobs:
               'rejectAD.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/rejectAd.list'
               'global.list https://github.com/SukkaW/Surge/raw/refs/heads/master/Source/non_ip/global.conf'
               'ai.list https://github.com/ConnersHua/RuleGo/raw/refs/heads/master/Surge/Ruleset/Extra/AI.list'
+              'talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
+              'antiad.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/AntiAD.list'
           )
 
           for file in "${files[@]}"; do
@@ -167,7 +168,6 @@ jobs:
               'proxy.list https://github.com/Loyalsoldier/v2ray-rules-dat/raw/refs/heads/release/proxy-list.txt'
               'fake-ip-filter-sc.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
               'fake-ip-filter-oc.list https://github.com/vernesong/OpenClash/raw/refs/heads/master/luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list'
-
           )
 
           for file in "${files[@]}"; do
@@ -196,14 +196,15 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-direct' 'iplocation-proxy' 'talkatone' 'microsoft@cn' 'tld-!cn' 'cncidr')
-          dst_names=('iplocation-direct' 'iplocation-proxy' 'talkatone' 'microsoft-cn' 'tld-proxy' 'cncidr')
+          src_names=('iplocation-direct' 'iplocation-proxy' 'microsoft@cn' 'tld-!cn' 'cncidr')
+          dst_names=('iplocation-direct' 'iplocation-proxy' 'microsoft-cn' 'tld-proxy' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
               dst_file="$dst_dir/${dst_names[i]}.list"
               cp "$src_file" "$dst_file"
           done
+          cp 'download/surge/talkatone.list' 'surge/talkatone.list'
           cp 'custom/apns.list' 'surge/apns.list'
 
       - name: Merge files
@@ -239,6 +240,7 @@ jobs:
               'download/special/reject-surge.list' \
               'download/special/reject-ip-surge.list' \
               'download/surge/rejectAD.list' \
+              'download/surge/antiad.list' \
               'download/surge/pcdn.list' \
               'surge/httpdns.list' \
           > surge/adrules.list
