@@ -432,12 +432,12 @@ jobs:
           sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
 
           for file in surge/*.list ; do
-              sort "${file}" | uniq | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
+              domain_dedupe "${file}" | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
 
-          sort 'download/special/accelerated-china.list' | uniq | grep -vxF -f 'surge/adrules.list' > cn-without-redundant.list
+          grep -vxF -f 'surge/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
-          sort 'cn-without-redundant.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
+          sort 'cn.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
           sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
 
