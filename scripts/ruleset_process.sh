@@ -7,16 +7,19 @@ domain_dedupe(){
         } else if ($1 == "DOMAIN-SUFFIX") {
             suffixes[$2] = 1;
         } else {
-            other_lines[NR] = $0;
+            other_lines[$0] = 1;
         }
     }
     END {
         for (domain in domains) {
             matched = 0;
-            for (suffix in suffixes) {
-                if (index(domain, suffix) != 0 && substr(domain, length(domain) - length(suffix) + 1) == suffix && substr(domain, length(domain) - length(suffix), 1) == "." || domain == suffix) {
-                    matched = 1;
-                    break;
+            for (i = 1; i <= length(domain); i++) {
+                if (i == 1 || substr(domain, i - 1, 1) == ".") {
+                    subDomain = substr(domain, i);
+                    if (subDomain in suffixes) {
+                        matched = 1;
+                        break;
+                    }
                 }
             }
             if (!matched) {
@@ -26,10 +29,17 @@ domain_dedupe(){
 
         for (suffix in suffixes) {
             matched = 0;
-            for (i = 1; i <= length(suffix); i++) {
-                if (substr(suffix, i) in suffixes && substr(suffix, i) != suffix && substr(suffix, i - 1, 1) == ".") {
-                    matched = 1;
-                    break;
+            if (length(suffix) <= 3) {
+                print "DOMAIN-SUFFIX," suffix;
+                continue;
+            }
+            for (i = 3; i <= length(suffix) - 1; i++) {
+                if (substr(suffix, i - 1, 1) == ".") {
+                    subSuffix = substr(suffix, i);
+                    if (subSuffix in suffixes) {
+                        matched = 1;
+                        break;
+                    }
                 }
             }
             if (!matched) {
@@ -37,8 +47,8 @@ domain_dedupe(){
             }
         }
 
-        for (i in other_lines) {
-            print other_lines[i];
+        for (other_line in other_lines) {
+            print other_line;
         }
     }' $1
 }
