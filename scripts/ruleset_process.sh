@@ -96,10 +96,7 @@ ruleset_sort(){
         /^PROCESS-NAME,/    { print "7 " $0; next }
         /^URL-REGEX,/       { print "8 " $0; next }
         /^USER-AGENT,/      { print "9 " $0; next }
-        /^AND,/             { print "10 " $0; next }
-        /^OR,/              { print "11 " $0; next }
-        /^NOT,/             { print "12 " $0; next }
-        /^DEST-PORT,/       { print "13 " $0; next }
-        /^DST-PORT,/        { print "14 " $0; next }
+        /^DEST-PORT,/       { print "10 " $0; next }
+        /^DST-PORT,/        { print "11 " $0; next }
     ' $1 | sort -k1,1n -k2,2 | cut -d' ' -f2-
 }
