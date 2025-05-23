@@ -429,7 +429,7 @@ jobs:
         run: |
           source scripts/ruleset_process.sh
 
-          sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(OR\|AND\|NOT\)/{ /\(IP-CIDR\|IP-ASN\|GEOIP\)/d }; /^\(IP-CIDR\|IP-ASN\|GEOIP\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
+          sed -i '/^IP-CIDR,/ { /:/ s/IP-CIDR,/IP-CIDR6,/ }; /^\(IP-CIDR\|IP-ASN\)/{ /,no-resolve$/!s/$/,no-resolve/ }' surge/*.list
 
           for file in surge/*.list ; do
               domain_dedupe "${file}" | ruleset_sort > tmp.list && mv tmp.list "${file}"
@@ -503,6 +503,7 @@ jobs:
         run: |
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
 
       - name: Download and unzip `mihomo core`
         run: |
@@ -568,7 +569,7 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk -v filename="$(basename "$file" .list)" '{
-                  if ($0 ~ /^PROCESS-NAME,/ || $0 ~ /^URL-REGEX,/ || $0 ~ /^DEST-PORT,/ || $0 ~ /^AND,/ || $0 ~ /^OR,/ || $0 ~ /^NOT,/) {
+                  if ($0 ~ /^PROCESS-NAME,/ || $0 ~ /^URL-REGEX,/ || $0 ~ /^DEST-PORT,/) {
                       next;
                   }
                   gsub(/DOMAIN/, "HOST");
@@ -593,7 +594,7 @@ jobs:
               }' "$file" > "loon/$(basename "$file")"
           done
 
-      - name: move files to push directory
+      - name: Move files to push directory
         run: |
           cp -r meta/ push/
           cp -r stash/ push/
