@@ -93,7 +93,7 @@ jobs:
 
           for file in "${files[@]}"; do
                 set -- $file
-                curl -f -L -H "Accept-Language: en-us" "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
+                curl -f -L "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           sed -n '/## >> 抖音/,/##/{//!p}' "download/meta/douyin.list" > tmp.list && mv tmp.list "download/meta/douyin.list"
@@ -139,7 +139,7 @@ jobs:
 
           for file in "${files[@]}"; do
                 set -- $file
-                curl -f -L -H "Accept-Language: en-us" "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
+                curl -f -L "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/surge/*.list; do
@@ -159,6 +159,8 @@ jobs:
               'apple-cn-surge.list https://ruleset.skk.moe/List/non_ip/apple_cn.conf'
               'reject-surge.list https://ruleset.skk.moe/List/non_ip/reject.conf'
               'reject-ip-surge.list https://ruleset.skk.moe/List/ip/reject.conf'
+              'reject-no-drop-surge.list https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf'
+              'reject-drop-surge.list https://ruleset.skk.moe/List/non_ip/reject-drop.conf'
               'apple-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
               'accelerated-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
               'DMCA-Sensitive.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
@@ -172,7 +174,7 @@ jobs:
 
           for file in "${files[@]}"; do
                 set -- $file
-                curl -f -L -H "Accept-Language: en-us" "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+                curl -f -L "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/special/*.list; do
@@ -239,6 +241,8 @@ jobs:
           cat 'download/special/reject-domains.list' \
               'download/special/reject-surge.list' \
               'download/special/reject-ip-surge.list' \
+              'download/special/reject-no-drop-surge.list' \
+              'download/special/reject-drop-surge.list' \
               'download/surge/rejectAD.list' \
               'download/surge/antiad.list' \
               'download/surge/pcdn.list' \
