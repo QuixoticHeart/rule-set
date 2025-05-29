@@ -61,7 +61,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
@@ -81,19 +81,19 @@ jobs:
 
           files=(
               'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
-              'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
               'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
               'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
               'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
               'crypto.list https://github.com/ACL4SSR/ACL4SSR/raw/refs/heads/master/Clash/Ruleset/Crypto.list'
               'ai.list
               https://github.com/ACL4SSR/ACL4SSR/raw/refs/heads/master/Clash/Ruleset/AI.list'
+              'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
               'douyin.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list'
           )
 
           for file in "${files[@]}"; do
-                set -- $file
-                curl -f -L "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
+              set -- $file
+              curl -f -L "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           sed -n '/## >> 抖音/,/##/{//!p}' "download/meta/douyin.list" > tmp.list && mv tmp.list "download/meta/douyin.list"
@@ -127,19 +127,19 @@ jobs:
           done
 
           files=(
-              'apple-proxy.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Loon/Apple/no-cn-cdn-domain.list'
-              'httpdns.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
-              'pcdn.list https://github.com/uselibrary/PCDN/raw/refs/heads/main/pcdn.list'
-              'rejectAD.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/rejectAd.list'
-              'global.list https://github.com/SukkaW/Surge/raw/refs/heads/master/Source/non_ip/global.conf'
-              'ai.list https://github.com/ConnersHua/RuleGo/raw/refs/heads/master/Surge/Ruleset/Extra/AI.list'
-              'talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
-              'antiad.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/AntiAD.list'
+              'Apple-Proxy.list https://github.com/Elysian-Realme/FuGfConfig/raw/refs/heads/main/ConfigFile/Loon/Apple/no-cn-cdn-domain.list'
+              'Global.list https://github.com/SukkaW/Surge/raw/refs/heads/master/Source/non_ip/global.conf'
+              'AI.list https://github.com/ConnersHua/RuleGo/raw/refs/heads/master/Surge/Ruleset/Extra/AI.list'
+              'HTTPDNS.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
+              'PCDN.list https://github.com/uselibrary/PCDN/raw/refs/heads/main/pcdn.list'
+              'RejectAD.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/rejectAd.list'
+              'AntiAD.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/AntiAD.list'
+              'Talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
           )
 
           for file in "${files[@]}"; do
-                set -- $file
-                curl -f -L "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
+              set -- $file
+              curl -f -L "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/surge/*.list; do
@@ -163,18 +163,18 @@ jobs:
               'reject-drop-surge.list https://ruleset.skk.moe/List/non_ip/reject-drop.conf'
               'apple-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
               'accelerated-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
-              'DMCA-Sensitive.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
+              'dmca.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
               'trackers-XIU2.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
               'trackers-ngosang.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
-              'applications-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
+              'applications-clash-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
               'proxy.list https://github.com/Loyalsoldier/v2ray-rules-dat/raw/refs/heads/release/proxy-list.txt'
               'fake-ip-filter-sc.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
               'fake-ip-filter-oc.list https://github.com/vernesong/OpenClash/raw/refs/heads/master/luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list'
           )
 
           for file in "${files[@]}"; do
-                set -- $file
-                curl -f -L "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+              set -- $file
+              curl -f -L "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/special/*.list; do
@@ -206,7 +206,6 @@ jobs:
               dst_file="$dst_dir/${dst_names[i]}.list"
               cp "$src_file" "$dst_file"
           done
-          cp 'download/surge/talkatone.list' 'surge/talkatone.list'
           cp 'custom/apns.list' 'surge/apns.list'
 
       - name: Merge files
@@ -215,11 +214,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
+          src1_names=('apple' 'talkatone' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
 
-          src2_names=('Apple' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
+          src2_names=('Apple' 'Talkatone' 'OneDrive' 'Microsoft' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
 
-          dst_names=('apple' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
+          dst_names=('apple' 'talkatone' 'onedrive' 'microsoft' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -233,7 +232,7 @@ jobs:
         run: |
           cat 'download/meta/category-httpdns-cn.list' \
               'download/meta/iplocation-reject.list' \
-              'download/surge/httpdns.list' \
+              'download/surge/HTTPDNS.list' \
           > surge/httpdns.list
 
       - name: Merge adrules file
@@ -243,15 +242,15 @@ jobs:
               'download/special/reject-ip-surge.list' \
               'download/special/reject-no-drop-surge.list' \
               'download/special/reject-drop-surge.list' \
-              'download/surge/rejectAD.list' \
-              'download/surge/antiad.list' \
-              'download/surge/pcdn.list' \
+              'download/surge/RejectAD.list' \
+              'download/surge/AntiAD.list' \
+              'download/surge/PCDN.list' \
               'surge/httpdns.list' \
           > surge/adrules.list
 
       - name: Merge apple-proxy file
         run: |
-          cat 'download/surge/apple-proxy.list' \
+          cat 'download/surge/Apple-Proxy.list' \
               'download/surge/AppleProxy.list' \
           > surge/apple-proxy.list
 
@@ -291,7 +290,7 @@ jobs:
 
       - name: Merge ai file
         run: |
-          cat 'download/surge/ai.list' \
+          cat 'download/surge/AI.list' \
               'download/special/ai-surge.list' \
               'download/meta/apple-intelligence.list' \
               'download/meta/category-ai-!cn.list' \
@@ -393,9 +392,9 @@ jobs:
           /./ { print "DOMAIN-SUFFIX," $0 }
           ' 'download/special/proxy.list' > proxy.list
 
-          grep -vxF -f 'surge/tld-proxy.list' 'download/surge/global.list' > 'global.list'
+          grep -vxF -f 'surge/tld-proxy.list' 'download/surge/Global.list' > 'Global.list'
 
-          cat 'global.list' \
+          cat 'Global.list' \
               'surge/crypto.list' \
               'surge/gfw.list' \
               'proxy.list' \
@@ -417,13 +416,13 @@ jobs:
 
           grep -oP '(?<=\[).*?(?=\])' 'trackers.list' | sed 's/^/IP-CIDR6,/; s/$/\/128/' > 'trackersV6.list'
 
-          awk '!/^payload/ { gsub(/^[ ]*-[ ]*/, "", $0); print }' 'download/special/applications-yaml.list' > 'applications.list'
+          awk '!/^payload/ { gsub(/^[ ]*-[ ]*/, "", $0); print }' 'download/special/applications-clash-yaml.list' > 'applications.list'
 
           cat 'tracker_domains.list' \
               'trackersV4.list' \
               'trackersV6.list' \
               'applications.list' \
-              'download/special/DMCA-Sensitive.list' \
+              'download/special/dmca.list' \
               'download/meta/category-public-tracker.list' \
               'download/meta/tracker.list' \
               'download/surge/Download.list' \
