@@ -444,6 +444,7 @@ quantumultx/
       <td><code>talkatone</code></td>
       <td>Talkatone 互联网语音通话和短信服务
       <br> 规则源:
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       <a href="https://github.com/LOWERTOP/Shadowrocket-First">@LOWERTOP/Shadowrocket-First</a>
       </td>
     </tr>
