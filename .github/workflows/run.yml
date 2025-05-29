@@ -57,6 +57,7 @@ jobs:
           mkdir -p shadowrocket
           mkdir -p quantumultx
           mkdir -p loon
+          mkdir -p egern
           mkdir -p push
 
       - name: Download meta ruleset
@@ -500,7 +501,7 @@ jobs:
               ' "$file"
           done
           mv meta/ipcidr/cncidr.list meta/ipcidr/cn.list
-          rm -f meta/ipcidr/cncidr-resolve.list
+          rm -f meta/ipcidr/*-resolve.list
 
       - name: Generate meta classical ruleset
         run: |
@@ -584,7 +585,7 @@ jobs:
                   print $0 "," filename;
               }' "$file" > "quantumultx/$(basename "$file")"
           done
-          rm -f quantumultx/cncidr-resolve.list
+          rm -f quantumultx/*-resolve.list
 
       - name: Generate loon ruleset
         run: |
@@ -597,6 +598,60 @@ jobs:
               }' "$file" > "loon/$(basename "$file")"
           done
 
+      - name: Generate egern ruleset
+        run: |
+          for file in surge/*.list; do
+              no_resolve=$(awk '/,no-resolve/{print 1; exit} END{print 0}' "$file")
+              awk -F',' -v no_resolve="$no_resolve" '
+              BEGIN {
+                  domain=suffix=keyword=wildcard=cidr=cidr6=asn=url_regex=user_agent=dest_port=0;
+                  if (no_resolve) print "no_resolve: true";
+              }
+              {
+                  gsub(/^"/, "", $2);
+                  gsub(/^'"'"'/, "", $2);
+                  gsub(/"$/, "", $2);
+                  gsub(/'"'"'$/, "", $2);
+                  chars = "[{}\\[\\]&*#|<>!%@`]"
+                  if ($2 ~ "^" chars) {
+                      $2 = sprintf("\x27%s\x27", $2);
+                  }
+                  if ($1 == "DOMAIN") {
+                      if (!domain++) print "domain_set:";
+                      print "- " $2;
+                  } else if ($1 == "DOMAIN-SUFFIX") {
+                      if (!suffix++) print "domain_suffix_set:";
+                      print "- " $2;
+                  } else if ($1 == "DOMAIN-KEYWORD") {
+                      if (!keyword++) print "domain_keyword_set:";
+                      print "- " $2;
+                  } else if ($1 == "DOMAIN-WILDCARD") {
+                      if (!wildcard++) print "domain_wildcard_set:";
+                      print "- " $2;
+                  } else if ($1 == "IP-CIDR") {
+                      if (!cidr++) print "ip_cidr_set:";
+                      print "- " $2;
+                  } else if ($1 == "IP-CIDR6") {
+                      if (!cidr6++) print "ip_cidr6_set:";
+                      print "- " $2;
+                  } else if ($1 == "IP-ASN") {
+                      if (!asn++) print "asn_set:";
+                      $2 = sprintf("\x27%s\x27", $2);
+                      print "- " $2;
+                  } else if ($1 == "URL-REGEX") {
+                      if (!url_regex++) print "url_regex_set:";
+                      print "- " $2;
+                  } else if ($1 == "USER-AGENT") {
+                      if (!user_agent++) print "user_agent_set:";
+                      print "- " $2;
+                  } else if ($1 == "DEST-PORT") {
+                      if (!dest_port++) print "dest_port_set:";
+                      $2 = sprintf("\x27%s\x27", $2);
+                      print "- " $2;
+                  }
+              }' "$file" > "egern/$(basename "$file" ".list").yaml"
+          done
+
       - name: Move files to push directory
         run: |
           cp -r meta/ push/
@@ -605,6 +660,7 @@ jobs:
           cp -r shadowrocket/ push/
           cp -r quantumultx/ push/
           cp -r loon/ push/
+          cp -r egern/ push/
 
       - name: Git push assets to "ruleset" branch
         run: |
