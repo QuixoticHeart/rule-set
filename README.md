@@ -6,7 +6,7 @@
 
 ## 项目简介
 
-收集于互联网，面向 Mihomo/Clash.Meta Surge Loon Stash Shadowrocket QuantumultX 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
+收集于互联网，面向 Mihomo/Clash.Meta Surge Loon Stash Shadowrocket QuantumultX Egern 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
@@ -26,14 +26,14 @@ Surge 和 Loon 目前在使用 RULE-SET 和 DOMAIN-SET 时，性能和内存占�
 
 ````
 meta/dmca.list（默认含有 no-resolve 参数）
-   ├── meta/domain/dmca.list(mrs)    # domain(text/mrs)类型
-   ├── meta/ipcidr/dmca.list(mrs)    # ipcidr(text/mrs)类型
-   └── meta/classical/dmca.list      # 去除 domain 和 ipcidr 后剩余的规则类型 (如无必要,则不生成)
+   ├── meta/domain/dmca.list         # domain(text/mrs)类型
+   ├── meta/ipcidr/dmca.list         # ipcidr(text/mrs)类型
+   └── meta/classical/dmca.list      # 排除 domain 和 ipcidr 的规则类型 (如无必要,则不生成)
 
 stash/dmca.list（默认含有 no-resolve 参数）
-   ├── stash/domain/dmca.list         # domain(text)类型
-   ├── stash/ipcidr/dmca.list         # ipcidr(text)类型
-   └── stash/classical/dmca.list      # 去除 domain 和 ipcidr 后剩余的规则类型 (如无必要,则不生成)
+   ├── stash/domain/dmca.list         # domain(text/mrs)类型
+   ├── stash/ipcidr/dmca.list         # ipcidr(text/mrs)类型
+   └── stash/classical/dmca.list      # 排除 domain 和 ipcidr 的规则类型 (如无必要,则不生成)
 
 surge/
    └── dmca.list（默认含有 no-resolve 参数）
@@ -46,6 +46,9 @@ shadowrocket/
 
 quantumultx/
    └── dmca.list（不含有 no-resolve 参数）
+
+egern/
+   └── dmca.list（默认含有 no-resolve 参数）
 
 ````
 
@@ -588,6 +591,7 @@ dns:
         <th>Loon</th>
         <th>ShadowRocket</th>
         <th>QuantumultX</th>
+        <th>Egern</th>
         <th>Meta(Full)</th>
         <th>Stash(Full)</th>
     </tr>
@@ -596,6 +600,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/abema.list">[Loon] abema</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/abema.list">[ShadowRocket] abema</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/abema.list">[QuantumultX] abema</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/abema.yaml">[Egern] abema</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/abema.list">[Meta] abema</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/abema.list">[Stash] abema</a></td>
     </tr>
@@ -604,6 +609,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/adrules.list">[Loon] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/adrules.list">[ShadowRocket] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/adrules.list">[QuantumultX] adrules</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/adrules.yaml">[Egern] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/adrules.list">[Meta] adrules</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/adrules.list">[Stash] adrules</a></td>
     </tr>
@@ -612,6 +618,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/ai.list">[Loon] ai</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/ai.list">[ShadowRocket] ai</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/ai.list">[QuantumultX] ai</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/ai.yaml">[Egern] ai</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ai.list">[Meta] ai</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ai.list">[Stash] ai</a></td>
     </tr>
@@ -620,6 +627,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apns.list">[Loon] apns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apns.list">[ShadowRocket] apns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apns.list">[QuantumultX] apns</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/apns.yaml">[Egern] apns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apns.list">[Meta] apns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apns.list">[Stash] apns</a></td>
     </tr>
@@ -628,6 +636,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple-cn.list">[Loon] apple-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple-cn.list">[ShadowRocket] apple-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apple-cn.list">[QuantumultX] apple-cn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/apple-cn.yaml">[Egern] apple-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple-cn.list">[Meta] apple-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple-cn.list">[Stash] apple-cn</a></td>
     </tr>
@@ -636,6 +645,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple-proxy.list">[Loon] apple-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple-proxy.list">[ShadowRocket] apple-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apple-proxy.list">[QuantumultX] apple-proxy</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/apple-proxy.yaml">[Egern] apple-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple-proxy.list">[Meta] apple-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple-proxy.list">[Stash] apple-proxy</a></td>
     </tr>
@@ -644,6 +654,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple-tv.list">[Loon] apple-tv</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple-tv.list">[ShadowRocket] apple-tv</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apple-tv.list">[QuantumultX] apple-tv</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/apple-tv.yaml">[Egern] apple-tv</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple-tv.list">[Meta] apple-tv</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple-tv.list">[Stash] apple-tv</a></td>
     </tr>
@@ -652,6 +663,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/apple.list">[Loon] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/apple.list">[ShadowRocket] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/apple.list">[QuantumultX] apple</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/apple.yaml">[Egern] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/apple.list">[Meta] apple</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/apple.list">[Stash] apple</a></td>
     </tr>
@@ -660,6 +672,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/bahamut.list">[Loon] bahamut</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/bahamut.list">[ShadowRocket] bahamut</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/bahamut.list">[QuantumultX] bahamut</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/bahamut.yaml">[Egern] bahamut</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/bahamut.list">[Meta] bahamut</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/bahamut.list">[Stash] bahamut</a></td>
     </tr>
@@ -668,6 +681,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/bilibili.list">[Loon] bilibili</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/bilibili.list">[ShadowRocket] bilibili</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/bilibili.list">[QuantumultX] bilibili</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/bilibili.yaml">[Egern] bilibili</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/bilibili.list">[Meta] bilibili</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/bilibili.list">[Stash] bilibili</a></td>
     </tr>
@@ -676,6 +690,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/cdn.list">[Loon] cdn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/cdn.list">[ShadowRocket] cdn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/cdn.list">[QuantumultX] cdn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/cdn.yaml">[Egern] cdn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/cdn.list">[Meta] cdn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/cdn.list">[Stash] cdn</a></td>
     </tr>
@@ -684,6 +699,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/cn.list">[Loon] cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/cn.list">[ShadowRocket] cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/cn.list">[QuantumultX] cn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/cn.yaml">[Egern] cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/cn.list">[Meta] cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/cn.list">[Stash] cn</a></td>
     </tr>
@@ -692,6 +708,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/cncidr.list">[Loon] cncidr</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/cncidr.list">[ShadowRocket] cncidr</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/cncidr.list">[QuantumultX] cncidr</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/cncidr.yaml">[Egern] cncidr</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/cncidr.list">[Meta] cncidr</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/cncidr.list">[Stash] cncidr</a></td>
     </tr>
@@ -700,6 +717,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/cncidr-resolve.list">[Loon] cncidr-resolve</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/cncidr-resolve.list">[ShadowRocket] cncidr-resolve</a></td>
         <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/cncidr-resolve.yaml">[Egern] cncidr-resolve</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/cncidr-resolve.list">[Meta] cncidr-resolve</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/cncidr-resolve.list">[Stash] cncidr-resolve</a></td>
     </tr>
@@ -708,6 +726,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/crypto.list">[Loon] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/crypto.list">[ShadowRocket] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/crypto.list">[QuantumultX] crypto</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/crypto.yaml">[Egern] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/crypto.list">[Meta] crypto</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/crypto.list">[Stash] crypto</a></td>
     </tr>
@@ -716,6 +735,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/dazn.list">[Loon] dazn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/dazn.list">[ShadowRocket] dazn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/dazn.list">[QuantumultX] dazn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/dazn.yaml">[Egern] dazn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/dazn.list">[Meta] dazn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dazn.list">[Stash] dazn</a></td>
     </tr>
@@ -724,6 +744,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/disney.list">[Loon] disney</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/disney.list">[ShadowRocket] disney</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/disney.list">[QuantumultX] disney</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/disney.yaml">[Egern] disney</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/disney.list">[Meta] disney</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/disney.list">[Stash] disney</a></td>
     </tr>
@@ -732,6 +753,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/dmca.list">[Loon] dmca</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/dmca.list">[ShadowRocket] dmca</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/dmca.list">[QuantumultX] dmca</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/dmca.yaml">[Egern] dmca</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/dmca.list">[Meta] dmca</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dmca.list">[Stash] dmca</a></td>
     </tr>
@@ -740,6 +762,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/dmm.list">[Loon] dmm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/dmm.list">[ShadowRocket] dmm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/dmm.list">[QuantumultX] dmm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/dmm.yaml">[Egern] dmm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/dmm.list">[Meta] dmm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/dmm.list">[Stash] dmm</a></td>
     </tr>
@@ -748,6 +771,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/douyin.list">[Loon] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/douyin.list">[ShadowRocket] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/douyin.list">[QuantumultX] douyin</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/douyin.yaml">[Egern] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/douyin.list">[Meta] douyin</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/douyin.list">[Stash] douyin</a></td>
     </tr>
@@ -756,6 +780,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/ecommerce.list">[Loon] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/ecommerce.list">[ShadowRocket] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/ecommerce.list">[QuantumultX] ecommerce</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/ecommerce.yaml">[Egern] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ecommerce.list">[Meta] ecommerce</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/ecommerce.list">[Stash] ecommerce</a></td>
     </tr>
@@ -764,6 +789,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/forum.list">[Loon] forum</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/forum.list">[ShadowRocket] forum</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/forum.list">[QuantumultX] forum</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/forum.yaml">[Egern] forum</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/forum.list">[Meta] forum</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/forum.list">[Stash] forum</a></td>
     </tr>
@@ -772,6 +798,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/games-cn.list">[Loon] games-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/games-cn.list">[ShadowRocket] games-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/games-cn.list">[QuantumultX] games-cn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/games-cn.yaml">[Egern] games-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/games-cn.list">[Meta] games-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/games-cn.list">[Stash] games-cn</a></td>
     </tr>
@@ -780,6 +807,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/games.list">[Loon] games</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/games.list">[ShadowRocket] games</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/games.list">[QuantumultX] games</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/games.yaml">[Egern] games</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/games.list">[Meta] games</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/games.list">[Stash] games</a></td>
     </tr>
@@ -788,6 +816,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/gfw.list">[Loon] gfw</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/gfw.list">[ShadowRocket] gfw</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/gfw.list">[QuantumultX] gfw</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/gfw.yaml">[Egern] gfw</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/gfw.list">[Meta] gfw</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/gfw.list">[Stash] gfw</a></td>
     </tr>
@@ -796,6 +825,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/gits.list">[Loon] gits</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/gits.list">[ShadowRocket] gits</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/gits.list">[QuantumultX] gits</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/gits.yaml">[Egern] gits</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/gits.list">[Meta] gits</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/gits.list">[Stash] gits</a></td>
     </tr>
@@ -804,6 +834,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/google.list">[Loon] google</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/google.list">[ShadowRocket] google</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/google.list">[QuantumultX] google</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/google.yaml">[Egern] google</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/google.list">[Meta] google</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/google.list">[Stash] google</a></td>
     </tr>
@@ -812,6 +843,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/googlefcm.list">[Loon] googlefcm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/googlefcm.list">[ShadowRocket] googlefcm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/googlefcm.list">[QuantumultX] googlefcm</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/googlefcm.yaml">[Egern] googlefcm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/googlefcm.list">[Meta] googlefcm</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/googlefcm.list">[Stash] googlefcm</a></td>
     </tr>
@@ -820,6 +852,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/hbo.list">[Loon] hbo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/hbo.list">[ShadowRocket] hbo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/hbo.list">[QuantumultX] hbo</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/hbo.yaml">[Egern] hbo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/hbo.list">[Meta] hbo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/hbo.list">[Stash] hbo</a></td>
     </tr>
@@ -828,6 +861,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/httpdns.list">[Loon] httpdns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/httpdns.list">[ShadowRocket] httpdns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/httpdns.list">[QuantumultX] httpdns</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/httpdns.yaml">[Egern] httpdns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/httpdns.list">[Meta] httpdns</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/httpdns.list">[Stash] httpdns</a></td>
     </tr>
@@ -836,6 +870,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/hulu.list">[Loon] hulu</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/hulu.list">[ShadowRocket] hulu</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/hulu.list">[QuantumultX] hulu</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/hulu.yaml">[Egern] hulu</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/hulu.list">[Meta] hulu</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/hulu.list">[Stash] hulu</a></td>
     </tr>
@@ -844,6 +879,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/iplocation-direct.list">[Loon] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/iplocation-direct.list">[ShadowRocket] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/iplocation-direct.list">[QuantumultX] iplocation-direct</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/iplocation-direct.yaml">[Egern] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/iplocation-direct.list">[Meta] iplocation-direct</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/iplocation-direct.list">[Stash] iplocation-direct</a></td>
     </tr>
@@ -852,6 +888,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/iplocation-proxy.list">[Loon] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/iplocation-proxy.list">[ShadowRocket] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/iplocation-proxy.list">[QuantumultX] iplocation-proxy</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/iplocation-proxy.yaml">[Egern] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/iplocation-proxy.list">[Meta] iplocation-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/iplocation-proxy.list">[Stash] iplocation-proxy</a></td>
     </tr>
@@ -860,6 +897,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/microsoft-cn.list">[Loon] microsoft-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/microsoft-cn.list">[ShadowRocket] microsoft-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/microsoft-cn.list">[QuantumultX] microsoft-cn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/microsoft-cn.yaml">[Egern] microsoft-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/microsoft-cn.list">[Meta] microsoft-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/microsoft-cn.list">[Stash] microsoft-cn</a></td>
     </tr>
@@ -868,6 +906,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/microsoft.list">[Loon] microsoft</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/microsoft.list">[ShadowRocket] microsoft</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/microsoft.list">[QuantumultX] microsoft</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/microsoft.yaml">[Egern] microsoft</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/microsoft.list">[Meta] microsoft</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/microsoft.list">[Stash] microsoft</a></td>
     </tr>
@@ -876,6 +915,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/mytvsuper.list">[Loon] mytvsuper</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/mytvsuper.list">[ShadowRocket] mytvsuper</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/mytvsuper.list">[QuantumultX] mytvsuper</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/mytvsuper.yaml">[Egern] mytvsuper</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/mytvsuper.list">[Meta] mytvsuper</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/mytvsuper.list">[Stash] mytvsuper</a></td>
     </tr>
@@ -884,6 +924,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/netflix.list">[Loon] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/netflix.list">[ShadowRocket] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/netflix.list">[QuantumultX] netflix</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/netflix.yaml">[Egern] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/netflix.list">[Meta] netflix</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/netflix.list">[Stash] netflix</a></td>
     </tr>
@@ -892,6 +933,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/niconico.list">[Loon] niconico</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/niconico.list">[ShadowRocket] niconico</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/niconico.list">[QuantumultX] niconico</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/niconico.yaml">[Egern] niconico</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/niconico.list">[Meta] niconico</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/niconico.list">[Stash] niconico</a></td>
     </tr>
@@ -900,6 +942,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/onedrive.list">[Loon] onedrive</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/onedrive.list">[ShadowRocket] onedrive</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/onedrive.list">[QuantumultX] onedrive</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/onedrive.yaml">[Egern] onedrive</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/onedrive.list">[Meta] onedrive</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/onedrive.list">[Stash] onedrive</a></td>
     </tr>
@@ -908,6 +951,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/paypal.list">[Loon] paypal</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/paypal.list">[ShadowRocket] paypal</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/paypal.list">[QuantumultX] paypal</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/paypal.yaml">[Egern] paypal</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/paypal.list">[Meta] paypal</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/paypal.list">[Stash] paypal</a></td>
     </tr>
@@ -916,6 +960,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/primevideo.list">[Loon] primevideo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/primevideo.list">[ShadowRocket] primevideo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/primevideo.list">[QuantumultX] primevideo</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/primevideo.yaml">[Egern] primevideo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/primevideo.list">[Meta] primevideo</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/primevideo.list">[Stash] primevideo</a></td>
     </tr>
@@ -924,6 +969,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/private.list">[Loon] private</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/private.list">[ShadowRocket] private</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/private.list">[QuantumultX] private</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/private.yaml">[Egern] private</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/private.list">[Meta] private</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/private.list">[Stash] private</a></td>
     </tr>
@@ -932,6 +978,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/proxy.list">[Loon] proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/proxy.list">[ShadowRocket] proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/proxy.list">[QuantumultX] proxy</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/proxy.yaml">[Egern] proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/proxy.list">[Meta] proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/proxy.list">[Stash] proxy</a></td>
     </tr>
@@ -940,6 +987,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/socialmedia-cn.list">[Loon] socialmedia-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/socialmedia-cn.list">[ShadowRocket] socialmedia-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/socialmedia-cn.list">[QuantumultX] socialmedia-cn</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/socialmedia-cn.yaml">[Egern] socialmedia-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/socialmedia-cn.list">[Meta] socialmedia-cn</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/socialmedia-cn.list">[Stash] socialmedia-cn</a></td>
     </tr>
@@ -948,6 +996,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/socialmedia.list">[Loon] socialmedia</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/socialmedia.list">[ShadowRocket] socialmedia</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/socialmedia.list">[QuantumultX] socialmedia</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/socialmedia.yaml">[Egern] socialmedia</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/socialmedia.list">[Meta] socialmedia</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/socialmedia.list">[Stash] socialmedia</a></td>
     </tr>
@@ -956,6 +1005,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/speedtest.list">[Loon] speedtest</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/speedtest.list">[ShadowRocket] speedtest</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/speedtest.list">[QuantumultX] speedtest</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/speedtest.yaml">[Egern] speedtest</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/speedtest.list">[Meta] speedtest</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/speedtest.list">[Stash] speedtest</a></td>
     </tr>
@@ -964,6 +1014,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/spotify.list">[Loon] spotify</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/spotify.list">[ShadowRocket] spotify</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/spotify.list">[QuantumultX] spotify</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/spotify.yaml">[Egern] spotify</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/spotify.list">[Meta] spotify</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/spotify.list">[Stash] spotify</a></td>
     </tr>
@@ -972,6 +1023,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/talkatone.list">[Loon] talkatone</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/talkatone.list">[ShadowRocket] talkatone</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/talkatone.list">[QuantumultX] talkatone</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/talkatone.yaml">[Egern] talkatone</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/talkatone.list">[Meta] talkatone</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/talkatone.list">[Stash] talkatone</a></td>
     </tr>
@@ -980,6 +1032,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/tiktok.list">[Loon] tiktok</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/tiktok.list">[ShadowRocket] tiktok</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/tiktok.list">[QuantumultX] tiktok</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/tiktok.yaml">[Egern] tiktok</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/tiktok.list">[Meta] tiktok</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/tiktok.list">[Stash] tiktok</a></td>
     </tr>
@@ -988,6 +1041,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/tld-proxy.list">[Loon] tld-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/tld-proxy.list">[ShadowRocket] tld-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/tld-proxy.list">[QuantumultX] tld-proxy</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/tld-proxy.yaml">[Egern] tld-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/tld-proxy.list">[Meta] tld-proxy</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/tld-proxy.list">[Stash] tld-proxy</a></td>
     </tr>
@@ -996,14 +1050,16 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/twitch.list">[Loon] twitch</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/twitch.list">[ShadowRocket] twitch</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/twitch.list">[QuantumultX] twitch</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/twitch.yaml">[Egern] twitch</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/twitch.list">[Meta] twitch</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/twitch.list">[Stash] twitch</a></td>
-        </tr>
+    </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/youtube.list">[surge] youtube</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/loon/youtube.list">[Loon] youtube</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/shadowrocket/youtube.list">[ShadowRocket] youtube</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/quantumultx/youtube.list">[QuantumultX] youtube</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/egern/youtube.yaml">[Egern] youtube</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/youtube.list">[Meta] youtube</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/youtube.list">[Stash] youtube</a></td>
     </tr>
@@ -1312,6 +1368,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hbo.mrs">[stash/domain] hbo(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hbo.list">[stash/domain] hbo(text)</a></td>
         <td></td>
+        <td></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/httpdns.mrs">[meta/domain] httpdns(mrs)</a><br><br>
@@ -1332,6 +1389,7 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hulu.mrs">[stash/domain] hulu(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/hulu.list">[stash/domain] hulu(text)</a></td>
+        <td></td>
         <td></td>
     </tr>
     <tr>
@@ -1406,6 +1464,7 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/niconico.mrs">[stash/domain] niconico(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/niconico.list">[stash/domain] niconico(text)</a></td>
         <td></td>
+        <td></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/onedrive.mrs">[meta/domain] onedrive(mrs)</a><br><br>
@@ -1424,7 +1483,6 @@ dns:
         <td></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/paypal.mrs">[stash/domain] paypal(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/paypal.list">[stash/domain] paypal(text)</a></td>
-        <td></td>
         <td></td>
         <td></td>
     </tr>
@@ -1496,7 +1554,7 @@ dns:
         <td></td>
         <td></td>
     </tr>
-        <tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/spotify.mrs">[meta/domain] spotify(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/spotify.list">[meta/domain] spotify(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/spotify.mrs">[meta/ipcidr] spotify(mrs)</a><br><br>
@@ -1540,7 +1598,7 @@ dns:
         <td></td>
         <td></td>
     </tr>
-        <tr>
+    <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/twitch.mrs">[meta/domain] twitch(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/twitch.list">[meta/domain] twitch(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/ipcidr/twitch.mrs">[meta/ipcidr] twitch(mrs)</a><br><br>
