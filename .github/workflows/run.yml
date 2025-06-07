@@ -62,7 +62,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
@@ -307,8 +307,9 @@ jobs:
               'download/meta/category-ecommerce.list' \
               'download/meta/amazon.list' \
               'download/meta/shopify.list' \
-          > tmp-ecommerce.list
-          grep -vxF -f 'surge/primevideo.list' 'tmp-ecommerce.list' > 'surge/ecommerce.list'
+              | \
+              grep -vxF -f 'surge/primevideo.list' \
+          > 'surge/ecommerce.list'
 
       - name: Merge crypto file
         run: |
@@ -375,7 +376,10 @@ jobs:
               'download/special/speedtest-domains.list' \
               'download/meta/speedtest.list' \
               'download/meta/SpeedTest.list' \
+              'download/meta/test-ipv6.list' \
               'download/surge/Speedtest.list' \
+              | \
+              grep -vxF -f 'download/meta/test-ipv6@cn.list' \
           > surge/speedtest.list
 
       - name: Merge gfw file
@@ -426,7 +430,10 @@ jobs:
               'download/special/dmca.list' \
               'download/meta/category-public-tracker.list' \
               'download/meta/tracker.list' \
+              'download/meta/category-pt.list' \
               'download/surge/Download.list' \
+              | \
+              grep -vxF -f 'download/meta/category-pt@!cn.list' \
           > surge/dmca.list
 
       - name: Deduplicate ruleset
