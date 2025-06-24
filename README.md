@@ -266,7 +266,7 @@ egern/
     </tr>
     <tr>
       <td><code>games</code></td>
-      <td>需要代理的游戏平台规则
+      <td>游戏平台、游戏下载规则列表
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
