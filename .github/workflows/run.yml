@@ -23,22 +23,22 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Checkout 'MetaCubeX/meta-rules-dat'
+      - name: Checkout "MetaCubeX/meta-rules-dat"
         uses: actions/checkout@v4
         with:
-          repository: 'MetaCubeX/meta-rules-dat'
+          repository: "MetaCubeX/meta-rules-dat"
           ref: meta
-          path: 'meta-rules'
+          path: "meta-rules"
           sparse-checkout: |
             geo/geosite/classical
             geo/geoip/classical
 
-      - name: Checkout 'blackmatrix7/ios_rule_script'
+      - name: Checkout "blackmatrix7/ios_rule_script"
         uses: actions/checkout@v4
         with:
-          repository: 'blackmatrix7/ios_rule_script'
+          repository: "blackmatrix7/ios_rule_script"
           ref: master
-          path: 'bm7-rules'
+          path: "bm7-rules"
           sparse-checkout: |
             rule/Surge
 
@@ -62,7 +62,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-games@cn' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-game-platforms-download@cn' 'category-games-cn' 'category-games@cn' 'category-game-platforms-download' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
@@ -102,7 +102,6 @@ jobs:
           for file in download/meta/*.list; do
               awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
           done
-
 
       - name: Download surge ruleset
         run: |
@@ -264,6 +263,8 @@ jobs:
       - name: Merge games-cn file
         run: |
           cat 'download/meta/category-game-accelerator-cn.list' \
+              'download/meta/category-game-platforms-download@cn.list' \
+              'download/meta/category-games-cn.list' \
               'download/meta/category-games@cn.list' \
               'download/surge/SteamCN.list' \
               'download/surge/GameDownloadCN.list' \
@@ -272,6 +273,7 @@ jobs:
       - name: Merge games file
         run: |
           cat 'surge/games-cn.list' \
+              'download/meta/category-game-platforms-download.list' \
               'download/meta/category-games.list' \
               'download/surge/Game.list' \
               'download/surge/GameDownload.list' \
