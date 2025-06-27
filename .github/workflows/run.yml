@@ -463,13 +463,6 @@ jobs:
                   if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
                       next;
                   }
-                  if ($0 ~ /^DOMAIN-WILDCARD,/) {
-                      gsub(/^DOMAIN-WILDCARD,/,"DOMAIN-REGEX,^");
-                      gsub(/\./,"\\.");
-                      gsub(/\?/,"[\\w.-]");
-                      gsub(/\*/,"[\\w.-]*?");
-                      $0 = $0 "$";
-                  }
                   gsub(/DEST-PORT/, "DST-PORT");
                   print;
               }' "$file" > "meta/$(basename "$file")"
