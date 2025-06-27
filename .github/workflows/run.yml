@@ -246,6 +246,8 @@ jobs:
               'download/surge/AntiAD.list' \
               'download/surge/PCDN.list' \
               'surge/httpdns.list' \
+              | \
+              grep -vxF -f 'custom/reject-need-to-remove.list' \
           > surge/adrules.list
 
       - name: Merge apple-proxy file
@@ -450,9 +452,9 @@ jobs:
 
           grep -vxF -f 'surge/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
-          sort 'cn.list' 'remove.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
+          sort 'cn.list' 'remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
-          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
+          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/domain/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
 
           awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
 
