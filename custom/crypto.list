@@ -35,6 +35,12 @@ DOMAIN-SUFFIX,bnappzh.mobi
 DOMAIN-SUFFIX,bsc.getblock.io
 DOMAIN-SUFFIX,bscscan.com
 DOMAIN-SUFFIX,bnappweb.academy
+DOMAIN-SUFFIX,binancecnt.com
+DOMAIN-SUFFIX,bnbstatic.com
+DOMAIN-SUFFIX,bnbchain.org
+DOMAIN-SUFFIX,wmtransfer.com
+DOMAIN-SUFFIX,pionex.com
+DOMAIN-SUFFIX,cloudbet.com
 
 # Huobi
 DOMAIN-SUFFIX,hbabit.com
@@ -64,6 +70,7 @@ DOMAIN-SUFFIX,okx-dns.com
 DOMAIN-SUFFIX,okx-dns1.com
 DOMAIN-SUFFIX,okx-dns2.com
 DOMAIN-SUFFIX,oklink.com
+DOMAIN-SUFFIX,okex.org
 
 # Bitget
 DOMAIN-SUFFIX,bitget.com
@@ -97,6 +104,38 @@ DOMAIN-SUFFIX,gotoda.co
 DOMAIN-SUFFIX,greentreeone.com
 DOMAIN-SUFFIX,mocortech.com
 DOMAIN-SUFFIX,365huo.xyz
+
+# Biconomy
+DOMAIN-SUFFIX,biconomy.com
+
+# Bitmart
+DOMAIN-SUFFIX,bitmart.com
+DOMAIN-SUFFIX,altcoinsbox.com
+DOMAIN-SUFFIX,solscan.io
+
+# HKD
+DOMAIN-SUFFIX,hkd.com
+DOMAIN-SUFFIX,hkd.mobi
+
+# Bingx
+DOMAIN-SUFFIX,bingx.com
+DOMAIN-SUFFIX,bb-os.com
+
+# Coinex
+DOMAIN-SUFFIX,coinex.com
+
+# Dune
+DOMAIN-SUFFIX,dune.com
+
+# Gate
+DOMAIN-SUFFIX,gate.io
+DOMAIN-SUFFIX,gate.com
+DOMAIN-SUFFIX,gateimg.com
+DOMAIN-SUFFIX,gateio.live
+DOMAIN-SUFFIX,gatedata.org
+DOMAIN-SUFFIX,gatetrace.com
+DOMAIN-SUFFIX,gatexsecurity.com
+DOMAIN-SUFFIX,panpno.com
 
 # Analysis
 DOMAIN-SUFFIX,bitcointalk.org
