@@ -74,13 +74,10 @@ fakeip_dedupe(){
             print "DOMAIN," star_content[content];
         }
     }' | domain_dedupe | sort | awk  '
-        /^DOMAIN,|^DOMAIN-SUFFIX,/ {
-        if ($0 ~ /^DOMAIN-SUFFIX,/) {
-            gsub(/^DOMAIN-SUFFIX,/, "+.");
-        } else {
-            gsub(/^DOMAIN,/, "");
-        }
-        print $0;
+    /^DOMAIN,|^DOMAIN-SUFFIX,/ {
+        sub(/^DOMAIN-SUFFIX,/, "+.");
+        sub(/^DOMAIN,/, "");
+        print;
     }'
 }
 
