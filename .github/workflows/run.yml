@@ -62,7 +62,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-game-platforms-download@cn' 'category-games-cn' 'category-games@cn' 'category-game-platforms-download' 'category-games' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-game-platforms-download@cn' 'category-games@cn' 'category-game-platforms-download' 'category-games-!cn' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
@@ -265,7 +265,6 @@ jobs:
         run: |
           cat 'download/meta/category-game-accelerator-cn.list' \
               'download/meta/category-game-platforms-download@cn.list' \
-              'download/meta/category-games-cn.list' \
               'download/meta/category-games@cn.list' \
               'download/surge/SteamCN.list' \
               'download/surge/GameDownloadCN.list' \
@@ -275,7 +274,7 @@ jobs:
         run: |
           cat 'surge/games-cn.list' \
               'download/meta/category-game-platforms-download.list' \
-              'download/meta/category-games.list' \
+              'download/meta/category-games-!cn.list' \
               'download/surge/Game.list' \
               'download/surge/GameDownload.list' \
           > surge/games.list
