@@ -21,10 +21,10 @@ jobs:
         shell: bash
 
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Checkout "MetaCubeX/meta-rules-dat"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: "MetaCubeX/meta-rules-dat"
           ref: meta
@@ -34,7 +34,7 @@ jobs:
             geo/geoip/classical
 
       - name: Checkout "blackmatrix7/ios_rule_script"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: "blackmatrix7/ios_rule_script"
           ref: master
