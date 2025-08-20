@@ -20,35 +20,47 @@ Mihomo/Clash.Meta 和 Stash 对 domain 和 ipcidr 类型的规则集优化更加
 
 Mihomo/Clash.Meta 独有的 mrs 格式，能够减少加载时硬件资源占用，也能减少一半以上规则文件大小，对于性能受限的设备十分友好
 
-Surge 和 Loon 目前在使用 RULE-SET 和 DOMAIN-SET 时，性能和内存占用已没有明显区别。因此，细分规则已显得不再必要。转而使用 RULE-SET 可以更方便地管理规则集。
+Surge 和 Loon 目前在使用 RULE-SET 和 DOMAIN-SET 时，性能和内存占用已没有明显区别。因此，细分规则已显得不再必要。转而使用 RULE-SET 可以更方便地管理规则集
 
 ### 文件结构
 
 ````
-meta/dmca.list（默认含有 no-resolve 参数）
-   ├── meta/domain/dmca.list         # domain(text/mrs)类型
-   ├── meta/ipcidr/dmca.list         # ipcidr(text/mrs)类型
-   └── meta/classical/dmca.list      # 排除 domain 和 ipcidr 的规则类型 (如无必要,则不生成)
+meta/
+   ├── dmca.list （默认携带 no-resolve 参数）
+   ├── domain/
+   │      ├──dmca.mrs         # domain(mrs)类型
+   │      └──dmca.list        # domain(text)类型
+   ├── ipcidr/
+   │      ├──dmca.mrs         # ipcidr(mrs)类型
+   │      └──dmca.list        # ipcidr(text)类型
+   └── classical/
+          └──dmca.list        # 排除 domain 与 ipcidr 的规则类型 (如无必要,则不创建)
 
-stash/dmca.list（默认含有 no-resolve 参数）
-   ├── stash/domain/dmca.list         # domain(text/mrs)类型
-   ├── stash/ipcidr/dmca.list         # ipcidr(text/mrs)类型
-   └── stash/classical/dmca.list      # 排除 domain 和 ipcidr 的规则类型 (如无必要,则不生成)
+stash/
+   ├── dmca.list （默认携带 no-resolve 参数）
+   ├── domain/
+   │      ├──dmca.mrs         # domain(mrs)类型
+   │      └──dmca.list        # domain(text)类型
+   ├── ipcidr/
+   │      ├──dmca.mrs         # ipcidr(mrs)类型
+   │      └──dmca.list        # ipcidr(text)类型
+   └── classical/
+          └──dmca.list        # 排除 domain 与 ipcidr 的规则类型 (如无必要,则不创建)
 
 surge/
-   └── dmca.list（默认含有 no-resolve 参数）
+   └── dmca.list（默认携带 no-resolve 参数）
 
 loon/
-   └── dmca.list（默认含有 no-resolve 参数）
+   └── dmca.list（默认携带 no-resolve 参数）
 
 shadowrocket/
-   └── dmca.list（默认含有 no-resolve 参数）
+   └── dmca.list（默认携带 no-resolve 参数）
 
 quantumultx/
-   └── dmca.list（不含有 no-resolve 参数）
+   └── dmca.list（不含 no-resolve 参数）
 
 egern/
-   └── dmca.list（默认含有 no-resolve 参数）
+   └── dmca.yaml（默认携带 no-resolve 参数）
 
 ````
 
