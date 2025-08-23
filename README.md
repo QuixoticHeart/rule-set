@@ -87,7 +87,8 @@ egern/
       <td>广告屏蔽规则 + <code>httpdns</code>
       <br> 规则源:
       <a href="https://github.com/Cats-Team/AdRules">@Cats-Team/AdRules</a>
-      <a href="https://github.com/fmz200/wool_scripts">@fmz200/wool_scripts</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/TG-Twilight/AWAvenue-Ads-Rule">@TG-Twilight/AWAvenue-Ads-Rule</a>
       <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
       <a href="https://github.com/LOWERTOP/Shadowrocket-First">@LOWERTOP/Shadowrocket-First</a>
       <br> <code>httpdns</code>规则源:
@@ -1696,7 +1697,7 @@ dns:
 - [@ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
 - [@SunsetMkt/anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution)
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
-- [@fmz200/wool_scripts](https://github.com/fmz200/wool_scripts)
+- [@TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
 - [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
