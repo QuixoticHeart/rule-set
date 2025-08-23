@@ -6,6 +6,10 @@ domain_dedupe(){
             domains[$2] = 1;
         } else if ($1 == "DOMAIN-SUFFIX") {
             suffixes[$2] = 1;
+        } else if ($1 == "DOMAIN-WILDCARD") {
+            wildcards[$2] = 1;
+        } else if ($1 == "DOMAIN-REGEX") {
+            regexes[$2] = 1;
         } else {
             other_lines[$0] = 1;
         }
@@ -15,8 +19,8 @@ domain_dedupe(){
             matched = 0;
             for (i = 1; i <= length(domain); i++) {
                 if (i == 1 || substr(domain, i - 1, 1) == ".") {
-                    subDomain = substr(domain, i);
-                    if (subDomain in suffixes) {
+                    sub_domain = substr(domain, i);
+                    if (sub_domain in suffixes) {
                         matched = 1;
                         break;
                     }
@@ -24,6 +28,45 @@ domain_dedupe(){
             }
             if (!matched) {
                 print "DOMAIN," domain;
+            }
+        }
+
+        for (wildcard in wildcards) {
+            matched = 0;
+            for (i = 1; i <= length(wildcard); i++) {
+                if (i == 1 || substr(wildcard, i - 1, 1) == ".") {
+                    sub_wildcard = substr(wildcard, i);
+                    if (sub_wildcard in suffixes) {
+                        matched = 1;
+                        break;
+                    }
+                }
+            }
+            if (!matched) {
+                print "DOMAIN-WILDCARD," wildcard;
+            }
+        }
+
+        for (regex in regexes) {
+            matched = 0;
+            origin_content = regex;
+            gsub(/^\^/,"",origin_content);
+            gsub(/\$$/,"",origin_content);
+            gsub(/^\.\*/,"+.",origin_content);
+            gsub(/\[\^\.\]\+/,"*",origin_content);
+            gsub(/\\\./,".",origin_content);
+            gsub(/^Mijia\\sCloud$/,"Mijia Cloud",origin_content);
+            for (i = 1; i <= length(origin_content); i++) {
+                if (i == 1 || substr(origin_content, i - 1, 1) == ".") {
+                    sub_origin_content = substr(origin_content, i);
+                    if (sub_origin_content in suffixes) {
+                        matched = 1;
+                        break;
+                    }
+                }
+            }
+            if (!matched) {
+                print "DOMAIN-REGEX," regex;
             }
         }
 
@@ -35,8 +78,8 @@ domain_dedupe(){
             }
             for (i = 3; i <= length(suffix) - 1; i++) {
                 if (substr(suffix, i - 1, 1) == ".") {
-                    subSuffix = substr(suffix, i);
-                    if (subSuffix in suffixes) {
+                    sub_suffix = substr(suffix, i);
+                    if (sub_suffix in suffixes) {
                         matched = 1;
                         break;
                     }
@@ -54,31 +97,77 @@ domain_dedupe(){
 }
 
 fakeip_dedupe(){
-    awk '/^\s*[#;]/ { next } /^$/ { next } { sub(" //.*", ""); print $0 }' $1 | awk '{
-        prefix = substr($0, 1, 2)
-        content = substr($0, 3)  # 提取后续内容
-
-        if (prefix == "*.") {
-            star_content[content] = $0
-        } else if (prefix == "+.") {
-            plus_content[content] = $0
-            print "DOMAIN-SUFFIX," substr($0, 3);  # 立即打印加号行
-            delete star_content[content]  # 删除星号行(如果存在)
-        } else {
-            print "DOMAIN," $0;  # 打印其他行
+    awk '{
+        gsub(/[#;].*$/,"");
+        gsub(/^\./,"+.");
+        gsub(/^(\*\.)+/,"+.");
+        if ($0 ~ /\*|^MijiaCloud$/) {
+            gsub(/^MijiaCloud$/,"Mijia\\sCloud");
+            gsub(/\./,"\\.");
+            gsub(/\*/,"[^.]+");
+            gsub(/^+\\\./,".*");
+            print "DOMAIN-REGEX,^" $0 "$";
+            next;
+        } else if ($0 ~ /^+\./) {
+            sub(/^+\./,"DOMAIN-SUFFIX,");
+            print;
+            next;
+        } else if ($0 ~ /^\w/) {
+            print "DOMAIN," $0;
+            next;
+        }
+    }' $1 | domain_dedupe | awk -F',' '{
+        if ($1 == "DOMAIN") {
+            domains[$2] = 1;
+        } else if ($1 == "DOMAIN-SUFFIX") {
+            suffixes[$2] = 1;
+        } else if ($1 == "DOMAIN-REGEX") {
+            regexes[$2] = 1;
         }
     }
     END {
-        # 打印剩余的星号行
-        for (content in star_content) {
-            print "DOMAIN," star_content[content];
+        for (domain in domains) {
+            matched = 0;
+            for (regex in regexes) {
+                if (domain ~ regex) {
+                    matched = 1;
+                    break;
+                }
+            }
+            if (!matched) {
+                print domain;
+            }
         }
-    }' | domain_dedupe | sort | awk  '
-    /^DOMAIN,|^DOMAIN-SUFFIX,/ {
-        sub(/^DOMAIN-SUFFIX,/, "+.");
-        sub(/^DOMAIN,/, "");
-        print;
-    }'
+
+        for (suffix in suffixes) {
+            matched = 0;
+            for (regex in regexes) {
+                if (substr(regex, 1, 3) == "^.*" && suffix ~ regex ) {
+                    matched = 1;
+                    break;
+                }
+            }
+            if (!matched) {
+                print "+." suffix;
+            }
+        }
+
+        for (regex in regexes) {
+            if (substr(regex, 1, 3) != "^.*") {
+                new_regex = "^.*" substr(regex, 2);
+                if (new_regex in regexes) {
+                    continue;
+                }
+            }
+            gsub(/^\^/,"",regex);
+            gsub(/\$$/,"",regex);
+            gsub(/^\.\*/,"+.",regex);
+            gsub(/\[\^\.\]\+/,"*",regex);
+            gsub(/\\\./,".",regex);
+            gsub(/^Mijia\\sCloud$/,"Mijia Cloud",regex);
+            print regex;
+        }
+    }' | sort -u
 }
 
 ruleset_sort(){
