@@ -62,7 +62,7 @@ jobs:
 
       - name: Download meta ruleset
         run: |
-          domain_lists=('category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-game-platforms-download@cn' 'category-games@cn' 'category-game-platforms-download' 'category-games-!cn' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
+          domain_lists=('category-ads-all' 'category-httpdns-cn' 'apple' 'microsoft@cn' 'onedrive' 'microsoft' 'github' 'gitlab' 'gitee' 'gitbook' 'apple-intelligence' 'category-ai-!cn' 'amazon' 'shopify' 'category-ecommerce' 'paypal' 'wise' 'category-cryptocurrency' 'category-game-accelerator-cn' 'category-game-platforms-download@cn' 'category-games@cn' 'category-game-platforms-download' 'category-games-!cn' 'category-forums' 'talkatone' 'discord' 'line' 'telegram' 'twitter' 'signal' 'meta' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'speedtest' 'test-ipv6@cn' 'test-ipv6' 'tld-!cn' 'category-public-tracker' 'tracker' 'category-pt@!cn' 'category-pt' 'category-anticensorship' 'gfw' 'private' 'nga' 'xiaohongshu' 'sina' 'zhihu' 'douban' 'coolapk')
 
           for list in "${domain_lists[@]}"; do
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
@@ -134,7 +134,7 @@ jobs:
               'Adrules.list https://github.com/Cats-Team/AdRules/raw/refs/heads/main/adrules-surge.conf'
               'HTTPDNS.list https://github.com/VirgilClyne/GetSomeFries/raw/refs/heads/main/ruleset/HTTPDNS.Block.list'
               'PCDN.list https://github.com/uselibrary/PCDN/raw/refs/heads/main/pcdn.list'
-              'RejectAD.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/rejectAd.list'
+              'AWAvenueAds.list https://github.com/TG-Twilight/AWAvenue-Ads-Rule/raw/refs/heads/main/Filters/AWAvenue-Ads-Rule-Surge-RULE-SET.list'
               'AntiAD.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/AntiAD.list'
               'Talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
           )
@@ -243,11 +243,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="surge"
 
-          src1_names=('apple' 'talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
+          src1_names=('talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
 
-          src2_names=('Apple' 'Talkatone' 'OneDrive' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
+          src2_names=('Talkatone' 'OneDrive' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
 
-          dst_names=('apple' 'talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
+          dst_names=('talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -267,9 +267,10 @@ jobs:
       - name: Merge adrules file
         run: |
           cat 'download/surge/Adrules.list' \
-              'download/surge/RejectAD.list' \
+              'download/surge/AWAvenueAds.list' \
               'download/surge/AntiAD.list' \
               'download/surge/PCDN.list' \
+              'download/meta/category-ads-all.list' \
               'surge/httpdns.list' \
               | \
               grep -vxF -f 'custom/reject-need-to-remove.list' \
@@ -277,7 +278,8 @@ jobs:
 
       - name: Merge apple-proxy file
         run: |
-          cat 'download/surge/Apple-Proxy.list' \
+          cat 'download/meta/apple-intelligence.list' \
+              'download/surge/Apple-Proxy.list' \
               'download/surge/AppleProxy.list' \
           > surge/apple-proxy.list
 
@@ -286,6 +288,13 @@ jobs:
           cat 'download/special/apple-cn-surge.list' \
               'download/special/apple-china.list' \
           > surge/apple-cn.list
+
+      - name: Merge apple file
+        run: |
+          cat 'surge/apple-proxy.list' \
+              'download/meta/apple.list' \
+              'download/surge/Apple.list' \
+          > surge/apple.list
 
       - name: Merge microsoft file
         run: |
