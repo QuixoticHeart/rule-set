@@ -468,7 +468,14 @@ jobs:
                   /^IP-CIDR,/ && /:/ {
                       sub(/IP-CIDR,/, "IP-CIDR6,");
                   }
-                  /^DOMAIN|^PROCESS-NAME|^URL-REGEX|^USER-AGENT|^DEST-PORT|^DST-PORT/ {
+                  /-REGEX,/ {
+                      if (match($0, ",")) {
+                          regex = substr($0, RSTART + 1);
+                          print $1 "," regex;
+                      }
+                      next;
+                  }
+                  /^DOMAIN|^PROCESS-NAME|^USER-AGENT|^DEST-PORT|^DST-PORT/ {
                       print $1 "," $2;
                       next;
                   }
