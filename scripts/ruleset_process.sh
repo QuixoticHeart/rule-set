@@ -8,7 +8,8 @@ domain_dedupe(){
             suffixes[$2] = 1;
         } else if ($1 == "DOMAIN-WILDCARD") {
             wildcards[$2] = 1;
-        } else if ($1 == "DOMAIN-REGEX") {
+        } else if ($1 == "DOMAIN-REGEX" && match($0, ",")) {
+            $2 = substr($0, RSTART + 1);
             regexes[$2] = 1;
         } else {
             other_lines[$0] = 1;
@@ -121,7 +122,8 @@ fakeip_dedupe(){
             domains[$2] = 1;
         } else if ($1 == "DOMAIN-SUFFIX") {
             suffixes[$2] = 1;
-        } else if ($1 == "DOMAIN-REGEX") {
+        } else if ($1 == "DOMAIN-REGEX" && match($0, ",")) {
+            $2 = substr($0, RSTART + 1);
             regexes[$2] = 1;
         }
     }
