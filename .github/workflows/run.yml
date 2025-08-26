@@ -68,15 +68,10 @@ jobs:
               cp "${mihomo_domains}/${list}.list" "download/meta/${list}.list"
           done
 
-          for file in download/meta/*.list; do
-              if [ -f "$file" ]; then
-                  sed -i '$a\' "$file"
-              fi
-          done
-
           ipcidr_lists=('facebook' 'telegram' 'twitter' 'google' 'netflix' 'private')
 
           for list in "${ipcidr_lists[@]}"; do
+              echo >> "download/meta/${list}.list"
               cat "${mihomo_ipcidr}/${list}.list" >> "download/meta/${list}.list"
           done
 
@@ -101,7 +96,7 @@ jobs:
           sed -n '/## >> 抖音/,/##/{//!p}' "download/meta/DouYin.list" > tmp.list && mv tmp.list "download/meta/douyin.list"
 
           for file in download/meta/*.list; do
-              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
+              awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Download surge ruleset
@@ -145,7 +140,7 @@ jobs:
           done
 
           for file in download/surge/*.list; do
-              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
+              awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Download special ruleset
@@ -174,7 +169,7 @@ jobs:
           done
 
           for file in download/special/*.list; do
-              awk "{ gsub(/[[:cntrl:]]/, \"\", \$0) } { gsub(/[^:]\/\/.*/, \"\", \$0) } { gsub(/ /, \"\", \$0) } /^\s*[#;]/ { next } /^$/ { next } { print \$0 } END { print \"\" }" "$file" > tmp.list && mv tmp.list "${file}"
+              awk '{ gsub(/[[:cntrl:]]/, "", $0) } { gsub(/[^:]\/\/.*/, "", $0) } { gsub(/ /, "", $0) } /^\s*[#;]/ { next } /^$/ { next } { print $0 } END { print "" }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
           for file in download/special/*-domains.list; do
@@ -552,7 +547,7 @@ jobs:
       - name: Download and unzip `mihomo core`
         run: |
           mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
-          wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
+          wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-v3-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
           chmod +x ./mihomo
 
       - name: Generate mihomo mrs
@@ -633,7 +628,6 @@ jobs:
               no_resolve=$(awk '/,no-resolve/{print 1; exit} END{print 0}' "$file")
               awk -F',' -v no_resolve="$no_resolve" '
               BEGIN {
-                  domain=suffix=keyword=wildcard=regex=cidr=cidr6=asn=url_regex=user_agent=dest_port=0;
                   if (no_resolve) print "no_resolve: true";
               }
               {
