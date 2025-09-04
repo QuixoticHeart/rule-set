@@ -283,6 +283,7 @@ egern/
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/LM-Firefly/Rules">@LM-Firefly/Rules</a>
       </td>
     </tr>
     <tr>
