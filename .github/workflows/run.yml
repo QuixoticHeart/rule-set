@@ -86,6 +86,7 @@ jobs:
               'DMCA.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Special/DMCA-Sensitive.list'
               'SpeedTest.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/SpeedTest.list'
               'DouYin.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Domestic-Services/ByteDance.list'
+              'Game.list https://github.com/LM-Firefly/Rules/raw/refs/heads/master/Game.list'
           )
 
           for file in "${files[@]}"; do
@@ -312,6 +313,7 @@ jobs:
           cat 'surge/games-cn.list' \
               'download/meta/category-game-platforms-download.list' \
               'download/meta/category-games-!cn.list' \
+              'download/meta/Game.list' \
               'download/surge/Game.list' \
               'download/surge/GameDownload.list' \
           > surge/games.list
