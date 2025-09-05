@@ -6,65 +6,83 @@
 
 ## 项目简介
 
-收集于互联网，面向 Mihomo/Clash.Meta Surge Loon Stash Shadowrocket QuantumultX Egern 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
+收集于互联网，面向 mihomo/clash.meta，surge，loon，stash，shadowrocket，quantumultx，egern，sing-box 多个代理工具的定制[规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
 - **[规则说明](#规则说明)**
-- **[完整规则集目录](#完整规则集)**
-- **[Clash.Meta/Stash拆分规则集目录](#clashmetastash拆分规则集)**
+- **[surge，loon，shadowrocket，quantumultx，egern，clash.meta，stash 规则集目录](#surgeloonshadowrocketquantumultxegernclashmetastash-规则集目录)**
+- **[clash.meta，stash 类型拆分规则集目录](#clashmetastash-类型拆分规则集目录)**
+- **[sing-box 规则集目录](#sing-box-规则集目录)**
 
 ## 项目背景
 
-Mihomo/Clash.Meta 和 Stash 对 domain 和 ipcidr 类型的规则集优化更加出色，尤其对于性能受限的设备（硬路由）使用 Clash 系软件代理时，应避免使用 classical 规则集
+mihomo/clash.meta 和 stash 对 domain 和 ipcidr 类型的规则集优化更加出色，尤其对于性能受限的设备 (硬路由) 使用 clash 系软件代理时，应避免使用 classical 类型规则集
 
-Mihomo/Clash.Meta 独有的 mrs 格式，能够减少加载时硬件资源占用，也能减少一半以上规则文件大小，对于性能受限的设备十分友好
+mihomo/clash.meta 特有的 mrs 二进制格式，以及 sing-box 独有的 srs 二进制格式，能够减少启动内核时的硬件资源占用，也能减少一半以上规则文件大小，对于性能受限的设备十分友好
 
-Surge 和 Loon 目前在使用 RULE-SET 和 DOMAIN-SET 时，性能和内存占用已没有明显区别。因此，细分规则已显得不再必要。转而使用 RULE-SET 可以更方便地管理规则集
+surge，loon 等支持 DOMAIN-SET 的 iOS 端代理工具，目前在使用 RULE-SET 和 DOMAIN-SET 时，性能和内存占用已没有明显区别，因此细分规则不再必要，转而使用 RULE-SET 可以更方便地管理规则集
 
 ### 文件结构
 
-````
+在 mihomo/clash.meta 和 stash 的 classical 目录中，是排除了 domain 和 ipcidr 类型后的其余规则，非必要不创建
+
+```
 meta/
-   ├── dmca.list （默认携带 no-resolve 参数）
+   ├── dmca.list
    ├── domain/
-   │      ├──dmca.mrs         # domain(mrs)类型
-   │      └──dmca.list        # domain(text)类型
+   │      ├──dmca.mrs
+   │      └──dmca.list
    ├── ipcidr/
-   │      ├──dmca.mrs         # ipcidr(mrs)类型
-   │      └──dmca.list        # ipcidr(text)类型
+   │      ├──dmca.mrs
+   │      └──dmca.list
    └── classical/
-          └──dmca.list        # 排除 domain 与 ipcidr 的规则类型 (如无必要,则不创建)
+          └──dmca.list
 
 stash/
-   ├── dmca.list （默认携带 no-resolve 参数）
+   ├── dmca.list
    ├── domain/
-   │      ├──dmca.mrs         # domain(mrs)类型
-   │      └──dmca.list        # domain(text)类型
+   │      ├──dmca.mrs
+   │      └──dmca.list
    ├── ipcidr/
-   │      ├──dmca.mrs         # ipcidr(mrs)类型
-   │      └──dmca.list        # ipcidr(text)类型
+   │      ├──dmca.mrs
+   │      └──dmca.list
    └── classical/
-          └──dmca.list        # 排除 domain 与 ipcidr 的规则类型 (如无必要,则不创建)
+          └──dmca.list
 
 surge/
-   └── dmca.list（默认携带 no-resolve 参数）
+   └── dmca.list
 
 loon/
-   └── dmca.list（默认携带 no-resolve 参数）
+   └── dmca.list
 
 shadowrocket/
-   └── dmca.list（默认携带 no-resolve 参数）
+   └── dmca.list
 
 quantumultx/
-   └── dmca.list（不含 no-resolve 参数）
+   └── dmca.list
 
 egern/
-   └── dmca.yaml（默认携带 no-resolve 参数）
+   └── dmca.yaml
 
-````
+singbox/
+   ├── version1/
+   │      ├──dmca.srs
+   │      └──dmca.json
+   ├── version2/
+   │      ├──dmca.srs
+   │      └──dmca.json
+   ├── version3/
+   │      ├──dmca.srs
+   │      └──dmca.json
+   └── version4/
+          ├──dmca.srs
+          └──dmca.json
+```
 
 ## 规则说明
+
+对支持 `no-resolve` 参数的代理工具规则，默认会携带 `no-resolve` 参数，而文件名以 '-resolve' 结尾的规则集会去掉 `no-resolve` 参数
 
 <table>
   <thead>
@@ -99,7 +117,7 @@ egern/
     </tr>
     <tr>
       <td><code>ai</code></td>
-      <td> AI 规则集合 <br> 包含 OpenAI, Gemini, Copilot, Claude, Apple Intelligence, Groq, Perplexity, xAI, Cursor 等
+      <td> AI 规则集合 <br> 包含 OpenAI， Gemini，Copilot，Claude，Apple Intelligence，Groq，Perplexity，xAI，Cursor 等
       <br> 规则源:
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
@@ -193,7 +211,7 @@ egern/
     </tr>
     <tr>
       <td><code>crypto</code></td>
-      <td> 加密货币相关规则 <br> 包含 Binance, OKX, Bybit, Bitget 等常见交易所
+      <td> 加密货币相关规则 <br> 包含 Binance，OKX，Bybit，Bitget 等常见交易所
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -246,7 +264,7 @@ egern/
     </tr>
     <tr>
       <td><code>ecommerce</code></td>
-      <td>电子商务平台 <br> 包含 Amazon, eBay, Shopee, Shopify 等
+      <td>电子商务平台 <br> 包含 Amazon，eBay，Shopee，Shopify 等
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -263,7 +281,7 @@ egern/
         <tr>
       <td><code>forum</code></td>
       <td>国外常见论坛平台
-      <br> 包括 Reddit, V2EX, Quora, PTT, 4chan 等
+      <br> 包括 Reddit，V2EX，Quora，PTT，4chan 等
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -296,7 +314,7 @@ egern/
     </tr>
     <tr>
       <td><code>gits</code></td>
-      <td>Git仓库规则集合 <br> 包含 GitHub, GitLab, Gitee, GitBook
+      <td>Git仓库规则集合 <br> 包含 GitHub，GitLab，Gitee，GitBook
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -425,7 +443,7 @@ egern/
     </tr>
     <tr>
       <td><code>socialmedia-cn</code></td>
-      <td>国内社交媒体规则集合 <br> 包含 NGA, XiaoHongShu, Weibo, Zhihu, DouBan, Coolapk
+      <td>国内社交媒体规则集合 <br> 包含 NGA，XiaoHongShu，Weibo，Zhihu，DouBan，Coolapk
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -433,7 +451,7 @@ egern/
     </tr>
     <tr>
       <td><code>socialmedia</code></td>
-      <td>国外社交媒体规则集合 <br> 包含 Discord, Whatsapp, Line, Instagram, Facebook, Telegram, Twitter, Signal 等
+      <td>国外社交媒体规则集合 <br> 包含 Discord，Whatsapp，Line，Instagram，Facebook，Telegram，Twitter，Signal 等
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -546,7 +564,7 @@ egern/
 
 > [!IMPORTANT]
 >
-> 使用场景: 家庭网络中使用了 **Clash.Meta/Mihomo** 内核的插件进行透明代理，开启了类似绕过大陆IP的功能，同时你又希望对某些特定国内域名分流
+> 使用场景: 家庭网络中使用了 **clash.meta/mihomo** 内核的插件进行透明代理，开启了类似绕过大陆IP的功能，同时你又希望对某些特定国内域名分流
 >
 > 解决思路: 给你需要分流的国内域名分配 fake-ip 使其进入内核
 
@@ -597,7 +615,7 @@ dns:
 
 ## 规则目录
 
-### 完整规则集
+### surge，loon，shadowrocket，quantumultx，egern，clash.meta，stash 规则集目录
 
 <table>
     <tr>
@@ -606,8 +624,8 @@ dns:
         <th>ShadowRocket</th>
         <th>QuantumultX</th>
         <th>Egern</th>
-        <th>Meta(Full)</th>
-        <th>Stash(Full)</th>
+        <th>Meta</th>
+        <th>Stash</th>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/surge/abema.list">[surge] abema</a></td>
@@ -1079,7 +1097,7 @@ dns:
     </tr>
 </table>
 
-### Clash.Meta/Stash拆分规则集
+### clash.meta，stash 类型拆分规则集目录
 
 <table>
     <tr>
@@ -1680,6 +1698,747 @@ dns:
         <td></td>
         <td></td>
         <td></td>
+    </tr>
+</table>
+
+### sing-box 规则集目录
+
+sing-box文档关于[规则集版本的说明](https://sing-box.sagernet.org/zh/configuration/rule-set/source-format/#version)
+
+<table>
+    <tr>
+        <th>version1</th>
+        <th>version2</th>
+        <th>version3</th>
+        <th>version4</th>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/abema.srs">[singbox/v1] abema(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/abema.json">[singbox/v1] abema(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/abema.srs">[singbox/v2] abema(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/abema.json">[singbox/v2] abema(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/abema.srs">[singbox/v3] abema(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/abema.json">[singbox/v3] abema(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/abema.srs">[singbox/v4] abema(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/abema.json">[singbox/v4] abema(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/adrules.srs">[singbox/v1] adrules(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/adrules.json">[singbox/v1] adrules(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/adrules.srs">[singbox/v2] adrules(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/adrules.json">[singbox/v2] adrules(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/adrules.srs">[singbox/v3] adrules(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/adrules.json">[singbox/v3] adrules(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/adrules.srs">[singbox/v4] adrules(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/adrules.json">[singbox/v4] adrules(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/ai.srs">[singbox/v1] ai(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/ai.json">[singbox/v1] ai(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/ai.srs">[singbox/v2] ai(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/ai.json">[singbox/v2] ai(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/ai.srs">[singbox/v3] ai(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/ai.json">[singbox/v3] ai(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/ai.srs">[singbox/v4] ai(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/ai.json">[singbox/v4] ai(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apns.srs">[singbox/v1] apns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apns.json">[singbox/v1] apns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apns.srs">[singbox/v2] apns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apns.json">[singbox/v2] apns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apns.srs">[singbox/v3] apns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apns.json">[singbox/v3] apns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apns.srs">[singbox/v4] apns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apns.json">[singbox/v4] apns(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-cn.srs">[singbox/v1] apple-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-cn.json">[singbox/v1] apple-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-cn.srs">[singbox/v2] apple-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-cn.json">[singbox/v2] apple-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-cn.srs">[singbox/v3] apple-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-cn.json">[singbox/v3] apple-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-cn.srs">[singbox/v4] apple-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-cn.json">[singbox/v4] apple-cn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-proxy.srs">[singbox/v1] apple-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-proxy.json">[singbox/v1] apple-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-proxy.srs">[singbox/v2] apple-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-proxy.json">[singbox/v2] apple-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-proxy.srs">[singbox/v3] apple-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-proxy.json">[singbox/v3] apple-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-proxy.srs">[singbox/v4] apple-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-proxy.json">[singbox/v4] apple-proxy(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-tv.srs">[singbox/v1] apple-tv(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple-tv.json">[singbox/v1] apple-tv(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-tv.srs">[singbox/v2] apple-tv(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple-tv.json">[singbox/v2] apple-tv(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-tv.srs">[singbox/v3] apple-tv(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple-tv.json">[singbox/v3] apple-tv(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-tv.srs">[singbox/v4] apple-tv(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple-tv.json">[singbox/v4] apple-tv(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple.srs">[singbox/v1] apple(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/apple.json">[singbox/v1] apple(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple.srs">[singbox/v2] apple(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/apple.json">[singbox/v2] apple(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple.srs">[singbox/v3] apple(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/apple.json">[singbox/v3] apple(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple.srs">[singbox/v4] apple(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/apple.json">[singbox/v4] apple(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/bahamut.srs">[singbox/v1] bahamut(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/bahamut.json">[singbox/v1] bahamut(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/bahamut.srs">[singbox/v2] bahamut(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/bahamut.json">[singbox/v2] bahamut(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/bahamut.srs">[singbox/v3] bahamut(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/bahamut.json">[singbox/v3] bahamut(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/bahamut.srs">[singbox/v4] bahamut(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/bahamut.json">[singbox/v4] bahamut(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/bilibili.srs">[singbox/v1] bilibili(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/bilibili.json">[singbox/v1] bilibili(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/bilibili.srs">[singbox/v2] bilibili(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/bilibili.json">[singbox/v2] bilibili(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/bilibili.srs">[singbox/v3] bilibili(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/bilibili.json">[singbox/v3] bilibili(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/bilibili.srs">[singbox/v4] bilibili(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/bilibili.json">[singbox/v4] bilibili(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cdn.srs">[singbox/v1] cdn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cdn.json">[singbox/v1] cdn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cdn.srs">[singbox/v2] cdn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cdn.json">[singbox/v2] cdn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cdn.srs">[singbox/v3] cdn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cdn.json">[singbox/v3] cdn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cdn.srs">[singbox/v4] cdn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cdn.json">[singbox/v4] cdn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.srs">[singbox/v1] cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cn.json">[singbox/v1] cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cn.srs">[singbox/v2] cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cn.json">[singbox/v2] cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cn.srs">[singbox/v3] cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cn.json">[singbox/v3] cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cn.srs">[singbox/v4] cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cn.json">[singbox/v4] cn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.srs">[singbox/v1] cncidr(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/cncidr.json">[singbox/v1] cncidr(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cncidr.srs">[singbox/v2] cncidr(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/cncidr.json">[singbox/v2] cncidr(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cncidr.srs">[singbox/v3] cncidr(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/cncidr.json">[singbox/v3] cncidr(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cncidr.srs">[singbox/v4] cncidr(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/cncidr.json">[singbox/v4] cncidr(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/crypto.srs">[singbox/v1] crypto(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/crypto.json">[singbox/v1] crypto(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/crypto.srs">[singbox/v2] crypto(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/crypto.json">[singbox/v2] crypto(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/crypto.srs">[singbox/v3] crypto(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/crypto.json">[singbox/v3] crypto(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/crypto.srs">[singbox/v4] crypto(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/crypto.json">[singbox/v4] crypto(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dazn.srs">[singbox/v1] dazn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dazn.json">[singbox/v1] dazn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dazn.srs">[singbox/v2] dazn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dazn.json">[singbox/v2] dazn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dazn.srs">[singbox/v3] dazn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dazn.json">[singbox/v3] dazn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dazn.srs">[singbox/v4] dazn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dazn.json">[singbox/v4] dazn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/disney.srs">[singbox/v1] disney(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/disney.json">[singbox/v1] disney(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/disney.srs">[singbox/v2] disney(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/disney.json">[singbox/v2] disney(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/disney.srs">[singbox/v3] disney(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/disney.json">[singbox/v3] disney(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/disney.srs">[singbox/v4] disney(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/disney.json">[singbox/v4] disney(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dmca.srs">[singbox/v1] dmca(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dmca.json">[singbox/v1] dmca(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dmca.srs">[singbox/v2] dmca(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dmca.json">[singbox/v2] dmca(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dmca.srs">[singbox/v3] dmca(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dmca.json">[singbox/v3] dmca(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dmca.srs">[singbox/v4] dmca(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dmca.json">[singbox/v4] dmca(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dmm.srs">[singbox/v1] dmm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/dmm.json">[singbox/v1] dmm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dmm.srs">[singbox/v2] dmm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/dmm.json">[singbox/v2] dmm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dmm.srs">[singbox/v3] dmm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/dmm.json">[singbox/v3] dmm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dmm.srs">[singbox/v4] dmm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/dmm.json">[singbox/v4] dmm(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/douyin.srs">[singbox/v1] douyin(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/douyin.json">[singbox/v1] douyin(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/douyin.srs">[singbox/v2] douyin(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/douyin.json">[singbox/v2] douyin(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/douyin.srs">[singbox/v3] douyin(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/douyin.json">[singbox/v3] douyin(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/douyin.srs">[singbox/v4] douyin(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/douyin.json">[singbox/v4] douyin(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/ecommerce.srs">[singbox/v1] ecommerce(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/ecommerce.json">[singbox/v1] ecommerce(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/ecommerce.srs">[singbox/v2] ecommerce(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/ecommerce.json">[singbox/v2] ecommerce(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/ecommerce.srs">[singbox/v3] ecommerce(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/ecommerce.json">[singbox/v3] ecommerce(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/ecommerce.srs">[singbox/v4] ecommerce(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/ecommerce.json">[singbox/v4] ecommerce(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.srs">[singbox/v1] fake-ip-filter(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/fake-ip-filter.json">[singbox/v1] fake-ip-filter(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/fake-ip-filter.srs">[singbox/v2] fake-ip-filter(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/fake-ip-filter.json">[singbox/v2] fake-ip-filter(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/fake-ip-filter.srs">[singbox/v3] fake-ip-filter(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/fake-ip-filter.json">[singbox/v3] fake-ip-filter(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/fake-ip-filter.srs">[singbox/v4] fake-ip-filter(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/fake-ip-filter.json">[singbox/v4] fake-ip-filter(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/forum.srs">[singbox/v1] forum(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/forum.json">[singbox/v1] forum(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/forum.srs">[singbox/v2] forum(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/forum.json">[singbox/v2] forum(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/forum.srs">[singbox/v3] forum(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/forum.json">[singbox/v3] forum(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/forum.srs">[singbox/v4] forum(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/forum.json">[singbox/v4] forum(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/games-cn.srs">[singbox/v1] games-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/games-cn.json">[singbox/v1] games-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/games-cn.srs">[singbox/v2] games-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/games-cn.json">[singbox/v2] games-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/games-cn.srs">[singbox/v3] games-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/games-cn.json">[singbox/v3] games-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/games-cn.srs">[singbox/v4] games-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/games-cn.json">[singbox/v4] games-cn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/games.srs">[singbox/v1] games(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/games.json">[singbox/v1] games(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/games.srs">[singbox/v2] games(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/games.json">[singbox/v2] games(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/games.srs">[singbox/v3] games(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/games.json">[singbox/v3] games(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/games.srs">[singbox/v4] games(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/games.json">[singbox/v4] games(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/gfw.srs">[singbox/v1] gfw(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/gfw.json">[singbox/v1] gfw(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/gfw.srs">[singbox/v2] gfw(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/gfw.json">[singbox/v2] gfw(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/gfw.srs">[singbox/v3] gfw(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/gfw.json">[singbox/v3] gfw(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/gfw.srs">[singbox/v4] gfw(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/gfw.json">[singbox/v4] gfw(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/gits.srs">[singbox/v1] gits(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/gits.json">[singbox/v1] gits(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/gits.srs">[singbox/v2] gits(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/gits.json">[singbox/v2] gits(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/gits.srs">[singbox/v3] gits(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/gits.json">[singbox/v3] gits(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/gits.srs">[singbox/v4] gits(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/gits.json">[singbox/v4] gits(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/google.srs">[singbox/v1] google(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/google.json">[singbox/v1] google(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/google.srs">[singbox/v2] google(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/google.json">[singbox/v2] google(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/google.srs">[singbox/v3] google(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/google.json">[singbox/v3] google(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/google.srs">[singbox/v4] google(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/google.json">[singbox/v4] google(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/googlefcm.srs">[singbox/v1] googlefcm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/googlefcm.json">[singbox/v1] googlefcm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/googlefcm.srs">[singbox/v2] googlefcm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/googlefcm.json">[singbox/v2] googlefcm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/googlefcm.srs">[singbox/v3] googlefcm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/googlefcm.json">[singbox/v3] googlefcm(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/googlefcm.srs">[singbox/v4] googlefcm(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/googlefcm.json">[singbox/v4] googlefcm(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/hbo.srs">[singbox/v1] hbo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/hbo.json">[singbox/v1] hbo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/hbo.srs">[singbox/v2] hbo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/hbo.json">[singbox/v2] hbo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/hbo.srs">[singbox/v3] hbo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/hbo.json">[singbox/v3] hbo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/hbo.srs">[singbox/v4] hbo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/hbo.json">[singbox/v4] hbo(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/httpdns.srs">[singbox/v1] httpdns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/httpdns.json">[singbox/v1] httpdns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/httpdns.srs">[singbox/v2] httpdns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/httpdns.json">[singbox/v2] httpdns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/httpdns.srs">[singbox/v3] httpdns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/httpdns.json">[singbox/v3] httpdns(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/httpdns.srs">[singbox/v4] httpdns(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/httpdns.json">[singbox/v4] httpdns(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/hulu.srs">[singbox/v1] hulu(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/hulu.json">[singbox/v1] hulu(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/hulu.srs">[singbox/v2] hulu(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/hulu.json">[singbox/v2] hulu(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/hulu.srs">[singbox/v3] hulu(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/hulu.json">[singbox/v3] hulu(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/hulu.srs">[singbox/v4] hulu(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/hulu.json">[singbox/v4] hulu(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/iplocation-direct.srs">[singbox/v1] iplocation-direct(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/iplocation-direct.json">[singbox/v1] iplocation-direct(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/iplocation-direct.srs">[singbox/v2] iplocation-direct(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/iplocation-direct.json">[singbox/v2] iplocation-direct(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/iplocation-direct.srs">[singbox/v3] iplocation-direct(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/iplocation-direct.json">[singbox/v3] iplocation-direct(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/iplocation-direct.srs">[singbox/v4] iplocation-direct(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/iplocation-direct.json">[singbox/v4] iplocation-direct(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/iplocation-proxy.srs">[singbox/v1] iplocation-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/iplocation-proxy.json">[singbox/v1] iplocation-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/iplocation-proxy.srs">[singbox/v2] iplocation-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/iplocation-proxy.json">[singbox/v2] iplocation-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/iplocation-proxy.srs">[singbox/v3] iplocation-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/iplocation-proxy.json">[singbox/v3] iplocation-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/iplocation-proxy.srs">[singbox/v4] iplocation-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/iplocation-proxy.json">[singbox/v4] iplocation-proxy(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/microsoft-cn.srs">[singbox/v1] microsoft-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/microsoft-cn.json">[singbox/v1] microsoft-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/microsoft-cn.srs">[singbox/v2] microsoft-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/microsoft-cn.json">[singbox/v2] microsoft-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/microsoft-cn.srs">[singbox/v3] microsoft-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/microsoft-cn.json">[singbox/v3] microsoft-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/microsoft-cn.srs">[singbox/v4] microsoft-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/microsoft-cn.json">[singbox/v4] microsoft-cn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/microsoft.srs">[singbox/v1] microsoft(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/microsoft.json">[singbox/v1] microsoft(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/microsoft.srs">[singbox/v2] microsoft(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/microsoft.json">[singbox/v2] microsoft(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/microsoft.srs">[singbox/v3] microsoft(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/microsoft.json">[singbox/v3] microsoft(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/microsoft.srs">[singbox/v4] microsoft(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/microsoft.json">[singbox/v4] microsoft(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/mytvsuper.srs">[singbox/v1] mytvsuper(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/mytvsuper.json">[singbox/v1] mytvsuper(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/mytvsuper.srs">[singbox/v2] mytvsuper(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/mytvsuper.json">[singbox/v2] mytvsuper(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/mytvsuper.srs">[singbox/v3] mytvsuper(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/mytvsuper.json">[singbox/v3] mytvsuper(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/mytvsuper.srs">[singbox/v4] mytvsuper(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/mytvsuper.json">[singbox/v4] mytvsuper(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/netflix.srs">[singbox/v1] netflix(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/netflix.json">[singbox/v1] netflix(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/netflix.srs">[singbox/v2] netflix(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/netflix.json">[singbox/v2] netflix(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/netflix.srs">[singbox/v3] netflix(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/netflix.json">[singbox/v3] netflix(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/netflix.srs">[singbox/v4] netflix(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/netflix.json">[singbox/v4] netflix(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/niconico.srs">[singbox/v1] niconico(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/niconico.json">[singbox/v1] niconico(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/niconico.srs">[singbox/v2] niconico(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/niconico.json">[singbox/v2] niconico(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/niconico.srs">[singbox/v3] niconico(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/niconico.json">[singbox/v3] niconico(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/niconico.srs">[singbox/v4] niconico(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/niconico.json">[singbox/v4] niconico(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/onedrive.srs">[singbox/v1] onedrive(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/onedrive.json">[singbox/v1] onedrive(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/onedrive.srs">[singbox/v2] onedrive(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/onedrive.json">[singbox/v2] onedrive(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/onedrive.srs">[singbox/v3] onedrive(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/onedrive.json">[singbox/v3] onedrive(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/onedrive.srs">[singbox/v4] onedrive(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/onedrive.json">[singbox/v4] onedrive(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/paypal.srs">[singbox/v1] paypal(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/paypal.json">[singbox/v1] paypal(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/paypal.srs">[singbox/v2] paypal(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/paypal.json">[singbox/v2] paypal(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/paypal.srs">[singbox/v3] paypal(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/paypal.json">[singbox/v3] paypal(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/paypal.srs">[singbox/v4] paypal(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/paypal.json">[singbox/v4] paypal(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/primevideo.srs">[singbox/v1] primevideo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/primevideo.json">[singbox/v1] primevideo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/primevideo.srs">[singbox/v2] primevideo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/primevideo.json">[singbox/v2] primevideo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/primevideo.srs">[singbox/v3] primevideo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/primevideo.json">[singbox/v3] primevideo(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/primevideo.srs">[singbox/v4] primevideo(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/primevideo.json">[singbox/v4] primevideo(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/private.srs">[singbox/v1] private(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/private.json">[singbox/v1] private(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/private.srs">[singbox/v2] private(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/private.json">[singbox/v2] private(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/private.srs">[singbox/v3] private(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/private.json">[singbox/v3] private(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/private.srs">[singbox/v4] private(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/private.json">[singbox/v4] private(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.srs">[singbox/v1] proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/proxy.json">[singbox/v1] proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/proxy.srs">[singbox/v2] proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/proxy.json">[singbox/v2] proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/proxy.srs">[singbox/v3] proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/proxy.json">[singbox/v3] proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/proxy.srs">[singbox/v4] proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/proxy.json">[singbox/v4] proxy(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/socialmedia-cn.srs">[singbox/v1] socialmedia-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/socialmedia-cn.json">[singbox/v1] socialmedia-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/socialmedia-cn.srs">[singbox/v2] socialmedia-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/socialmedia-cn.json">[singbox/v2] socialmedia-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/socialmedia-cn.srs">[singbox/v3] socialmedia-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/socialmedia-cn.json">[singbox/v3] socialmedia-cn(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/socialmedia-cn.srs">[singbox/v4] socialmedia-cn(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/socialmedia-cn.json">[singbox/v4] socialmedia-cn(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/socialmedia.srs">[singbox/v1] socialmedia(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/socialmedia.json">[singbox/v1] socialmedia(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/socialmedia.srs">[singbox/v2] socialmedia(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/socialmedia.json">[singbox/v2] socialmedia(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/socialmedia.srs">[singbox/v3] socialmedia(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/socialmedia.json">[singbox/v3] socialmedia(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/socialmedia.srs">[singbox/v4] socialmedia(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/socialmedia.json">[singbox/v4] socialmedia(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/speedtest.srs">[singbox/v1] speedtest(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/speedtest.json">[singbox/v1] speedtest(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/speedtest.srs">[singbox/v2] speedtest(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/speedtest.json">[singbox/v2] speedtest(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/speedtest.srs">[singbox/v3] speedtest(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/speedtest.json">[singbox/v3] speedtest(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/speedtest.srs">[singbox/v4] speedtest(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/speedtest.json">[singbox/v4] speedtest(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/spotify.srs">[singbox/v1] spotify(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/spotify.json">[singbox/v1] spotify(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/spotify.srs">[singbox/v2] spotify(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/spotify.json">[singbox/v2] spotify(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/spotify.srs">[singbox/v3] spotify(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/spotify.json">[singbox/v3] spotify(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/spotify.srs">[singbox/v4] spotify(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/spotify.json">[singbox/v4] spotify(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/talkatone.srs">[singbox/v1] talkatone(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/talkatone.json">[singbox/v1] talkatone(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/talkatone.srs">[singbox/v2] talkatone(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/talkatone.json">[singbox/v2] talkatone(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/talkatone.srs">[singbox/v3] talkatone(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/talkatone.json">[singbox/v3] talkatone(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/talkatone.srs">[singbox/v4] talkatone(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/talkatone.json">[singbox/v4] talkatone(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/tiktok.srs">[singbox/v1] tiktok(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/tiktok.json">[singbox/v1] tiktok(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/tiktok.srs">[singbox/v2] tiktok(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/tiktok.json">[singbox/v2] tiktok(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/tiktok.srs">[singbox/v3] tiktok(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/tiktok.json">[singbox/v3] tiktok(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/tiktok.srs">[singbox/v4] tiktok(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/tiktok.json">[singbox/v4] tiktok(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/tld-proxy.srs">[singbox/v1] tld-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/tld-proxy.json">[singbox/v1] tld-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/tld-proxy.srs">[singbox/v2] tld-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/tld-proxy.json">[singbox/v2] tld-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/tld-proxy.srs">[singbox/v3] tld-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/tld-proxy.json">[singbox/v3] tld-proxy(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/tld-proxy.srs">[singbox/v4] tld-proxy(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/tld-proxy.json">[singbox/v4] tld-proxy(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/twitch.srs">[singbox/v1] twitch(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/twitch.json">[singbox/v1] twitch(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/twitch.srs">[singbox/v2] twitch(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/twitch.json">[singbox/v2] twitch(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/twitch.srs">[singbox/v3] twitch(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/twitch.json">[singbox/v3] twitch(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/twitch.srs">[singbox/v4] twitch(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/twitch.json">[singbox/v4] twitch(json)</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/youtube.srs">[singbox/v1] youtube(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version1/youtube.json">[singbox/v1] youtube(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/youtube.srs">[singbox/v2] youtube(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version2/youtube.json">[singbox/v2] youtube(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/youtube.srs">[singbox/v3] youtube(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version3/youtube.json">[singbox/v3] youtube(json)</a></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/youtube.srs">[singbox/v4] youtube(srs)</a>
+        <br><br>
+        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/singbox/version4/youtube.json">[singbox/v4] youtube(json)</a></td>
     </tr>
 </table>
 
