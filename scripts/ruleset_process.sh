@@ -1,4 +1,26 @@
 #!/bin/bash
+clash_domain_to_classical(){
+    awk '{
+        gsub(/[#;].*$/,"");
+        gsub(/^\./,"+.");
+        gsub(/^(\*\.)+/,"+.");
+        if ($0 ~ /\*|^MijiaCloud$/) {
+            gsub(/^MijiaCloud$/,"Mijia\\sCloud");
+            gsub(/\./,"\\.");
+            gsub(/\*/,"[^.]+");
+            gsub(/^+\\\./,".*");
+            print "DOMAIN-REGEX,^" $0 "$";
+            next;
+        } else if ($0 ~ /^+\./) {
+            sub(/^+\./,"DOMAIN-SUFFIX,");
+            print;
+            next;
+        } else if ($0 ~ /^\w/) {
+            print "DOMAIN," $0;
+            next;
+        }
+    }' $1
+}
 
 domain_dedupe(){
     awk -F',' '{
@@ -97,27 +119,8 @@ domain_dedupe(){
     }' $1
 }
 
-fakeip_dedupe(){
-    awk '{
-        gsub(/[#;].*$/,"");
-        gsub(/^\./,"+.");
-        gsub(/^(\*\.)+/,"+.");
-        if ($0 ~ /\*|^MijiaCloud$/) {
-            gsub(/^MijiaCloud$/,"Mijia\\sCloud");
-            gsub(/\./,"\\.");
-            gsub(/\*/,"[^.]+");
-            gsub(/^+\\\./,".*");
-            print "DOMAIN-REGEX,^" $0 "$";
-            next;
-        } else if ($0 ~ /^+\./) {
-            sub(/^+\./,"DOMAIN-SUFFIX,");
-            print;
-            next;
-        } else if ($0 ~ /^\w/) {
-            print "DOMAIN," $0;
-            next;
-        }
-    }' $1 | domain_dedupe | awk -F',' '{
+dedupe_classical_to_clash_domain(){
+    awk -F',' '{
         if ($1 == "DOMAIN") {
             domains[$2] = 1;
         } else if ($1 == "DOMAIN-SUFFIX") {
@@ -169,7 +172,7 @@ fakeip_dedupe(){
             gsub(/^Mijia\\sCloud$/,"Mijia Cloud",regex);
             print regex;
         }
-    }' | sort -u
+    }' $1 | sort -u
 }
 
 ruleset_sort(){

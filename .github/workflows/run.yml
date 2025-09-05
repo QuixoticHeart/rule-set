@@ -47,6 +47,10 @@ jobs:
           mkdir -p download/meta
           mkdir -p download/surge
           mkdir -p download/special
+          mkdir -p singbox/version1
+          mkdir -p singbox/version2
+          mkdir -p singbox/version3
+          mkdir -p singbox/version4
           mkdir -p meta/domain
           mkdir -p meta/ipcidr
           mkdir -p meta/classical
@@ -231,6 +235,7 @@ jobs:
               dst_file="$dst_dir/${dst_names[i]}.list"
               cp "$src_file" "$dst_file"
           done
+
           cp 'custom/apns.list' 'surge/apns.list'
 
       - name: Merge files
@@ -456,6 +461,17 @@ jobs:
               grep -vxF -f 'download/meta/category-pt@!cn.list' \
           > surge/dmca.list
 
+      - name: Merge fake-ip-filter file
+        run: |
+          source scripts/ruleset_process.sh
+
+          cat 'download/special/fake-ip-filter-sc.list' \
+              'download/special/fake-ip-filter-oc.list' \
+              'custom/domain/fake-ip-filter.list' \
+              | \
+              clash_domain_to_classical \
+          > surge/fake-ip-filter.list
+
       - name: Deduplicate ruleset
         run: |
           source scripts/ruleset_process.sh
@@ -486,13 +502,108 @@ jobs:
               ' "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
 
+          dedupe_classical_to_clash_domain 'surge/fake-ip-filter.list' > 'meta/domain/fake-ip-filter.list'
+
           grep -vxF -f 'surge/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn.list' 'remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
-          sort 'download/special/fake-ip-filter-sc.list' 'download/special/fake-ip-filter-oc.list' 'custom/domain/fake-ip-filter.list' | uniq | fakeip_dedupe > 'meta/domain/fake-ip-filter.list'
-
           awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
+
+      - name: Generate sing-box ruleset
+        run: |
+          for file in surge/*.list; do
+              awk -F',' '
+              BEGIN {
+                  printf "{\n";
+                  printf "  \"version\": 1,\n";
+                  printf "  \"rules\": [\n";
+                  printf "    {\n";
+              }
+              {
+                  if($1 ~ /-REGEX$/ && match($0, ",")){
+                      $2 = substr($0, RSTART + 1);
+                      gsub(/\\/, "\\\\", $2);
+                  }
+                  gsub(/^"/, "", $2);
+                  gsub(/^'"'"'/, "", $2);
+                  gsub(/"$/, "", $2);
+                  gsub(/'"'"'$/, "", $2);
+                  $2 = "\"" $2 "\"";
+                  if ($1 == "DOMAIN") {
+                      if (!domain++) {
+                          if (NR > 1) printf "\n      ],\n";
+                          printf "      \"domain\": [\n";
+                          printf "        %s", $2;
+                      } else {
+                          printf ",\n        %s", $2;
+                      }
+                  } else if ($1 == "DOMAIN-SUFFIX") {
+                      if (!suffix++) {
+                          if (NR > 1) printf "\n      ],\n";
+                          printf "      \"domain_suffix\": [\n";
+                          printf "        %s", $2;
+                      } else {
+                          printf ",\n        %s", $2;
+                      }
+                  } else if ($1 == "DOMAIN-KEYWORD") {
+                      if (!keyword++) {
+                          if (NR > 1) printf "\n      ],\n";
+                          printf "      \"domain_keyword\": [\n";
+                          printf "        %s", $2;
+                      } else {
+                          printf ",\n        %s", $2;
+                      }
+                  } else if ($1 == "DOMAIN-REGEX") {
+                      if (!regex++) {
+                          if (NR > 1) printf "\n      ],\n";
+                          printf "      \"domain_regex\": [\n";
+                          printf "        %s", $2;
+                      } else {
+                          printf ",\n        %s", $2;
+                      }
+                  } else if ($1 == "IP-CIDR" || $1 == "IP-CIDR6") {
+                      if (!cidr++) {
+                          if (NR > 1) printf "\n      ],\n";
+                          printf "      \"ip_cidr\": [\n";
+                          printf "        %s", $2;
+                      } else {
+                          printf ",\n        %s", $2;
+                      }
+                  }
+              }
+              END {
+                  printf "\n      ]\n";
+                  printf "    }\n";
+                  printf "  ]\n";
+                  printf "}\n";
+              }' "$file" > "singbox/version1/$(basename "$file" ".list").json"
+          done
+
+          rm -f singbox/version1/*-resolve.json
+          rm -f surge/fake-ip-filter.list
+
+          for file in singbox/version1/*.json ; do
+              awk 'sub(/"version": 1,/, "\"version\": 2,", $0) 1' "${file}" > "singbox/version2/$(basename "$file")"
+              awk 'sub(/"version": 1,/, "\"version\": 3,", $0) 1' "${file}" > "singbox/version3/$(basename "$file")"
+              awk 'sub(/"version": 1,/, "\"version\": 4,", $0) 1' "${file}" > "singbox/version4/$(basename "$file")"
+          done
+
+      - name: Download and unzip `sing-box core`
+        run: |
+          singbox_version=$(curl -sSL https://api.github.com/repos/SagerNet/sing-box/releases | grep 'tag_name' | head -n 1 | sed -e 's/.*v//' -e 's/".*//')
+
+          wget "https://github.com/SagerNet/sing-box/releases/download/v${singbox_version}/sing-box-${singbox_version}-linux-amd64.tar.gz" -O - | tar -zxf -
+
+          mv sing-box-${singbox_version}-linux-amd64/sing-box ./sing-box
+
+          chmod +x ./sing-box
+
+      - name: Generate sing-box mrs
+        run: |
+          for file in singbox/*/*.json ; do
+              ./sing-box rule-set compile --output "${file%.json}.srs" "${file}"
+          done
 
       - name: Generate meta ruleset
         run: |
@@ -549,7 +660,9 @@ jobs:
       - name: Download and unzip `mihomo core`
         run: |
           mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
+
           wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-v3-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
+
           chmod +x ./mihomo
 
       - name: Generate mihomo mrs
@@ -696,6 +809,7 @@ jobs:
 
       - name: Move files to push directory
         run: |
+          cp -r singbox/ push/
           cp -r meta/ push/
           cp -r stash/ push/
           cp -r surge/ push/
