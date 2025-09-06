@@ -4,8 +4,8 @@ clash_domain_to_classical(){
         gsub(/[#;].*$/,"");
         gsub(/^\./,"+.");
         gsub(/^(\*\.)+/,"+.");
-        if ($0 ~ /\*|^MijiaCloud$/) {
-            gsub(/^MijiaCloud$/,"Mijia\\sCloud");
+        if ($0 ~ /\*|^Mijia Cloud$/) {
+            gsub(/^Mijia Cloud$/,"Mijia\\sCloud");
             gsub(/\./,"\\.");
             gsub(/\*/,"[^.]+");
             gsub(/^+\\\./,".*");
