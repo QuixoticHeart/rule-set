@@ -1581,11 +1581,11 @@ dns:
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/speedtest.mrs">[meta/domain] speedtest(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/speedtest.list">[meta/domain] speedtest(text)</a></td>
         <td></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/classical/speedtest.list">[meta/classical] speedtest(text)</a></td>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/speedtest.mrs">[stash/domain] speedtest(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/domain/speedtest.list">[stash/domain] speedtest(text)</a></td>
         <td></td>
-        <td></td>
+        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/stash/classical/speedtest.list">[stash/classical] speedtest(text)</a></td>
     </tr>
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/spotify.mrs">[meta/domain] spotify(mrs)</a><br><br>
