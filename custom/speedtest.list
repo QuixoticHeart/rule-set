@@ -53,3 +53,8 @@ DOMAIN-SUFFIX,speed.cloudflare.com
 DOMAIN-SUFFIX,speed.dler.io
 DOMAIN-SUFFIX,webtest.net
 DOMAIN-KEYWORD,speedtest
+DOMAIN-KEYWORD,ookla
+DOMAIN-KEYWORD,test-ipv6
+DOMAIN-KEYWORD,testipv6
+DOMAIN-KEYWORD,ipv6-test
+DOMAIN-KEYWORD,ipv6test

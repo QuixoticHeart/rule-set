@@ -666,9 +666,10 @@ jobs:
 
       - name: Generate meta classical ruleset
         run: |
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/cdn.list > meta/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/dmca.list > meta/classical/dmca.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/adrules.list > meta/classical/adrules.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' meta/speedtest.list > meta/classical/speedtest.list
 
       - name: Download and unzip `mihomo core`
         run: |
@@ -696,10 +697,10 @@ jobs:
                   print;
               }' "$file" > "stash/$(basename "$file")"
           done
-
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/adrules.list > stash/classical/adrules.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/cdn.list > stash/classical/cdn.list
           awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/dmca.list > stash/classical/dmca.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/adrules.list > stash/classical/adrules.list
+          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/speedtest.list > stash/classical/speedtest.list
 
           cp -r meta/domain stash
           cp -r meta/ipcidr stash
