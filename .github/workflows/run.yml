@@ -137,6 +137,9 @@ jobs:
               'AWAvenueAds.list https://github.com/TG-Twilight/AWAvenue-Ads-Rule/raw/refs/heads/main/Filters/AWAvenue-Ads-Rule-Surge-RULE-SET.list'
               'AntiAD.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/AntiAD.list'
               'Talkatone.list https://github.com/LOWERTOP/Shadowrocket-First/raw/refs/heads/main/TalkatoneProxy.list'
+              'LocRedBook.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/RedBook.list'
+              'LocDouyin.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/Douyin.list'
+              'LocKuaiShou.list https://github.com/fmz200/wool_scripts/raw/refs/heads/main/Loon/rule/KuaiShou.list'
           )
 
           for file in "${files[@]}"; do
@@ -227,8 +230,8 @@ jobs:
           src_dir="download/meta"
           dst_dir="surge"
 
-          src_names=('iplocation-direct' 'iplocation-proxy' 'microsoft@cn' 'tld-!cn' 'cncidr')
-          dst_names=('iplocation-direct' 'iplocation-proxy' 'microsoft-cn' 'tld-proxy' 'cncidr')
+          src_names=('iplocation-direct' 'microsoft@cn' 'tld-!cn' 'cncidr')
+          dst_names=('iplocation-direct' 'microsoft-cn' 'tld-proxy' 'cncidr')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
@@ -276,6 +279,16 @@ jobs:
               | \
               grep -vxF -f 'custom/reject-need-to-remove.list' \
           > surge/adrules.list
+
+      - name: Merge iplocation-proxy file
+        run: |
+          cat 'download/meta/iplocation-proxy.list' \
+              'download/surge/LocRedBook.list' \
+              'download/surge/LocDouyin.list' \
+              'download/surge/LocKuaiShou.list' \
+              | \
+              grep -vxF -f 'surge/httpdns.list' \
+          > surge/iplocation-proxy.list
 
       - name: Merge apple-proxy file
         run: |
