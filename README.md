@@ -11,8 +11,8 @@
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
 - **[规则说明](#规则说明)**
-- **[surge，loon，shadowrocket，quantumultx，egern，clash.meta，stash 规则集目录](#surgeloonshadowrocketquantumultxegernclashmetastash-规则集目录)**
-- **[clash.meta，stash 类型拆分规则集目录](#clashmetastash-类型拆分规则集目录)**
+- **[surge，loon，shadowrocket，quantumultx，egern，mihomo/clash.meta，stash 规则集目录](#surgeloonshadowrocketquantumultxegernmihomoclashmetastash-规则集目录)**
+- **[mihomo/clash.meta，stash 类型拆分规则集目录](#mihomoclashmetastash-类型拆分规则集目录)**
 - **[sing-box 规则集目录](#sing-box-规则集目录)**
 
 ## 项目背景
@@ -523,7 +523,7 @@ singbox/
 
 > [!IMPORTANT]
 >
-> 来源于 [SunsetMkt](https://github.com/SunsetMkt) 的 [anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution) 仓库，针对部分国内软件显示的 IP 归属地进行修改，无法保证规则的可用性，甚至可能会触发**账号风控**，不推荐使用
+> 来源于 [SunsetMkt](https://github.com/SunsetMkt) 的 [anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution) 和 [fmz200](https://github.com/fmz200) 的 [fmz200/wool_scripts](https://github.com/fmz200/wool_scripts) 仓库，针对部分国内软件显示的 IP 归属地进行修改，无法保证规则的可用性，甚至可能会触发**账号风控**，不推荐使用
 
 <table>
   <thead>
@@ -555,6 +555,7 @@ singbox/
       <br>不建议直接使用，而是将有代理需求的软件规则放置在直连规则之后
       <br>规则源:
       <a href="https://github.com/SunsetMkt/anti-ip-attribution">@SunsetMkt/anti-ip-attribution</a>
+      <a href="https://github.com/fmz200/wool_scripts">@fmz200/wool_scripts</a>
       </td>
     </tr>
   </tbody>
@@ -615,7 +616,7 @@ dns:
 
 ## 规则目录
 
-### surge，loon，shadowrocket，quantumultx，egern，clash.meta，stash 规则集目录
+### surge，loon，shadowrocket，quantumultx，egern，mihomo/clash.meta，stash 规则集目录
 
 <table>
     <tr>
@@ -1097,7 +1098,7 @@ dns:
     </tr>
 </table>
 
-### clash.meta，stash 类型拆分规则集目录
+### mihomo/clash.meta，stash 类型拆分规则集目录
 
 <table>
     <tr>
@@ -2459,6 +2460,7 @@ sing-box文档关于[规则集版本的说明](https://sing-box.sagernet.org/zh/
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
 - [@TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
+- [@fmz200/wool_scripts](https://github.com/fmz200/wool_scripts)
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
 - [@Elysian-Realme/FuGfConfig](https://github.com/Elysian-Realme/FuGfConfig)
 - [@juewuy/ShellCrash](https://github.com/juewuy/ShellCrash)
