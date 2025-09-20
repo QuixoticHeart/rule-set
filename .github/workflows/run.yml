@@ -501,7 +501,7 @@ jobs:
                       }
                       next;
                   }
-                  /^DOMAIN|^PROCESS-NAME|^USER-AGENT|^DEST-PORT|^DST-PORT/ {
+                  /^DOMAIN|^PROCESS-NAME|^DEST-PORT|^DST-PORT/ {
                       print $1 "," $2;
                       next;
                   }
@@ -612,7 +612,7 @@ jobs:
 
           chmod +x ./sing-box
 
-      - name: Generate sing-box mrs
+      - name: Generate sing-box srs
         run: |
           for file in singbox/*/*.json ; do
               ./sing-box rule-set compile --output "${file%.json}.srs" "${file}"
@@ -622,7 +622,7 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk '{
-                  if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
+                  if ($0 ~ /^URL-REGEX,/) {
                       next;
                   }
                   gsub(/^DEST-PORT/, "DST-PORT");
@@ -798,9 +798,6 @@ jobs:
                       print "- " $2;
                   } else if ($1 == "URL-REGEX") {
                       if (!url_regex++) print "url_regex_set:";
-                      print "- " $2;
-                  } else if ($1 == "USER-AGENT") {
-                      if (!user_agent++) print "user_agent_set:";
                       print "- " $2;
                   } else if ($1 == "DEST-PORT") {
                       if (!dest_port++) print "dest_port_set:";
