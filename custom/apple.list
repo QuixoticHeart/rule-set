@@ -1,0 +1,8 @@
+DOMAIN-SUFFIX,digicert.cn
+DOMAIN-SUFFIX,apple-livephotoskit.com
+DOMAIN-SUFFIX,apple.com
+IP-CIDR,17.0.0.0/8,no-resolve
+IP-CIDR6,2403:300::/32,no-resolve
+IP-CIDR6,2620:149::/32,no-resolve
+IP-CIDR6,2a01:b740::/32,no-resolve
+IP-CIDR6,2a01:b747::/32,no-resolve

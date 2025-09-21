@@ -292,7 +292,8 @@ jobs:
 
       - name: Merge apple-proxy file
         run: |
-          cat 'download/meta/apple-intelligence.list' \
+          cat 'custom/apple-intelligence.list' \
+              'download/meta/apple-intelligence.list' \
               'download/surge/Apple-Proxy.list' \
               'download/surge/AppleProxy.list' \
           > surge/apple-proxy.list
@@ -305,7 +306,8 @@ jobs:
 
       - name: Merge apple file
         run: |
-          cat 'surge/apple-proxy.list' \
+          cat 'custom/apple.list' \
+              'surge/apple-proxy.list' \
               'download/meta/apple.list' \
               'download/surge/Apple.list' \
           > surge/apple.list
@@ -350,7 +352,8 @@ jobs:
 
       - name: Merge ai file
         run: |
-          cat 'download/surge/AI.list' \
+          cat 'custom/apple-intelligence.list' \
+              'download/surge/AI.list' \
               'download/special/ai-surge.list' \
               'download/meta/apple-intelligence.list' \
               'download/meta/category-ai-!cn.list' \
