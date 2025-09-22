@@ -1,14 +1,14 @@
 #!/bin/bash
 clash_domain_to_classical(){
     awk '{
-        gsub(/[#;].*$/,"");
-        gsub(/^\./,"+.");
-        gsub(/^(\*\.)+/,"+.");
+        sub(/[#;].*$/,"");
+        sub(/^\./,"+.");
+        sub(/^(\*\.)+/,"+.");
         if ($0 ~ /\*|^Mijia Cloud$/) {
-            gsub(/^Mijia Cloud$/,"Mijia\\sCloud");
+            sub(/^Mijia Cloud$/,"Mijia\\sCloud");
             gsub(/\./,"\\.");
             gsub(/\*/,"[^.]+");
-            gsub(/^+\\\./,".*");
+            sub(/^+\\\./,".*");
             print "DOMAIN-REGEX,^" $0 "$";
             next;
         } else if ($0 ~ /^+\./) {
@@ -73,12 +73,12 @@ domain_dedupe(){
         for (regex in regexes) {
             matched = 0;
             origin_content = regex;
-            gsub(/^\^/,"",origin_content);
-            gsub(/\$$/,"",origin_content);
-            gsub(/^\.\*/,"+.",origin_content);
+            sub(/^\^/,"",origin_content);
+            sub(/\$$/,"",origin_content);
+            sub(/^\.\*/,"+.",origin_content);
             gsub(/\[\^\.\]\+/,"*",origin_content);
             gsub(/\\\./,".",origin_content);
-            gsub(/^Mijia\\sCloud$/,"Mijia Cloud",origin_content);
+            sub(/^Mijia\\sCloud$/,"Mijia Cloud",origin_content);
             for (i = 1; i <= length(origin_content); i++) {
                 if (i == 1 || substr(origin_content, i - 1, 1) == ".") {
                     sub_origin_content = substr(origin_content, i);
@@ -164,12 +164,12 @@ dedupe_classical_to_clash_domain(){
                     continue;
                 }
             }
-            gsub(/^\^/,"",regex);
-            gsub(/\$$/,"",regex);
-            gsub(/^\.\*/,"+.",regex);
+            sub(/^\^/,"",regex);
+            sub(/\$$/,"",regex);
+            sub(/^\.\*/,"+.",regex);
             gsub(/\[\^\.\]\+/,"*",regex);
             gsub(/\\\./,".",regex);
-            gsub(/^Mijia\\sCloud$/,"Mijia Cloud",regex);
+            sub(/^Mijia\\sCloud$/,"Mijia Cloud",regex);
             print regex;
         }
     }' $1 | sort -u
@@ -187,6 +187,5 @@ ruleset_sort(){
         /^PROCESS-NAME,/    { print "7 " $0; next }
         /^URL-REGEX,/       { print "8 " $0; next }
         /^DEST-PORT,/       { print "9 " $0; next }
-        /^DST-PORT,/        { print "10 " $0; next }
     ' $1 | sort -k1,1n -k2,2 | cut -d' ' -f2-
 }

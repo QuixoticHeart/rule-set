@@ -189,7 +189,7 @@ jobs:
           done
 
           for file in download/special/*-china.list; do
-              awk '{ gsub(/^server=\//, "DOMAIN-SUFFIX,"); gsub(/\/114\.114\.114\.114$/, ""); print }' "$file" > tmp.list && mv tmp.list "${file}"
+              awk '{ sub(/^server=\//, "DOMAIN-SUFFIX,"); sub(/\/114\.114\.114\.114$/, ""); print }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
           for file in download/special/*-data.list; do
@@ -222,7 +222,7 @@ jobs:
           done
 
           for file in download/special/*-yaml.list; do
-              awk '!/^payload/ { gsub(/^[ ]*-[ ]*/, "", $0); print }' "$file" > tmp.list && mv tmp.list "${file}"
+              awk '!/^payload/ { sub(/^\s*-\s*/, "", $0); print }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Copy single files
@@ -497,23 +497,23 @@ jobs:
                   /^IP-CIDR,/ && /:/ {
                       sub(/IP-CIDR,/, "IP-CIDR6,");
                   }
-                  /-REGEX,/ {
+                  /^DST-PORT/ {
+                      sub(/^DST-PORT/, "DEST-PORT");
+                  }
+                  /^DOMAIN-REGEX|^URL-REGEX/ {
                       if (match($0, ",")) {
                           $2 = substr($0, RSTART + 1);
                           print $1 "," $2;
                       }
                       next;
                   }
-                  /^DOMAIN|^PROCESS-NAME|^DEST-PORT|^DST-PORT/ {
+                  /^DOMAIN|^PROCESS-NAME|^DEST-PORT/ {
                       print $1 "," $2;
                       next;
                   }
                   /^IP-/ {
                       print $1 "," $2 ",no-resolve";
                       next;
-                  }
-                  {
-                      print $0;
                   }
               ' "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
           done
@@ -524,7 +524,7 @@ jobs:
           sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
           sort 'cn.list' 'remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
 
-          awk '{ gsub(/,no-resolve/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
+          awk '{ sub(/,no-resolve$/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
 
       - name: Generate sing-box ruleset
         run: |
@@ -541,10 +541,10 @@ jobs:
                       $2 = substr($0, RSTART + 1);
                       gsub(/\\/, "\\\\", $2);
                   }
-                  gsub(/^"/, "", $2);
-                  gsub(/^'"'"'/, "", $2);
-                  gsub(/"$/, "", $2);
-                  gsub(/'"'"'$/, "", $2);
+                  sub(/^"/, "", $2);
+                  sub(/^'"'"'/, "", $2);
+                  sub(/"$/, "", $2);
+                  sub(/'"'"'$/, "", $2);
                   $2 = "\"" $2 "\"";
                   if ($1 == "DOMAIN") {
                       if (!domain++) {
@@ -625,10 +625,10 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk '{
-                  if ($0 ~ /^URL-REGEX,/) {
+                  if ($0 ~ /^URL-REGEX,/ || $0 ~ /^USER-AGENT,/) {
                       next;
                   }
-                  gsub(/^DEST-PORT/, "DST-PORT");
+                  sub(/^DEST-PORT/, "DST-PORT");
                   print;
               }' "$file" > "meta/$(basename "$file")"
           done
@@ -696,7 +696,7 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk '{
-                  gsub(/^DEST-PORT/, "DST-PORT");
+                  sub(/^DEST-PORT/, "DST-PORT");
                   print;
               }' "$file" > "stash/$(basename "$file")"
           done
@@ -718,8 +718,8 @@ jobs:
                   if ($0 ~/^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
                   }
-                  gsub(/^DEST-PORT/, "DST-PORT");
-                  gsub(/^IP-CIDR6/, "IP-CIDR");
+                  sub(/^DEST-PORT/, "DST-PORT");
+                  sub(/^IP-CIDR6/, "IP-CIDR");
                   print;
               }' "$file" > "shadowrocket/$(basename "$file")"
           done
@@ -728,15 +728,15 @@ jobs:
         run: |
           for file in surge/*.list; do
               awk -v filename="$(basename "$file" .list)" '{
-                  if ($0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/ || $0 ~ /^URL-REGEX,/ || $0 ~ /^DEST-PORT,/ || $0 ~ /^DST-PORT,/) {
+                  if ($0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^URL-REGEX,/ || $0 ~ /^DEST-PORT,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
                   }
-                  gsub(/^DOMAIN/, "HOST");
-                  gsub(/^DOMAIN-SUFFIX/, "HOST-SUFFIX");
-                  gsub(/^DOMAIN-KEYWORD/, "HOST-KEYWORD");
-                  gsub(/^DOMAIN-WILDCARD/, "HOST-WILDCARD");
-                  gsub(/^IP-CIDR6/, "IP6-CIDR");
-                  gsub(/,no-resolve$/, "");
+                  sub(/^DOMAIN/, "HOST");
+                  sub(/^DOMAIN-SUFFIX/, "HOST-SUFFIX");
+                  sub(/^DOMAIN-KEYWORD/, "HOST-KEYWORD");
+                  sub(/^DOMAIN-WILDCARD/, "HOST-WILDCARD");
+                  sub(/^IP-CIDR6/, "IP6-CIDR");
+                  sub(/,no-resolve$/, "");
                   print $0 "," filename;
               }' "$file" > "quantumultx/$(basename "$file")"
           done
@@ -749,7 +749,6 @@ jobs:
                   if ($0 ~ /^DOMAIN-WILDCARD,/ || $0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
                   }
-                  gsub(/^DST-PORT/, "DEST-PORT");
                   print;
               }' "$file" > "loon/$(basename "$file")"
           done
@@ -766,11 +765,10 @@ jobs:
                   if($1 ~ /-REGEX$/ && match($0, ",")){
                       $2 = substr($0, RSTART + 1);
                   }
-                  gsub(/^DST-PORT/, "DEST-PORT");
-                  gsub(/^"/, "", $2);
-                  gsub(/^'"'"'/, "", $2);
-                  gsub(/"$/, "", $2);
-                  gsub(/'"'"'$/, "", $2);
+                  sub(/^"/, "", $2);
+                  sub(/^'"'"'/, "", $2);
+                  sub(/"$/, "", $2);
+                  sub(/'"'"'$/, "", $2);
                   chars = "[{}\\[\\]&*#|<>!%@`]"
                   if ($2 ~ "^" chars || $1 == "IP-ASN" || $1=="DEST-PORT") {
                       $2 = sprintf("\x27%s\x27", $2);
@@ -816,7 +814,6 @@ jobs:
                   if ($0 ~ /^DOMAIN-REGEX,/) {
                       next;
                   }
-                  gsub(/^DST-PORT/, "DEST-PORT");
                   print;
               }' "$file" > tmp.list && mv tmp.list "${file}"
           done
