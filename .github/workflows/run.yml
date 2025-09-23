@@ -42,6 +42,24 @@ jobs:
           sparse-checkout: |
             rule/Surge
 
+      - name: Checkout "Loyalsoldier/geoip"
+        uses: actions/checkout@v5
+        with:
+          repository: "Loyalsoldier/geoip"
+          path: ls-geoip
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: ./ls-geoip/go.mod
+          cache-dependency-path: ./ls-geoip/go.sum
+
+      - name: Run go build geoip
+        run: |
+          cd ls-geoip || exit 1
+          rm -f convert.go init.go list.go lookup.go
+          go build -o ../geoip
+
       - name: Generate directories
         run: |
           mkdir -p download/meta
@@ -493,36 +511,22 @@ jobs:
           source scripts/ruleset_process.sh
 
           for file in surge/*.list ; do
-              awk -F, '
-                  /^IP-CIDR,/ && /:/ {
-                      sub(/IP-CIDR,/, "IP-CIDR6,");
-                  }
-                  /^DST-PORT/ {
-                      sub(/^DST-PORT/, "DEST-PORT");
-                  }
-                  /^DOMAIN-REGEX|^URL-REGEX/ {
-                      if (match($0, ",")) {
-                          $2 = substr($0, RSTART + 1);
-                          print $1 "," $2;
-                      }
-                      next;
-                  }
-                  /^DOMAIN|^PROCESS-NAME|^DEST-PORT/ {
-                      print $1 "," $2;
-                      next;
-                  }
-                  /^IP-/ {
-                      print $1 "," $2 ",no-resolve";
-                      next;
-                  }
-              ' "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
+              if grep -q '^IP-CIDR' "${file}"; then
+                  awk -F, '/^IP-CIDR/ { print $2; next }' "${file}" | ./geoip merge | awk '/:/ { print "IP-CIDR6," $0 ",no-resolve"; next } { print "IP-CIDR," $0 ",no-resolve" }' > tmp_cidr.list
+
+                  format_ruleset_no_cidr "${file}" | domain_dedupe > tmp_no_cidr.list
+
+                  cat tmp_cidr.list tmp_no_cidr.list | ruleset_sort > "${file}"
+              else
+                  format_ruleset_no_cidr "${file}" | domain_dedupe | ruleset_sort > tmp.list && mv tmp.list "${file}"
+              fi
           done
 
           dedupe_classical_to_clash_domain 'surge/fake-ip-filter.list' > 'meta/domain/fake-ip-filter.list'
 
           grep -vxF -f 'surge/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
-          sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > remove.list
-          sort 'cn.list' 'remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'remove.list' | ruleset_sort > 'surge/cn.list'
+          sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > tmp_remove.list
+          sort 'cn.list' 'tmp_remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'tmp_remove.list' | ruleset_sort > 'surge/cn.list'
 
           awk '{ sub(/,no-resolve$/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
 
@@ -756,10 +760,10 @@ jobs:
       - name: Generate egern ruleset
         run: |
           for file in surge/*.list; do
-              no_resolve=$(awk '/,no-resolve/{print 1; exit} END{print 0}' "$file")
-              awk -F',' -v no_resolve="$no_resolve" '
+              grep -q ',no-resolve$' "$file" && found_no_resolve=1 || found_no_resolve=0
+              awk -F',' -v found_no_resolve="$found_no_resolve" '
               BEGIN {
-                  if (no_resolve) print "no_resolve: true";
+                  if (found_no_resolve) print "no_resolve: true";
               }
               {
                   if($1 ~ /-REGEX$/ && match($0, ",")){

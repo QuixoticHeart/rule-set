@@ -22,6 +22,25 @@ clash_domain_to_classical(){
     }' $1
 }
 
+format_ruleset_no_cidr() {
+    awk -F, '
+        /^DST-PORT/ {
+            sub(/^DST-PORT/, "DEST-PORT");
+        }
+        /^DOMAIN-REGEX|^URL-REGEX/ {
+            if (match($0, ",")) {
+                $2 = substr($0, RSTART + 1);
+                print $1 "," $2;
+            }
+            next;
+        }
+        /^DOMAIN|^PROCESS-NAME|^DEST-PORT/ {
+            print $1 "," $2;
+            next;
+        }
+    ' "$1"
+}
+
 domain_dedupe(){
     awk -F',' '{
         if ($1 == "DOMAIN") {
