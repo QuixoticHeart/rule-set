@@ -6,9 +6,11 @@
 
 ## 项目简介
 
-收集于互联网，面向 mihomo/clash.meta、surge、loon、stash、shadowrocket、quantumultx、egern 和 sing-box 多个代理工具的定制 [规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
+[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/QuixoticHeart/rule-set/ruleset?label=%E6%9C%80%E6%96%B0%E6%9E%84%E5%BB%BA)](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
+
+收集于互联网，面向 mihomo/clash.meta、surge、loon、stash、shadowrocket、quantumultx、egern 和 sing-box 多个代理工具的定制 [规则集](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
 
 - **[规则说明](#规则说明)**
 - **[surge、loon、shadowrocket、quantumultx、egern、mihomo/clash.meta 和 stash 完整规则集目录](#surgeloonshadowrocketquantumultxegernmihomoclashmeta-和-stash-完整规则集目录)**
