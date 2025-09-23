@@ -166,9 +166,11 @@ dedupe_classical_to_clash_domain(){
         for (suffix in suffixes) {
             matched = 0;
             for (regex in regexes) {
-                if (substr(regex, 1, 3) == "^.*" && suffix ~ regex ) {
-                    matched = 1;
-                    break;
+                if (substr(regex, 1, 3) == "^.*" || substr(regex, 1, 2) == ".*") {
+                    if (suffix ~ regex) {
+                        matched = 1;
+                        break;
+                    }
                 }
             }
             if (!matched) {
@@ -177,7 +179,7 @@ dedupe_classical_to_clash_domain(){
         }
 
         for (regex in regexes) {
-            if (substr(regex, 1, 3) != "^.*") {
+            if (substr(regex, 1, 1) == "^" && substr(regex, 2, 2) != ".*") {
                 new_regex = "^.*" substr(regex, 2);
                 if (new_regex in regexes) {
                     continue;
