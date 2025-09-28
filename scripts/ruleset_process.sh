@@ -24,9 +24,6 @@ clash_domain_to_classical(){
 
 format_ruleset_no_cidr() {
     awk -F, '
-        /^DST-PORT/ {
-            sub(/^DST-PORT/, "DEST-PORT");
-        }
         /^DOMAIN-REGEX/ {
             if (match($0, ",")) {
                 $2 = substr($0, RSTART + 1);
@@ -34,7 +31,7 @@ format_ruleset_no_cidr() {
             }
             next;
         }
-        /^DOMAIN|^PROCESS-NAME|^DEST-PORT/ {
+        /^DOMAIN|^PROCESS-NAME/ {
             print $1 "," $2;
             next;
         }
@@ -205,7 +202,6 @@ ruleset_sort(){
         /^DOMAIN-REGEX,/    { print "4 " $0; next }
         /^IP-CIDR,/         { print "5 " $0; next }
         /^IP-CIDR6,/        { print "6 " $0; next }
-        /^DEST-PORT,/       { print "7 " $0; next }
-        /^PROCESS-NAME,/    { print "8 " $0; next }
+        /^PROCESS-NAME,/    { print "7 " $0; next }
     ' $1 | sort -k1,1n -k2,2 | cut -d' ' -f2-
 }

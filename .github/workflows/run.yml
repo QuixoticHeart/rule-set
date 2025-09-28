@@ -246,7 +246,7 @@ jobs:
       - name: Copy single files
         run: |
           src_dir="download/meta"
-          dst_dir="surge"
+          dst_dir="meta"
 
           src_names=('iplocation-direct' 'microsoft@cn' 'tld-!cn' 'cncidr')
           dst_names=('iplocation-direct' 'microsoft-cn' 'tld-proxy' 'cncidr')
@@ -257,13 +257,13 @@ jobs:
               cp "$src_file" "$dst_file"
           done
 
-          cp 'custom/apns.list' 'surge/apns.list'
+          cp "custom/apns.list" "$dst_dir"
 
       - name: Merge files
         run: |
           src1_dir="download/meta"
           src2_dir="download/surge"
-          dst_dir="surge"
+          dst_dir="meta"
 
           src1_names=('talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
 
@@ -284,7 +284,7 @@ jobs:
           cat 'download/meta/category-httpdns-cn.list' \
               'download/meta/iplocation-reject.list' \
               'download/surge/HTTPDNS.list' \
-          > surge/httpdns.list
+          > meta/httpdns.list
 
       - name: Merge adrules file
         run: |
@@ -293,10 +293,10 @@ jobs:
               'download/surge/AntiAD.list' \
               'download/surge/PCDN.list' \
               'download/meta/category-ads-all.list' \
-              'surge/httpdns.list' \
+              'meta/httpdns.list' \
               | \
               grep -vxF -f 'custom/reject-need-to-remove.list' \
-          > surge/adrules.list
+          > meta/adrules.list
 
       - name: Merge iplocation-proxy file
         run: |
@@ -305,8 +305,8 @@ jobs:
               'download/surge/LocDouyin.list' \
               'download/surge/LocKuaiShou.list' \
               | \
-              grep -vxF -f 'surge/httpdns.list' \
-          > surge/iplocation-proxy.list
+              grep -vxF -f 'meta/httpdns.list' \
+          > meta/iplocation-proxy.list
 
       - name: Merge apple-proxy file
         run: |
@@ -314,28 +314,28 @@ jobs:
               'download/meta/apple-intelligence.list' \
               'download/surge/Apple-Proxy.list' \
               'download/surge/AppleProxy.list' \
-          > surge/apple-proxy.list
+          > meta/apple-proxy.list
 
       - name: Merge apple-cn file
         run: |
           cat 'download/special/apple-cn-surge.list' \
               'download/special/apple-china.list' \
-          > surge/apple-cn.list
+          > meta/apple-cn.list
 
       - name: Merge apple file
         run: |
           cat 'custom/apple.list' \
-              'surge/apple-proxy.list' \
+              'meta/apple-proxy.list' \
               'download/meta/apple.list' \
               'download/surge/Apple.list' \
-          > surge/apple.list
+          > meta/apple.list
 
       - name: Merge microsoft file
         run: |
           cat 'custom/microsoft.list' \
               'download/meta/microsoft.list' \
               'download/surge/Microsoft.list' \
-          > surge/microsoft.list
+          > meta/microsoft.list
 
       - name: Merge games-cn file
         run: |
@@ -344,17 +344,17 @@ jobs:
               'download/meta/category-games@cn.list' \
               'download/surge/SteamCN.list' \
               'download/surge/GameDownloadCN.list' \
-          > surge/games-cn.list
+          > meta/games-cn.list
 
       - name: Merge games file
         run: |
-          cat 'surge/games-cn.list' \
+          cat 'meta/games-cn.list' \
               'download/meta/category-game-platforms-download.list' \
               'download/meta/category-games-!cn.list' \
               'download/meta/Game.list' \
               'download/surge/Game.list' \
               'download/surge/GameDownload.list' \
-          > surge/games.list
+          > meta/games.list
 
       - name: Merge gits file
         run: |
@@ -366,7 +366,7 @@ jobs:
               'download/meta/gitlab.list' \
               'download/meta/gitee.list' \
               'download/meta/gitbook.list' \
-          > surge/gits.list
+          > meta/gits.list
 
       - name: Merge ai file
         run: |
@@ -376,7 +376,7 @@ jobs:
               'download/meta/apple-intelligence.list' \
               'download/meta/category-ai-!cn.list' \
               'download/meta/ai.list' \
-          > surge/ai.list
+          > meta/ai.list
 
       - name: Merge ecommerce file
         run: |
@@ -388,8 +388,8 @@ jobs:
               'download/meta/amazon.list' \
               'download/meta/shopify.list' \
               | \
-              grep -vxF -f 'surge/primevideo.list' \
-          > 'surge/ecommerce.list'
+              grep -vxF -f 'meta/primevideo.list' \
+          > meta/ecommerce.list
 
       - name: Merge crypto file
         run: |
@@ -399,7 +399,7 @@ jobs:
               'download/meta/crypto.list' \
               'download/meta/category-cryptocurrency.list' \
               'download/meta/wise.list' \
-          > surge/crypto.list
+          > meta/crypto.list
 
       - name: Merge socialmedia-cn file
         run: |
@@ -415,7 +415,7 @@ jobs:
               'download/meta/zhihu.list' \
               'download/meta/douban.list' \
               'download/meta/coolapk.list' \
-          > surge/socialmedia-cn.list
+          > meta/socialmedia-cn.list
 
       - name: Merge socialmedia file
         run: |
@@ -433,13 +433,13 @@ jobs:
               'download/meta/twitter.list' \
               'download/meta/signal.list' \
               'download/meta/meta.list' \
-          > surge/socialmedia.list
+          > meta/socialmedia.list
 
       - name: Merge forum file
         run: |
           cat 'download/surge/Reddit.list' \
               'download/meta/category-forums.list' \
-          > surge/forum.list
+          > meta/forum.list
 
       - name: Merge cdn file
         run: |
@@ -448,7 +448,7 @@ jobs:
               'download/special/cdn-surge.list' \
               'download/special/download-surge.list' \
               'custom/cdn.list' \
-          > surge/cdn.list
+          > meta/cdn.list
 
       - name: Merge speedtest file
         run: |
@@ -460,26 +460,26 @@ jobs:
               'download/surge/Speedtest.list' \
               | \
               grep -vxF -f 'download/meta/test-ipv6@cn.list' \
-          > surge/speedtest.list
+          > meta/speedtest.list
 
       - name: Merge gfw file
         run: |
           cat 'download/meta/category-anticensorship.list' \
               'download/meta/gfw.list' \
               'download/surge/GFW.list' \
-          > surge/gfw.list
+          > meta/gfw.list
 
       - name: Merge proxy file
         run: |
-          cat 'surge/crypto.list' \
-              'surge/gfw.list' \
+          cat 'meta/crypto.list' \
+              'meta/gfw.list' \
               'download/surge/Global.list' \
               'download/surge/Proxy.list' \
               'download/special/proxy-data.list' \
               'custom/proxy.list' \
               | \
-              grep -vxF -f 'surge/tld-proxy.list' -f 'surge/adrules.list' \
-          > surge/proxy.list
+              grep -vxF -f 'meta/tld-proxy.list' -f 'meta/adrules.list' \
+          > meta/proxy.list
 
       - name: Merge dmca file
         run: |
@@ -493,7 +493,7 @@ jobs:
               'download/surge/Download.list' \
               | \
               grep -vxF -f 'download/meta/category-pt@!cn.list' \
-          > surge/dmca.list
+          > meta/dmca.list
 
       - name: Merge fake-ip-filter file
         run: |
@@ -504,13 +504,13 @@ jobs:
               'custom/domain/fake-ip-filter.list' \
               | \
               clash_domain_to_classical \
-          > surge/fake-ip-filter.list
+          > meta/fake-ip-filter.list
 
       - name: Deduplicate ruleset
         run: |
           source scripts/ruleset_process.sh
 
-          for file in surge/*.list ; do
+          for file in meta/*.list ; do
               if grep -q '^IP-CIDR' "${file}"; then
                   awk -F, '/^IP-CIDR/ { print $2; next }' "${file}" | ./geoip merge | awk '/:/ { print "IP-CIDR6," $0 ",no-resolve"; next } { print "IP-CIDR," $0 ",no-resolve" }' > tmp_cidr.list
 
@@ -522,17 +522,17 @@ jobs:
               fi
           done
 
-          dedupe_classical_to_clash_domain 'surge/fake-ip-filter.list' > 'meta/domain/fake-ip-filter.list'
+          dedupe_classical_to_clash_domain 'meta/fake-ip-filter.list' > 'meta/domain/fake-ip-filter.list'
 
-          grep -vxF -f 'surge/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
-          sort 'custom/direct-need-to-remove.list' 'surge/tld-proxy.list' 'surge/cdn.list' 'surge/proxy.list' | uniq > tmp_remove.list
-          sort 'cn.list' 'tmp_remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'tmp_remove.list' | ruleset_sort > 'surge/cn.list'
+          grep -vxF -f 'meta/adrules.list' 'download/special/accelerated-china.list' > 'cn.list'
+          sort 'custom/direct-need-to-remove.list' 'meta/tld-proxy.list' 'meta/cdn.list' 'meta/proxy.list' | uniq > tmp_remove.list
+          sort 'cn.list' 'tmp_remove.list' 'custom/direct.list' | uniq | domain_dedupe | grep -vxF -f 'tmp_remove.list' | ruleset_sort > 'meta/cn.list'
 
-          awk '{ sub(/,no-resolve$/, ""); print }' surge/cncidr.list > surge/cncidr-resolve.list
+          awk '{ sub(/,no-resolve$/, ""); print }' meta/cncidr.list > meta/cncidr-resolve.list
 
       - name: Generate sing-box ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               awk -F',' '
               BEGIN {
                   printf "{\n";
@@ -601,7 +601,7 @@ jobs:
           done
 
           rm -f singbox/version1/*-resolve.json
-          rm -f surge/fake-ip-filter.list
+          rm -f meta/fake-ip-filter.list
 
           for file in singbox/version1/*.json ; do
               awk 'sub(/"version": 1,/, "\"version\": 2,", $0) 1' "${file}" > "singbox/version2/$(basename "$file")"
@@ -623,15 +623,6 @@ jobs:
         run: |
           for file in singbox/*/*.json ; do
               ./sing-box rule-set compile --output "${file%.json}.srs" "${file}"
-          done
-
-      - name: Generate meta ruleset
-        run: |
-          for file in surge/*.list; do
-              awk '{
-                  sub(/^DEST-PORT/, "DST-PORT");
-                  print;
-              }' "$file" > "meta/$(basename "$file")"
           done
 
       - name: Generate meta domains
@@ -695,31 +686,18 @@ jobs:
 
       - name: Generate stash ruleset
         run: |
-          for file in surge/*.list; do
-              awk '{
-                  sub(/^DEST-PORT/, "DST-PORT");
-                  print;
-              }' "$file" > "stash/$(basename "$file")"
-          done
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/adrules.list > stash/classical/adrules.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/cdn.list > stash/classical/cdn.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/dmca.list > stash/classical/dmca.list
-          awk '!/^DOMAIN,|^DOMAIN-SUFFIX,|^IP-CIDR6?,/ { print }' stash/speedtest.list > stash/classical/speedtest.list
-
-          cp -r meta/domain stash
-          cp -r meta/ipcidr stash
+          cp -r meta/. stash/
 
           rm -f stash/domain/cn-*
-          rm -f stash/domain/fake-ip-filter.*
+          rm -f stash/domain/fake-ip-filter*
 
       - name: Generate shadowrocket ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               awk '{
                   if ($0 ~/^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
                   }
-                  sub(/^DEST-PORT/, "DST-PORT");
                   sub(/^IP-CIDR6/, "IP-CIDR");
                   print;
               }' "$file" > "shadowrocket/$(basename "$file")"
@@ -727,9 +705,9 @@ jobs:
 
       - name: Generate quantumultx ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               awk -v filename="$(basename "$file" .list)" '{
-                  if ($0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^DEST-PORT,/ || $0 ~ /^PROCESS-NAME,/) {
+                  if ($0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
                   }
                   sub(/^DOMAIN/, "HOST");
@@ -745,7 +723,7 @@ jobs:
 
       - name: Generate loon ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               awk '{
                   if ($0 ~ /^DOMAIN-WILDCARD,/ || $0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
                       next;
@@ -756,7 +734,7 @@ jobs:
 
       - name: Generate egern ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               grep -q ',no-resolve$' "$file" && found_no_resolve=1 || found_no_resolve=0
               awk -F',' -v found_no_resolve="$found_no_resolve" '
               BEGIN {
@@ -771,7 +749,7 @@ jobs:
                   sub(/"$/, "", $2);
                   sub(/'"'"'$/, "", $2);
                   chars = "[{}\\[\\]&*#|<>!%@`]"
-                  if ($2 ~ "^" chars || $1=="DEST-PORT") {
+                  if ($2 ~ "^" chars) {
                       $2 = sprintf("\x27%s\x27", $2);
                   }
                   if ($1 == "DOMAIN") {
@@ -795,22 +773,19 @@ jobs:
                   } else if ($1 == "IP-CIDR6") {
                       if (!cidr6++) print "ip_cidr6_set:";
                       print "- " $2;
-                  } else if ($1 == "DEST-PORT") {
-                      if (!dest_port++) print "dest_port_set:";
-                      print "- " $2;
                   }
               }' "$file" > "egern/$(basename "$file" ".list").yaml"
           done
 
       - name: Generate surge ruleset
         run: |
-          for file in surge/*.list; do
+          for file in meta/*.list; do
               awk '{
                   if ($0 ~ /^DOMAIN-REGEX,/) {
                       next;
                   }
                   print;
-              }' "$file" > tmp.list && mv tmp.list "${file}"
+              }' "$file" > "surge/$(basename "$file")"
           done
 
       - name: Move files to push directory
