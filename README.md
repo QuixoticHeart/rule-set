@@ -1706,7 +1706,9 @@ dns:
 
 ### sing-box 规则集目录
 
-sing-box文档关于[规则集版本的说明](https://sing-box.sagernet.org/zh/configuration/rule-set/source-format/#version)
+sing-box 文档关于 [规则集版本](https://sing-box.sagernet.org/zh/configuration/rule-set/source-format/#version) 的说明
+
+sing-box 文档关于 [domain_suffix 行为更新](https://sing-box.sagernet.org/zh/migration/#domain_suffix) 的说明，如需使用本规则集，**内核版本必须大于等于`v1.9.0`**
 
 <table>
     <tr>
