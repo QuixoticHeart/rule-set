@@ -491,6 +491,7 @@ singbox/
       <br> 规则源:
       <a href="https://github.com/blackmatrix7/ios_rule_script">@blackmatrix7/ios_rule_script</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
+      <a href="https://github.com/jmdugan/blocklists">@jmdugan/blocklists</a>
       </td>
     </tr>
     <tr>
@@ -2473,3 +2474,4 @@ sing-box 文档关于 [domain_suffix 行为更新](https://sing-box.sagernet.org
 - [@ngosang/trackerslist](https://github.com/ngosang/trackerslist)
 - [@uselibrary/PCDN](https://github.com/uselibrary/PCDN)
 - [@ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo)
+- [@jmdugan/blocklists](https://github.com/jmdugan/blocklists)
