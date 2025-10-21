@@ -181,10 +181,11 @@ jobs:
               'apple-cn-surge.list https://ruleset.skk.moe/List/non_ip/apple_cn.conf'
               'apple-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
               'accelerated-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
-              'XIU2-trackers.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
-              'ngosang-trackers.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
               'applications-classical-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
               'proxy-data.list https://github.com/Loyalsoldier/v2ray-rules-dat/raw/refs/heads/release/proxy-list.txt'
+              'tiktok-host.list https://github.com/jmdugan/blocklists/raw/refs/heads/master/corporations/tiktok/all'
+              'XIU2-trackers.list https://github.com/XIU2/TrackersListCollection/raw/refs/heads/master/all.txt'
+              'ngosang-trackers.list https://github.com/ngosang/trackerslist/raw/refs/heads/master/trackers_all.txt'
               'fake-ip-filter-sc.list https://github.com/juewuy/ShellCrash/raw/refs/heads/dev/public/fake_ip_filter.list'
               'fake-ip-filter-oc.list https://github.com/vernesong/OpenClash/raw/refs/heads/master/luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list'
           )
@@ -210,12 +211,20 @@ jobs:
               awk '{ sub(/^server=\//, "DOMAIN-SUFFIX,"); sub(/\/114\.114\.114\.114$/, ""); print }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
+          for file in download/special/*-yaml.list; do
+              awk '!/^payload/ { sub(/^\s*-\s*/, "", $0); print }' "$file" > tmp.list && mv tmp.list "${file}"
+          done
+
           for file in download/special/*-data.list; do
               awk '
                   /^full:/   { sub(/^full:/, "DOMAIN,"); print; next }
                   /^regexp:/ { sub(/^regexp:/, "DOMAIN-REGEX,"); print; next }
                   /^\w/ { print "DOMAIN-SUFFIX," $0 }
               ' "$file" > tmp.list && mv tmp.list "${file}"
+          done
+
+          for file in download/special/*-host.list; do
+              awk '{ sub(/^0\.0\.0\.0\s+/, "DOMAIN-SUFFIX,"); print }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
           for file in download/special/*-trackers.list; do
@@ -237,10 +246,6 @@ jobs:
                       next;
                   }
               }' "$file" > tmp.list && mv tmp.list "${file}"
-          done
-
-          for file in download/special/*-yaml.list; do
-              awk '!/^payload/ { sub(/^\s*-\s*/, "", $0); print }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
       - name: Copy single files
@@ -265,11 +270,11 @@ jobs:
           src2_dir="download/surge"
           dst_dir="meta"
 
-          src1_names=('talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
+          src1_names=('talkatone' 'onedrive' 'paypal' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tvplus' 'dazn' 'mytvsuper' 'douyin' 'private')
 
-          src2_names=('Talkatone' 'OneDrive' 'PayPal' 'TikTok' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
+          src2_names=('Talkatone' 'OneDrive' 'PayPal' 'BiliBili' 'GoogleFCM' 'YouTube' 'Google' 'Spotify' 'Twitch' 'Bahamut' 'HBO' 'Disney' 'PrimeVideo' 'Netflix' 'Hulu' 'Abema' 'DMM' 'Niconico' 'AppleTV' 'DAZN' 'myTVSUPER' 'DouYin' 'Lan')
 
-          dst_names=('talkatone' 'onedrive' 'paypal' 'tiktok' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
+          dst_names=('talkatone' 'onedrive' 'paypal' 'bilibili' 'googlefcm' 'youtube' 'google' 'spotify' 'twitch' 'bahamut' 'hbo' 'disney' 'primevideo' 'netflix' 'hulu' 'abema' 'dmm' 'niconico' 'apple-tv' 'dazn' 'mytvsuper' 'douyin' 'private')
 
           for i in "${!dst_names[@]}"; do
               src1_file="$src1_dir/${src1_names[i]}.list"
@@ -435,6 +440,13 @@ jobs:
               'download/meta/meta.list' \
           > meta/socialmedia.list
 
+      - name: Merge tiktok file
+        run: |
+          cat 'download/surge/TikTok.list' \
+              'download/meta/tiktok.list' \
+              'download/special/tiktok-host.list' \
+          > meta/tiktok.list
+
       - name: Merge forum file
         run: |
           cat 'download/surge/Reddit.list' \
@@ -472,6 +484,7 @@ jobs:
       - name: Merge proxy file
         run: |
           cat 'meta/crypto.list' \
+              'meta/tiktok.list' \
               'meta/gfw.list' \
               'download/surge/Global.list' \
               'download/surge/Proxy.list' \
