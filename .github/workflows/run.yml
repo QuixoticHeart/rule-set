@@ -60,7 +60,7 @@ jobs:
           rm -f convert.go init.go list.go lookup.go
           go build -o ../geoip
 
-      - name: Generate directories
+      - name: Make directories
         run: |
           mkdir -p download/meta
           mkdir -p download/surge
@@ -113,7 +113,7 @@ jobs:
 
           for file in "${files[@]}"; do
               set -- $file
-              curl -f -L "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
+              curl -fsSL "$2" > "download/meta/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           sed -n '/## >> 抖音/,/##/{//!p}' "download/meta/DouYin.list" > tmp.list && mv tmp.list "download/meta/douyin.list"
@@ -162,7 +162,7 @@ jobs:
 
           for file in "${files[@]}"; do
               set -- $file
-              curl -f -L "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
+              curl -fsSL "$2" > "download/surge/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/surge/*.list; do
@@ -192,7 +192,7 @@ jobs:
 
           for file in "${files[@]}"; do
               set -- $file
-              curl -f -L "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
+              curl -fsSL "$2" > "download/special/$1" || { echo "Download Failed: $1"; exit 1; }
           done
 
           for file in download/special/*.list; do
@@ -624,7 +624,7 @@ jobs:
 
       - name: Download and unzip `sing-box core`
         run: |
-          singbox_version=$(curl -sSL https://api.github.com/repos/SagerNet/sing-box/releases | grep 'tag_name' | head -n 1 | sed -e 's/.*v//' -e 's/".*//')
+          singbox_version=$(curl -fsSL https://github.com/SagerNet/sing-box/releases | grep -oE '/SagerNet/sing-box/releases/tag/[^\"]*-alpha[^\"]*' | head -1 | sed 's/.*v//')
 
           wget "https://github.com/SagerNet/sing-box/releases/download/v${singbox_version}/sing-box-${singbox_version}-linux-amd64.tar.gz" -O - | tar -zxf -
 
@@ -681,9 +681,9 @@ jobs:
 
       - name: Download and unzip `mihomo core`
         run: |
-          mihomo_version=$(curl -sSL https://api.github.com/repos/MetaCubeX/mihomo/releases | grep 'tag_name' | grep -v 'Alpha' | head -n 1 | sed -e 's/.*v/v/' -e 's/".*//')
+          mihomo_version=$(curl -fsSL https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/version.txt)
 
-          wget "https://github.com/MetaCubeX/mihomo/releases/download/${mihomo_version}/mihomo-linux-amd64-v3-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
+          wget "https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-v3-${mihomo_version}.gz" -O - | gzip -d > ./mihomo
 
           chmod +x ./mihomo
 
