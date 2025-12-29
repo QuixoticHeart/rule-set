@@ -651,10 +651,6 @@ jobs:
                   }
               ' "$file"
           done
-          grep -vxF -f 'meta/domain/bilibili.list' 'meta/domain/cn.list' > 'meta/domain/cn-b.list'
-          grep -vxF -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bs.list'
-          grep -vxF -f 'meta/domain/douyin.list' 'meta/domain/cn-b.list' > 'meta/domain/cn-bd.list'
-          grep -vxF -f 'meta/domain/socialmedia-cn.list' 'meta/domain/cn-bd.list' > 'meta/domain/cn-bsd.list'
 
       - name: Generate meta ipcidr
         run: |
@@ -700,8 +696,6 @@ jobs:
       - name: Generate stash ruleset
         run: |
           cp -r meta/. stash/
-
-          rm -f stash/domain/cn-*
           rm -f stash/domain/fake-ip-filter*
 
       - name: Generate shadowrocket ruleset

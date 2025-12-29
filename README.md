@@ -564,59 +564,6 @@ singbox/
   </tbody>
 </table>
 
-#### 特殊用途的大陆域名规则
-
-> [!IMPORTANT]
->
-> 使用场景: 家庭网络中使用了 **clash.meta/mihomo** 内核的插件进行透明代理，开启了类似绕过大陆IP的功能，同时你又希望对某些特定国内域名分流
->
-> 解决思路: 给你需要分流的国内域名分配 fake-ip 使其进入内核
-
-以 bilibili 为例
-
-解决方法 1: 将 fake-ip-filter-mode 设为白名单模式，给 bilibili 分配 fake-ip，此时 bilibili 分配 fake-ip，其它域名则获取 real-ip
-
-```yaml
-dns:
-  fake-ip-filter-mode: whitelist
-  fake-ip-filter: ['rule-set:bilibili']
-```
-
-解决方法 2: 使用默认的黑名单模式，fake-ip-filter 填入本仓库中的 cn-b 规则(排除 bilibili 的大陆域名)，此时 bilibili 和国外域名分配 fake-ip，其它域名则获取 real-ip
-
-```yaml
-dns:
-  # fake-ip-filter-mode: blacklist
-  fake-ip-filter: ['rule-set:cn-b']
-```
-
-<table>
-  <thead>
-    <tr>
-      <th>规则名称</th>
-      <th>规则描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>cn-b</code></td>
-      <td>排除 <code>bilibili</code> 的中国大陆域名</td>
-    </tr>
-    <tr>
-      <td><code>cn-bd</code></td>
-      <td>排除 <code>bilibili</code> 与 <code>douyin</code> 的中国大陆域名</td>
-    </tr>
-    <tr>
-      <td><code>cn-bs</code></td>
-      <td>排除 <code>bilibili</code> 与 <code>socialmedia-cn</code> 的中国大陆域名</td>
-    </tr>
-    <tr>
-      <td><code>cn-bsd</code></td>
-      <td>排除 <code>bilibili</code> 、 <code>douyin</code> 和 <code>socialmedia-cn</code> 的中国大陆域名</td>
-    </tr>
-  </tbody>
-</table>
-
 ## 规则目录
 
 ### surge、loon、shadowrocket、quantumultx、egern、mihomo/clash.meta 和 stash 完整规则集目录
@@ -1661,42 +1608,6 @@ dns:
     <tr>
         <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/fake-ip-filter.mrs">[meta/domain] fake-ip-filter(mrs)</a><br><br>
         <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/fake-ip-filter.list">[meta/domain] fake-ip-filter(text)</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-b.mrs">[meta/domain] cn-b(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-b.list">[meta/domain] cn-b(text)</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bs.mrs">[meta/domain] cn-bs(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bs.list">[meta/domain] cn-bs(text)</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bd.mrs">[meta/domain] cn-bd(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bd.list">[meta/domain] cn-bd(text)</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td><a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bsd.mrs">[meta/domain] cn-bsd(mrs)</a><br><br>
-        <a href="https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/cn-bsd.list">[meta/domain] cn-bsd(text)</a></td>
         <td></td>
         <td></td>
         <td></td>
