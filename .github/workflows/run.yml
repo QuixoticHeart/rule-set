@@ -98,7 +98,6 @@ jobs:
           done
 
           files=(
-              'cncidr.list https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/surge/cn.txt'
               'iplocation-reject.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-reject.list'
               'iplocation-direct.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-direct.list'
               'iplocation-proxy.list https://github.com/SunsetMkt/anti-ip-attribution/raw/refs/heads/main/generated/rule-set-proxy.list'
@@ -179,6 +178,7 @@ jobs:
               'cdn-surge.list https://ruleset.skk.moe/List/non_ip/cdn.conf'
               'download-surge.list https://ruleset.skk.moe/List/non_ip/download.conf'
               'apple-cn-surge.list https://ruleset.skk.moe/List/non_ip/apple_cn.conf'
+              'cn-cidr.list https://github.com/NobyDa/geoip/raw/refs/heads/release/text/cn.txt'
               'apple-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/apple.china.conf'
               'accelerated-china.list https://github.com/felixonmars/dnsmasq-china-list/raw/refs/heads/master/accelerated-domains.china.conf'
               'applications-classical-yaml.list https://github.com/Loyalsoldier/clash-rules/raw/refs/heads/release/applications.txt'
@@ -205,6 +205,10 @@ jobs:
 
           for file in download/special/*-surge.list; do
               awk '!/_.*\.skk\.moe/' "$file" > tmp.list && mv tmp.list "${file}"
+          done
+
+          for file in download/special/*-cidr.list; do
+              awk '/:/ { print "IP-CIDR6," $0 ",no-resolve"; next } { print "IP-CIDR," $0 ",no-resolve" }' "$file" > tmp.list && mv tmp.list "${file}"
           done
 
           for file in download/special/*-china.list; do
@@ -253,8 +257,8 @@ jobs:
           src_dir="download/meta"
           dst_dir="meta"
 
-          src_names=('iplocation-direct' 'microsoft@cn' 'tld-!cn' 'cncidr')
-          dst_names=('iplocation-direct' 'microsoft-cn' 'tld-proxy' 'cncidr')
+          src_names=('iplocation-direct' 'microsoft@cn' 'tld-!cn')
+          dst_names=('iplocation-direct' 'microsoft-cn' 'tld-proxy')
 
           for i in "${!dst_names[@]}"; do
               src_file="$src_dir/${src_names[i]}.list"
@@ -262,7 +266,8 @@ jobs:
               cp "$src_file" "$dst_file"
           done
 
-          cp "custom/apns.list" "$dst_dir"
+          cp "download/special/cn-cidr.list" "meta/cncidr.list"
+          cp "custom/apns.list" "meta/apns.list"
 
       - name: Merge files
         run: |

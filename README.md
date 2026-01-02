@@ -201,14 +201,14 @@ singbox/
       <td><code>cncidr</code></td>
       <td>中国大陆 IP 地址
       <br> 规则源:
-      <a href="https://github.com/Loyalsoldier/geoip">@Loyalsoldier/geoip</a>
+      <a href="https://github.com/NobyDa/geoip">@NobyDa/geoip</a>
       </td>
     </tr>
     <tr>
       <td><code>cncidr-resolve</code></td>
       <td>中国大陆 IP 地址去除 no-resolve 参数
       <br> 规则源:
-      <a href="https://github.com/Loyalsoldier/geoip">@Loyalsoldier/geoip</a>
+      <a href="https://github.com/NobyDa/geoip">@NobyDa/geoip</a>
       </td>
     </tr>
     <tr>
@@ -2367,8 +2367,9 @@ sing-box 文档关于 [domain_suffix 行为更新](https://sing-box.sagernet.org
 - [@MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)
 - [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
-- [@Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip)
 - [@Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat)
+- [@Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip)
+- [@NobyDa/geoip](https://github.com/NobyDa/geoip)
 - [@SukkaW/Surge](https://github.com/SukkaW/Surge)
 - [@LM-Firefly/Rules](https://github.com/LM-Firefly/Rules)
 - [@ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
