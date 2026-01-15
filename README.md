@@ -7,6 +7,8 @@
 ## 项目简介
 
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/QuixoticHeart/rule-set/ruleset?label=%E6%9C%80%E6%96%B0%E6%9E%84%E5%BB%BA)](https://github.com/QuixoticHeart/rule-set/tree/ruleset)
+[![jsdelivr stats](https://data.jsdelivr.com/v1/package/gh/QuixoticHeart/rule-set/badge?style=rounded)](https://www.jsdelivr.com/package/gh/QuixoticHeart/rule-set)
+
 
 每天早上 7:30（北京时间 UTC+8）自动构建，保持规则最新
 
@@ -538,7 +540,7 @@ singbox/
   <tbody>
     <tr>
       <td><code>httpdns</code></td>
-      <td>需要屏蔽的 HTTPDNS 列表，需要修改国内软件 IP 归属地时建议使用
+      <td>需要屏蔽的 HTTPDNS 列表，修改国内软件 IP 归属地建议屏蔽的规则
       <br>规则源:
       <a href="https://github.com/VirgilClyne/GetSomeFries">@VirgilClyne/GetSomeFries</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
@@ -2387,3 +2389,7 @@ sing-box 文档关于 [domain_suffix 行为更新](https://sing-box.sagernet.org
 - [@uselibrary/PCDN](https://github.com/uselibrary/PCDN)
 - [@ConnersHua/RuleGo](https://github.com/ConnersHua/RuleGo)
 - [@jmdugan/blocklists](https://github.com/jmdugan/blocklists)
+
+## 项目 Star 数增长趋势
+
+[![Stargazers over time](https://starchart.cc/QuixoticHeart/rule-set.svg)](https://starchart.cc/QuixoticHeart/rule-set)
