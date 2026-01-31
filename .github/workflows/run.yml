@@ -629,7 +629,9 @@ jobs:
 
       - name: Download and unzip `sing-box core`
         run: |
-          singbox_version=$(curl -fsSL https://github.com/SagerNet/sing-box/releases | grep -oE '/SagerNet/sing-box/releases/tag/[^\"]*-alpha[^\"]*' | head -1 | sed 's/.*v//')
+          # singbox_version=$(curl -fsSL https://github.com/SagerNet/sing-box/releases | grep -oE '/SagerNet/sing-box/releases/tag/[^\"]*'| sort -r | head -1 | sed 's/.*v//')
+
+          singbox_version="1.13.0-beta.1"
 
           wget "https://github.com/SagerNet/sing-box/releases/download/v${singbox_version}/sing-box-${singbox_version}-linux-amd64.tar.gz" -O - | tar -zxf -
 
