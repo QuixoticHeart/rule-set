@@ -110,7 +110,6 @@ singbox/
       <br> 规则源:
       <a href="https://github.com/Cats-Team/AdRules">@Cats-Team/AdRules</a>
       <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
-      <a href="https://github.com/TG-Twilight/AWAvenue-Ads-Rule">@TG-Twilight/AWAvenue-Ads-Rule</a>
       <a href="https://github.com/uselibrary/PCDN">@uselibrary/PCDN</a>
       <a href="https://github.com/LOWERTOP/Shadowrocket-First">@LOWERTOP/Shadowrocket-First</a>
       <br> <code>httpdns</code>规则源:
@@ -189,6 +188,7 @@ singbox/
       <td>常见静态资源 CDN 及软件更新、操作系统等大文件下载规则
       <br> 规则源:
       <a href="https://github.com/SukkaW/Surge">@SukkaW/Surge</a>
+      <a href="https://github.com/MetaCubeX/meta-rules-dat">@MetaCubeX/meta-rules-dat</a>
       </td>
     </tr>
     <tr>
@@ -2377,7 +2377,6 @@ sing-box 文档关于 [domain_suffix 行为更新](https://sing-box.sagernet.org
 - [@ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
 - [@SunsetMkt/anti-ip-attribution](https://github.com/SunsetMkt/anti-ip-attribution)
 - [@Cats-Team/AdRules](https://github.com/Cats-Team/AdRules)
-- [@TG-Twilight/AWAvenue-Ads-Rule](https://github.com/TG-Twilight/AWAvenue-Ads-Rule)
 - [@LOWERTOP/Shadowrocket-First](https://github.com/LOWERTOP/Shadowrocket-First)
 - [@fmz200/wool_scripts](https://github.com/fmz200/wool_scripts)
 - [@VirgilClyne/GetSomeFries](https://github.com/VirgilClyne/GetSomeFries)
