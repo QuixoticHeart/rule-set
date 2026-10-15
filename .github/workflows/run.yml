@@ -733,7 +733,7 @@ jobs:
         run: |
           for file in meta/*.list; do
               awk '{
-                  if ($0 ~ /^DOMAIN-WILDCARD,/ || $0 ~ /^DOMAIN-REGEX,/ || $0 ~ /^PROCESS-NAME,/) {
+                  if ($0 ~ /^DOMAIN-REGEX,/) {
                       next;
                   }
                   print;
