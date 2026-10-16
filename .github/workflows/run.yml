@@ -63,7 +63,6 @@ jobs:
       - name: Make directories
         run: |
           mkdir -p download/meta
-          mkdir -p download/surge
           mkdir -p download/special
           mkdir -p singbox/version1
           mkdir -p singbox/version2
@@ -73,14 +72,6 @@ jobs:
           mkdir -p meta/domain
           mkdir -p meta/ipcidr
           mkdir -p meta/classical
-          mkdir -p stash/domain
-          mkdir -p stash/ipcidr
-          mkdir -p stash/classical
-          mkdir -p surge
-          mkdir -p shadowrocket
-          mkdir -p quantumultx
-          mkdir -p loon
-          mkdir -p egern
           mkdir -p push
 
       - name: Download meta ruleset
